@@ -1,0 +1,46 @@
+﻿.head{
+    background: url(http://cdn.fishki.net/upload/post/201505/15/1533332/gotowallcom20111226_142538_2862.jpg) center top;
+    background-size:cover;
+    -moz-box-sizing: border-box; /* Для Firefox */  
+    -webkit-box-sizing:border-box;
+    box-sizing: border-box; /* Ширина блока с полями */
+    background-color: #ffffff;
+    background-position-x:center;
+    background-position-y:center;
+}
+.head_overlay{
+    position:relative;
+    background-color: rgba(255,255,255, 0.3); 
+}
+.title{
+    padding:225px 0 100px 0;
+}
+.title h1{
+    color:#ffffff;
+}
+.title h1 small{
+    color:#f2f2f2;
+}
+.head_border{
+    padding-bottom:10px;
+    border-bottom:1px solid gray;
+    margin-bottom:10px;
+}
+.photo_minimize{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position-y: center;
+    background-position-x: center;
+}
+.tile{
+    height: 200px;
+    padding-bottom:2px;
+}
+.big_tile{
+    height: 400px;
+    padding-bottom:2px;
+}
+.photo1{
+    background-image:url(https://source.unsplash.com/random);
+}
