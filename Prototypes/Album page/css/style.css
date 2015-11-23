@@ -7,15 +7,19 @@
     background-color: #ffffff;
     background-position-x:center;
     background-position-y:center;
+    height: 100vh;
 }
 .head_overlay{
+    height:100%;
     position:relative;
     background-color: rgba(255,255,255, 0.3); 
 }
 .title{
-    padding:225px 0 100px 0;
+    position:relative;
 }
 .title h1{
+    position:relative;
+    top:30vh;
     color:#ffffff;
 }
 .title h1 small{
@@ -33,14 +37,19 @@
     background-position-y: center;
     background-position-x: center;
 }
+.mini_tile{
+    height:12.5vw;
+    padding-bottom:2px;
+}
 .tile{
-    height: 200px;
+    height: 25vw;
     padding-bottom:2px;
 }
 .big_tile{
-    height: 400px;
+    height: 50vw;
     padding-bottom:2px;
 }
+
 .photo1{
     background-image:url(https://source.unsplash.com/random);
 }
