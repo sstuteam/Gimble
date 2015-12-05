@@ -1,12 +1,59 @@
 ﻿.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
         position: relative;
     min-height: 1px;
-    padding-right: 1px;
-    padding-left: 1px;
+    padding-right: 0;
+    padding-left: 0;
 }
-.col-xs-1 > div, .col-sm-1 > div, .col-md-1 > div, .col-lg-1 > div, .col-xs-2 > div, .col-sm-2 > div, .col-md-2 > div, .col-lg-2 > div, .col-xs-3 > div, .col-sm-3 > div, .col-md-3 > div, .col-lg-3 > div, .col-xs-4 > div, .col-sm-4 > div, .col-md-4 > div, .col-lg-4 > div, .col-xs-5 > div, .col-sm-5 > div, .col-md-5 > div, .col-lg-5 > div, .col-xs-6 > div, .col-sm-6 > div, .col-md-6 > div, .col-lg-6 > div, .col-xs-7 > div, .col-sm-7 > div, .col-md-7 > div, .col-lg-7 > div, .col-xs-8 > div, .col-sm-8 > div, .col-md-8 > div, .col-lg-8 > div, .col-xs-9 > div, .col-sm-9 > div, .col-md-9 > div, .col-lg-9 > div, .col-xs-10 > div, .col-sm-10 > div, .col-md-10 > div, .col-lg-10 > div, .col-xs-11 > div, .col-sm-11 > div, .col-md-11 > div, .col-lg-11 > div, .col-xs-12 > div, .col-sm-12 > div, .col-md-12 > div, .col-lg-12 {
+#main_tiles .col-xs-1 > div, #main_tiles .col-sm-1 > div, #main_tiles .col-md-1 > div, #main_tiles .col-lg-1 > div, #main_tiles .col-xs-2 > div, #main_tiles .col-sm-2 > div, #main_tiles .col-md-2 > div, #main_tiles .col-lg-2 > div, #main_tiles .col-xs-3 > div, #main_tiles .col-sm-3 > div, #main_tiles .col-md-3 > div, #main_tiles .col-lg-3 > div, #main_tiles .col-xs-4 > div, #main_tiles .col-sm-4 > div, #main_tiles .col-md-4 > div, #main_tiles .col-lg-4 > div, #main_tiles .col-xs-5 > div, #main_tiles .col-sm-5 > div, #main_tiles .col-md-5 > div, #main_tiles .col-lg-5 > div, #main_tiles .col-xs-6 > div, #main_tiles .col-sm-6 > div, #main_tiles .col-md-6 > div, #main_tiles .col-lg-6 > div, #main_tiles .col-xs-7 > div, #main_tiles .col-sm-7 > div, #main_tiles .col-md-7 > div, #main_tiles .col-lg-7 > div, #main_tiles .col-xs-8 > div, #main_tiles .col-sm-8 > div, #main_tiles .col-md-8 > div, #main_tiles .col-lg-8 > div, #main_tiles .col-xs-9 > div, #main_tiles .col-sm-9 > div, #main_tiles .col-md-9 > div, #main_tiles .col-lg-9 > div, #main_tiles .col-xs-10 > div, #main_tiles .col-sm-10 > div, #main_tiles .col-md-10 > div, #main_tiles .col-lg-10 > div, #main_tiles .col-xs-11 > div, #main_tiles .col-sm-11 > div, #main_tiles .col-md-11 > div, #main_tiles .col-lg-11 > div, #main_tiles .col-xs-12 > div, #main_tiles .col-sm-12 > div, #main_tiles .col-md-12 > div, #main_tiles .col-lg-12 {
     position: relative;
     min-height: 1px;
-    padding-right: 0;
-    padding-left: 2px;
+    padding: 1px 1px;
+}
+
+.tiles .col-md-12 { 
+  width: 100%;
+}
+.tiles .col-md-11 {
+  height: 91.66666667vw;
+  width: 91.66666667%;
+}
+.tiles .col-md-10 {
+    height:83.33333333vw;
+  width: 83.33333333%;
+}
+.tiles .col-md-9 {
+  height:75vw;
+  width: 75%;
+}
+.tiles .col-md-8 {
+    height:66.66666667vw;
+  width: 66.66666667%;
+}
+.tiles .col-md-7 {
+    height:58.3333333vw;
+  width: 58.33333333%;
+}
+.tiles .col-md-6 {
+    height:50vw;
+  width: 50%;
+}
+.tiles .col-md-5 {
+    height:41.6666667vw;
+  width: 41.66666667%;
+}
+.tiles .col-md-4 {
+  height:33.33333333vw;
+  width: 33.33333333%;
+}
+.tiles .col-md-3 {
+  height:25vw;
+  width: 25%;
+}
+.tiles .col-md-2 {
+    height:16.666666666vw;
+  width: 16.66666667%;
+}
+.tiles .col-md-1 {
+    height:8.33333333vw;
+  width: 8.33333333%;
 }

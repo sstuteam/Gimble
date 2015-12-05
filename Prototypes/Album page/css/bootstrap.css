@@ -181,7 +181,7 @@ optgroup {
 }
 table {
   border-spacing: 0;
-  border-collapse: collapse;
+  border-collapse: -lapse;
 }
 td,
 th {
@@ -1622,7 +1622,7 @@ pre code {
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
   float: left;
 }
-.col-xs-12 {
+.col-xs-12 {    
   width: 100%;
 }
 .col-xs-11 {
