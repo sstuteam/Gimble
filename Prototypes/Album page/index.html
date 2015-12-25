@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script src="js/jquery-2.1.4.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,8 +12,8 @@
     <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="row">
-        <div class="col-md-12 ">
+    <div class="container-fluid">
+        <div class="row tiles">
             <div class="head_border">
                 <div class="head photo1">
                     <div class="head_overlay title text-center">
@@ -25,65 +26,149 @@
                 </div>
             </div>
         </div>
-        <div class=".container-fluid">
-            <div class="col-md-3 .col-sm-3 .col-xs-3 tile ">
+
+
+        <div id="main_tiles" class="row">
+            <div class="col-lg-4 col-md-6 col-xs-12 tile">
                 <div class=" photo_minimize photo1"></div>
             </div>
-            <div class="col-md-9 .col-sm-9 .col-xs-9 tile">
+            <div class="col-lg-8 col-md-6 col-xs-12 tile">
                 <div class="photo_minimize photo1"></div>
             </div>
-
-            <div class="col-md-3 .col-sm-3 .col-xs-3 big_tile">
-                <div class="col-md-6 mini_tile">
+            <div class="col-lg-4 col-md-12 col-xs-12">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
-                <div class="col-md-6 mini_tile">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
-
-                <div class="col-md-6 mini_tile">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
-
-                <div class="col-md-6 mini_tile">
-                    <div class="photo_minimize photo1"></div>
-                </div>
-
-                <div class="col-md-6 mini_tile">
-                    <div class="photo_minimize photo1"></div>
-                </div>
-
-                <div class="col-md-6 mini_tile">
-                    <div class="photo_minimize photo1"></div>
-                </div>
-
-                <div class="col-md-6 mini_tile">
-                    <div class="photo_minimize photo1"></div>
-                </div>
-
-                <div class="col-md-6 mini_tile">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
             </div>
-
-            <div class="col-md-6 big_tile clearfix">
+            <div class="col-lg-4 col-md-6 col-xs-6 big_tile">
                 <div class="photo_minimize photo1"></div>
             </div>
-            <div class="col-md-3 .col-sm-3 tile element">
-                <div class="photo_minimize photo1"></div>
-            </div>
-            <div class="col-md-3 tile element">
+            <div class="col-lg-4 col-md-6 col-xs-6 tile">
                 <div class="photo_minimize photo1"></div>
 
             </div>
-            <div class="col-md-3 tile element">
-                фыва
+            <div class="col-lg-4 col-md-6 col-xs-6 tile">
+                <div class="photo_minimize photo1"></div>
 
             </div>
-            <div class="col-md-6 tile element">
+            <div class="col-lg-12 col-md-12 col-xs-12 tile">
                 <div class="photo_minimize photo1"></div>
             </div>
         </div>
+        <div class="row">
+            <div class="album_info">
+                <div class=" col-lg-11 col-md-9 main_info">
+                    <div class="tags col-lg-10">
+                        <div class="vcenter">
+                            Метки:
+                            <a>Солнце</a>
+                            <a>Пляж</a>
+                            <a>Радость</a>
+
+                        </div>
+                        <div class="helper"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 autor_name text-center">
+                        <div class="vcenter ">
+                            <span class="text-muted text-center ">Иванов Иван Иванович </span>
+                        </div>
+                        <div class="helper"></div>
+                    </div>
+                    <div class="favorite">
+                        <div class="col-lg-2 vcenter pull-left">
+                            <form>
+                                <button  id="favour_button" class="btn btn-default btn-sm">В избранное </button>
+                                
+                            </form>
+                        </div>
+                        <div class="col-lg-1 vcenter pull-right">
+                            <div class="btn-group">
+                                <button id="plus-rating-btn" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+                                <div class="rating text-center">123</div>
+                                <button id="minus-rating-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></button>
+                                
+                            </div>
+                        </div>
+
+                        <div class="helper"> </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-1 col-md-1 autor">
+                    <img src="https://source.unsplash.com/random" class="img-circle img-responsive autor_icon" />
+
+                </div>
+
+
+            </div>
+            <div class="col-lg-12 comments">
+                <div class=" col-md-12 comment">
+
+                    <div class="col-lg-11">
+                        <div class="comment_autor_icon">
+                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        </div>
+                        <a class="text-muted">
+                            Семенов Семен Семенович <br />
+                        </a>
+                        <span class="comment_text">Комментарий  Если содержимое блока превышает указанную высоту, то высота элемента останется неизменной, а содержимое будет отображаться поверх него. Из-за этой особенности может получиться наложение содержимого элементов друг на друга, когда элементы в коде HTML идут последовательно. Чтобы этого </span>
+                    </div>
+                    <div class="col-lg-1 text-center">
+                        <span class="date text-muted">11.11.2011</span>
+                        <span class="time text-muted">17:16</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 comment">
+
+                    <div class="col-lg-11">
+                        <div class="comment_autor_icon">
+                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        </div>
+                        <a class="text-muted">Петров Пётр Петрович</a><br />
+                        <span class="comment_text">И тут тоже</span>
+                    </div>
+                    <div class="col-lg-1 text-center">
+                        <span class="date text-muted">11.11.2011</span>
+                        <span class="time text-muted ">17:16</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 comment">
+
+                    <div class="col-lg-11">
+                        <div class="comment_autor_icon">
+                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        </div>
+                        <a class="text-muted">Васильев Василий Васильевич</a><br />
+                        <span class="comment_text">Вау, еще один</span>
+                    </div>
+                    <div class="col-lg-1 text-center">
+                        <span class="date text-muted">11.11.2011</span>
+                        <span class="time text-muted">17:16</span>
+                    </div>
+                </div>
+
+                <form role="form" class="comment_form">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="inputComment" placeholder="Оставьте свой отзыв">
+                    </div>
+
+                    <button type="submit" class="btn btn-default right">Отправить</button>
+                </form>
+
+            </div>
+
+        </div>
+
     </div>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
