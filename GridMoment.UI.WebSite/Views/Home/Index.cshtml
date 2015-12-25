@@ -33,14 +33,7 @@
                             <h4 class="modal-title">Регистрация</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-register" role="form">
-                                <input type="email" class="form-control" placeholder="Email" required autofocus>
-                                <input type="text" class="form-control" placeholder="Имя пользователя" required>
-                                <input type="password" class="form-control" placeholder="Пароль" required>
-                                <input type="password" class="form-control" placeholder="Повторите пароль" required>
-                                <br>
-                                <button class="btn btn-md btn-primary btn-block" type="button">Зарегистрироваться</button>
-                            </form>
+                            @Html.Partial("~/Views/Account/Register.cshtml")
                         </div>
                     </div>
                 </div>
@@ -55,15 +48,7 @@
                             <h4 class="modal-title">Вход</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-signin" role="form">
-                                <input type="text" class="form-control" placeholder="Имя пользователя" required
-                                       autofocus>
-                                <input type="password" class="form-control" placeholder="Пароль" required>
-                                <label class="checkbox col-xs-offset-1">
-                                    <input type="checkbox" value="remember-me"> Запомнить
-                                </label>
-                                <button class="btn btn-md btn-primary btn-block" type="button">Войти</button>
-                            </form>
+                            @Html.Partial("~/Views/Account/Login.cshtml")
                         </div>
                         <div class="modal-footer">
                             <span>Вы у нас впервые? </span><a id="registerLink" href="#">Зарегистрироваться</a>
@@ -72,9 +57,16 @@
                 </div>
             </div>
 
-            <button id="btnShowLogin" class="btn btn-default btn-lg col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
-                Войти
-            </button>
+            @if (!WebSecurity.IsAuthenticated)
+            {
+                <button id="btnShowLogin" class="btn btn-default btn-lg col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
+                    Войти
+                </button>
+            }
+            else
+            {
+                <h1 class="col-xs-12 text-center">Добро пожаловать, @WebSecurity.CurrentUserName</h1>
+            }
 
             <!-- Стрелка -->
             <div class="col-xs-10 col-xs-offset-1 hidden-xs arrow-scroll">
@@ -100,6 +92,12 @@
                     <li><a data-toggle="tab" href="#best-story-30">За месяц</a></li>
                 </ul>
             </li>
+            @if (WebSecurity.IsAuthenticated)
+            {
+                <li class="pull-right">
+                    @Html.ActionLink("Выйти", "Logout", "Account")
+                </li>
+            }
         </ul>
 
         <div class="tab-content">
