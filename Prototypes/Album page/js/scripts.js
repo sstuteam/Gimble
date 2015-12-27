@@ -20,7 +20,7 @@ $("#favour_button").click(function (event) {
 $("#plus-rating-btn").click(function (event) {
     
     if(!($("#plus-rating-btn").hasClass('disabled'))){
-        $('.rating').text((parseInt($('.rating').text())) + 1);
+        $('#rating').text((parseInt($('#rating').text())) + 1);
     }
 
     if ($("#minus-rating-btn").hasClass('disabled')) {
@@ -34,7 +34,7 @@ $("#plus-rating-btn").click(function (event) {
 $("#minus-rating-btn").click(function (event) {
 
     if (!($("#minus-rating-btn").hasClass('disabled'))) {
-        $('.rating').text((parseInt($('.rating').text())) - 1);
+        $('#rating').text((parseInt($('#rating').text())) - 1);
     }
 
     if ($("#plus-rating-btn").hasClass('disabled')) {
