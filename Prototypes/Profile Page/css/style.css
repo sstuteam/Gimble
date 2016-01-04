@@ -15,19 +15,6 @@
     background-color:#40A7FF;
 }
 
-hr {
-    padding-bottom: 1px;
-    background-color: #9b9b9b;
-    border-bottom:3px solid #F4F4F4;
-    height:3px;
-}
-
-.blocks {
-     width: 100%;
-     height: 1px;
-     clear: both;
-}
-
 .tile img {
   min-height: 100%;
   min-width: 100%;
@@ -38,7 +25,7 @@ hr {
 }
 
 .center-text{
-    font-size: 3vw;
+    font-size: 1.5vw;
     text-align : center;
 }
 
@@ -57,7 +44,7 @@ hr {
 .tile-radius{
     background-size: cover;
     overflow:hidden;
-   border-radius: 30vw;
+    border-radius: 30vw;
     height:15vw;
     width:15vw;    
     box-shadow: 7px 5px 23px 1px #000000;
@@ -65,158 +52,32 @@ hr {
     text-align:center;
 }
 
-.tile{
-    padding:0px;
-    height: 25vw;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    margin-bottom:2vw;
-    text-align:center;
-    font-size:5vh;
-    font:Arial;
-    color:black;
-    text-decoration:solid;
-
-}
-
-.tile-big{
-    padding:0px;
-    height: 25vw;
-    width:  48.5vw;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    margin-bottom:2vw;
-    text-align:center;
-    font-size:3vw;
-    font:Arial;
-    color:azure;
-}
-
 .negative-footer-margin{
     margin-left:-15px;
     margin-right:-15px;
-}
-
-.tile-photo-phone{
-    padding: 5px;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position-y: center;
-    background-position-x: center;
-    box-shadow: 7px 5px 23px 1px #000000;
 }
 
 .photo{
     background-image:url(https://source.unsplash.com/random);
 }
 
-.weather{
-    background-image:url(http://i1-news.softpedia-static.com/images/news2/Breezy-Weather-App-for-Windows-8-Gets-Major-Improvements-Download-Here-2.jpg);
+.head-page{
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+    height:100px;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
 
-.place{
-    background-image:url(http://tile0.maps.2gis.com/tiles?x=82294&y=43570&z=17&v=1);
+.white-text + dropdown{
+    color:white;
 }
 
-.date{
-    background-image:url(http://thewindowsclub.thewindowsclubco.netdna-cdn.com/wp-content/uploads/2014/01/clock-tile.jpg);
+.logo{
+    max-width:185px;
+    max-height: 287px;
+    width: 100%;
+    height: auto;
 }
-
-.button{
-    margin:1vw;
-    width:25vw;
-    height:8vw;
-     text-decoration:none; text-align:center; 
-     padding:11px 32px; 
-     border:none; 
-     -webkit-border-radius:11px;
-     -moz-border-radius:11px; 
-     border-radius: 11px; 
-     font: 4vh Arial, Helvetica, sans-serif; 
-     font-weight:bold; 
-     color:#E5FFFF; 
-     background-color:#3BA4C7; 
-     background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-     background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-     background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-     background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%); 
-     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1982A5', endColorstr='#1982A5',GradientType=0 ); 
-     background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);   
-     -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 11px #ffffff; 
-     -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 11px #ffffff;  
-     box-shadow:0px 0px 2px #bababa, inset 0px 0px 11px #ffffff;  
-     opacity:0.8; 
-     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); 
-     filter: alpha(opacity=80); 
-     text-shadow: 0px 0px 20px #bababa; 
-     filter: dropshadow(color=#bababa, offx=0, offy=0); 
-}
-.button:hover{
-     padding:11px 32px; 
-     border:none; 
-     -webkit-border-radius:11px;
-     -moz-border-radius:11px; 
-     border-radius: 11px; 
-     font:4vh Arial, Helvetica, sans-serif; 
-     font-weight:bold; 
-     color:#E5FFFF; 
-     background-color:#3BA4C7; 
-     background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-     background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-     background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
-     background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%); 
-     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1982A5', endColorstr='#1982A5',GradientType=0 ); 
-     background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);   
-     -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 11px #ffffff; 
-     -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 11px #ffffff;  
-     box-shadow:0px 0px 2px #bababa, inset 0px 0px 11px #ffffff;  
-     opacity:0.6; 
-     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60); 
-     filter: alpha(opacity=60); 
-     text-shadow: 0px 0px 20px #bababa; 
-     filter: dropshadow(color=#bababa, offx=0, offy=0);
- }
-
-.all{
-
-}
-.border {
-    list-style: none;
-    padding: 0;
-}
-.border li {
-    font-family: "Trebuchet MS", "Lucida Sans";
-    padding: 7px 20px;
-    margin-bottom: 2vw;
-    border-radius: 5px;
-    border-left: 10px solid #f05d22; 
-    box-shadow: 2px -2px 5px 0 rgba(0,0,0,.1),
-         -2px -2px 5px 0 rgba(0,0,0,.1),
-        2px 2px 5px 0 rgba(0,0,0,.1),
-        -2px 2px 5px 0 rgba(0,0,0,.1);
-    font-size: 20px;
-    letter-spacing: 2px;
-    transition: 0.3s all linear;
-}
-.border li:nth-child(2){border-color: #8bc63e;}
-.border li:nth-child(3){border-color: #fcba30;}
-.border li:nth-child(4){border-color: #1ccfc9;}
-.border li:nth-child(5){border-color: #493224;}
-.border li:hover {
-    border-left: 10px solid transparent;
-}
-.border li:nth-child(1):hover {
-    border-right: 10px solid #f05d22;
-}
-.border li:nth-child(2):hover {
-    border-right: 10px solid #8bc63e;
-}
-.border li:nth-child(3):hover {
-    border-right: 10px solid #fcba30;
-}
-.border li:nth-child(4):hover {
-    border-right: 10px solid #1ccfc9;
-}
-.border li:nth-child(5):hover {
-    border-right: 10px solid #493224;
-}
-
