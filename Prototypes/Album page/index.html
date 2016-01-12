@@ -1,73 +1,75 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script src="../Scripts/libs/jquery-1.11.3.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
-    <link href="css/reset.css" rel="stylesheet" />  <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <title>Album Page</title>
+    <link href="../Styles/libs/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-override.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="row tiles">
-        <div class="col-md-12 ">
-            <div class="head_border">
-                <div class="head photo1">
-                    <div class="head_overlay title text-center">
-                        <h1>
-                            Название альбома
-                            <br />
-                            <small>Вторичный текст</small>
-                        </h1>
-                    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" head_border header photo1">
+                <div class="head_overlay title text-center">
+                    <h1>
+                        Название альбома
+                        <br />
+                        <small>Вторичный текст</small>
+                    </h1>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="container-fluid">
+            <div id="logo" class="col-lg-2 col-md-4 col-sm-6 col-xs-8">
+                <img src="Content/logo.png" />
+            </div>
+        </div>
+
+        <!--плитки-->
         <div id="main_tiles" class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12 tile">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 tile">
                 <div class=" photo_minimize photo1"></div>
             </div>
-            <div class="col-md-8 col-sm-6 col-xs-12 tile">
+            <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 tile">
                 <div class="photo_minimize photo1"></div>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="col-md-6 col-sm-3 col-xs-6 tile">
+            <div class="col-lg-4 col-md-12 col-xs-12">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
-                <div class="col-md-6 col-sm-3 col-xs-6 tile">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
-                <div class="col-md-6 col-sm-3 col-xs-6 tile">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
-                <div class="col-md-6 col-sm-3 col-xs-6 tile">
+                <div class="col-lg-6 col-md-3 col-xs-6 tile">
                     <div class="photo_minimize photo1"></div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-6 big_tile">
+            <div class="col-lg-4 col-md-6 col-xs-6 big_tile">
                 <div class="photo_minimize photo1"></div>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-6 tile">
-                <div class="photo_minimize photo1"></div>
-
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-6 tile">
+            <div class="col-lg-4 col-md-6 col-xs-6 tile">
                 <div class="photo_minimize photo1"></div>
 
             </div>
-            <div class="col-md-12 col-sm-12 col-xs-12 tile">
+            <div class="col-lg-4 col-md-6 col-xs-6 tile">
+                <div class="photo_minimize photo1"></div>
+
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 tile">
                 <div class="photo_minimize photo1"></div>
             </div>
         </div>
+        <!--инфо о альбоме-->
         <div class="row">
-            <div class="col-md-12 album_info">
-                <div class=" col-md-offset-2 col-md-5  col-sm-offset-2 col-sm-5 main_info">
-                    <div class="tags">
+            <div class="album_info">
+                <div class=" col-lg-10 col-md-10 col-sm-10 col-xs-10 main_info">
+                    <div class="tags col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="vcenter">
                             Метки:
                             <a>Солнце</a>
@@ -78,66 +80,69 @@
                         <div class="helper"></div>
                     </div>
 
-                    <div class="favorite">
-
+                    <div class="favorite col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="vcenter">
-                            <form>
-                                <button type="submit" class="btn btn-default btn-sm">Добавить в избранное </button>
-                            </form>
+                            <div class="btn-group">
+                                <button id="favour_button" class="btn btn-default btn-sm">В избранное </button>
+                                <button id="plus-rating-btn" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+                                <button id="minus-rating-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></button>
+                                <button id="rating" class="btn btn-default btn-sm disabled">143</button>
+                            </div>
                         </div>
+
                         <div class="helper"> </div>
                     </div>
-                    <!--<div class="watches">
-                        <div class="vcenter">
-                            Просмотры: <span class="amount_watches">СЕМЬ ТЫЩ мИЛЬОНОВ</span>
-                        </div>
-                        <div class="helper"> </div>
-                    </div>-->
                 </div>
-                <div class="col-md-2 col-sm-2 autor_name text-center">
-                    <div class="vcenter ">
-                        <span class="text-muted text-center ">Иванов Иван Иванович </span>
-                    </div>
-                    <div class="helper"></div>
-                </div>
-                
-                <div class="col-md-1 col-sm-1 autor">
-                    <img src="https://source.unsplash.com/random" class="img-circle img-responsive autor_icon" />
 
+                <div class=" autor_block col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="autor col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-push-6 col-md-push-6 col-sm-push-6">
+                        <img src="https://source.unsplash.com/random" class="img-circle img-responsive autor_icon" />
+
+                    </div>
+                    <div class="autor_name text-center col-lg-6 col-md-6 col-sm-6 col-xs-12  col-lg-pull-6 col-md-pull-6 col-sm-pull-6">
+                        <div class="vcenter ">
+                            <span class="text-muted text-center ">Иванов Иван</span>
+                        </div>
+                        <div class="helper"></div>
+                    </div>
                 </div>
 
 
             </div>
-            <div class=" col-md-offset-2 col-md-8 comments">
-                <div class=" col-md-12 comment">
-                    <div class="col-md-11">
-                        <a class="text-muted">Семенов Семен Семенович</a><br />
-                        <span class="comment_text">Комментарий</span>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+
+                    <div class="comment_autor_icon">
+                        <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
                     </div>
-                    <div class="col-md-1 text-center">
-                        <span class="date text-muted">11.11.2011</span>
-                        <span class="time text-muted">17:16</span>
-                    </div>
+                    <a class="text-muted">
+                        Семенов Семен
+                    </a>
+                    <span class="date text-muted">11.11.2011</span><span class="time text-muted">17:16</span>
+                    <br />
+                    <span class="comment_text">Это просто кусок текста, не несущий смыслового значения, просто чтобы был большой кусок текста. Если содержимое блока превышает указанную высоту, то высота элемента останется неизменной, а содержимое будет отображаться поверх него. Из-за этой особенности может получиться наложение содержимого элементов друг на друга, когда элементы в коде HTML идут последовательно. Чтобы этого </span>
+
                 </div>
-                <div class="col-md-12 comment">
-                    <div class="col-md-11">
-                        <a class="text-muted">Петров Пётр Петрович</a><br />
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+
+                        <div class="comment_autor_icon">
+                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        </div>
+                        <a class="text-muted">Петров Пётр</a>
+                        <span class="date text-muted">11.11.2011</span><span class="time text-muted">17:16</span>
+                        <br />
                         <span class="comment_text">И тут тоже</span>
-                    </div>
-                    <div class="col-md-1 text-center">
-                        <span class="date text-muted">11.11.2011</span>
-                        <span class="time text-muted ">17:16</span>
-                    </div>
                 </div>
-                <div class="col-md-12 comment">
-                    <div class="col-md-11">
-                        <a class="text-muted">Васильев Василий Васильевич</a><br />
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+
+                        <div class="comment_autor_icon">
+                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        </div>
+                        <a class="text-muted">Васильев Василий</a>
+                        <span class="date text-muted">11.11.2011</span><span class="time text-muted">17:16</span>
+                        <br />
                         <span class="comment_text">Вау, еще один</span>
-                    </div>
-                    <div class="col-md-1 text-center">
-                        <span class="date text-muted">11.11.2011</span>
-                        <span class="time text-muted">17:16</span>
-                    </div>
+                    
                 </div>
 
                 <form role="form" class="comment_form">
@@ -147,9 +152,12 @@
 
                     <button type="submit" class="btn btn-default right">Отправить</button>
                 </form>
+
             </div>
 
         </div>
+
     </div>
+    <script src="js/scripts.js"></script>
 </body>
 </html>

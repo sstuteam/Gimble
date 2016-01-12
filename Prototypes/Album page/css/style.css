@@ -2,22 +2,24 @@
         cursor:pointer;
         text-decoration: none;
         }
+button:focus { outline: 0; }
 
-.head{
-    background: url(http://cdn.fishki.net/upload/post/201505/15/1533332/gotowallcom20111226_142538_2862.jpg) center top;
+
+.header{
+    background: url(http://cdn.fishki.net/upload/post/201505/15/1533332/gotowallcom20111226_142538_2862.jpg) center top ;
     background-size:cover;
-    -moz-box-sizing: border-box; /* Для Firefox */  
-    -webkit-box-sizing:border-box;
-    box-sizing: border-box; /* Ширина блока с полями */
-    background-color: #ffffff;
-    background-position-x:center;
-    background-position-y:center;
     height: 100vh;
+    margin-bottom:10px;
 }
+
 .head_overlay{
     height:100%;
     position:relative;
-    background-color: rgba(255,255,255, 0.3); 
+    background-color: rgba(0,0,0, 0.3); 
+}
+.head_border{
+    border-bottom:1px solid gray;
+    
 }
 .title{
     position:relative;
@@ -31,11 +33,16 @@
 .title h1 small{
     color:#f2f2f2;
 }
-.head_border{
-    padding-bottom:10px;
-    border-bottom:1px solid gray;
-    margin-bottom:10px;
+
+#logo{
+    position:absolute;
+    top:2.5vh;
+    left:2.5vh;
 }
+#logo img{
+    width:100%;
+}
+
 .photo_minimize{
     width: 100%;
     height: 100%;
@@ -48,18 +55,18 @@
     padding:1px 1px;
 }
 .tile{  
-    height: 16.666666666vw;
+    /*height: 16.666666666vw;*/
     padding:1px 1px;
 }
 .big_tile{
-    height:33.33333333vw;
+    
     padding:1px 1px;
 }
 .photo1{
     background-image:url(https://source.unsplash.com/random);
 }
 .album_info{
-    height:5.55533333333vw;
+    height:5.5vw;
     margin-bottom:10px;
 }
 .main_info{
@@ -84,12 +91,15 @@
         padding-left:10px;
         height:33.333333%;
     }*/
-    
+    .autor_block{
+        height:100%
+    }
     .autor_name{
         height:50%;
     }
-
+    
     .autor img{
+        width:100%;
         height:8.3333333vw;
         position:absolute;
         top:-4.15vw;
@@ -115,61 +125,158 @@
     border-color: #e5e5e5 #eee #eee;
 }
     .comment{
+         overflow: hidden;
         margin-bottom:10px;
     }
+        .comment_autor_icon{
+            margin-right: 5px;
+            width:3.6vw;
+            height:3.6vw;
+            float:left;
+        } 
+        .comment_autor_icon img{
+            width:100%;
+            height:100%;
+        }
         .comment a:hover{
         cursor:pointer;
         text-decoration: none;
         }
-        .comment a, .comment_text{
-        float:left
-        }
+        
         .date{
             float:right;
+            padding-left:4px;
+        }
+         .time{
+             float:right;
+            padding-left:4px;
         }
         .comment_form{
             margin-top:10px;
+        }.comment_text{
+            
         }
 .right{
     float:right;
 }
-/* Large desktop */
+
+
+
+/* Large desktop  LG*/
 @media (min-width: 1200px) {
-    .autor{ 
-        height:8.33333vw;
+    .autor img{
+        top:-4.15vw;
+        height:8.33333333vw;
     }
-}
- 
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 991px) { 
-    .autor{
-        height:11vw;
+    .mini_tile{
+        height:8.3333333333vw;
+    }
+    .tile {
+        height: 16.666666666vw;
     }
     .big_tile{
-        height:49vw;
-    }
-    .tile{
-  height:24.5vw;
+        height:33.33333333vw;
     }
     .album_info{
-        height:11vw;
+        height:5.5vw;
     }
+
+} 
+/* MD*/
+@media (min-width: 992px) and (max-width:1199px) {
+    .autor img{
+        top:-4.15vw;
+        height:8.33333333vw;
+    }
+    .mini_tile{
+        height:12.5vw;
+    }
+    .tile{
+        height:25vw;
+    } 
+    .big_tile{
+        height:50vw;
+    }
+    .album_info{
+        height:7vw;
+    }
+    
+}
+
+/* Portrait tablet to landscape and desktop SM */
+@media (min-width: 768px)    and (max-width: 991px) {
+    .autor img{
+        top:-4.15vw;
+        height:8.33333333vw;
+    }
+    .mini_tile{
+        height:12.5vw;
+    }
+    .tile{
+  height:50vw;
+    } 
+    .big_tile{
+        height:100vw;
+    }
+    .album_info{
+        height:8vw;
+    }
+    
 }
  
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) { 
+/* Landscape phone to portrait tablet XS */
+@media 
+/*(min-width:481px) and */ 
+(max-width: 767px) {
+    .autor{
+        height:65%;
+    }
+    .autor_name{
+        height:45%;
+    }
+    .autor img{
+        top:-8.3333333333vw;
+        height:16.66666667vw;
+    }
+    .mini_tile{
+        height:12.5vw;
+    }
+     .tile{
+  height:50vw;
+    } 
     .big_tile{
-        height:49vw;
+        height:100vw;
     }
-    .tile{
-  height:24.5vw;
-    } }
- 
-/* Landscape phones and down */
-@media (max-width: 480px) { .big_tile{
-        height:49vw;
+    .album_info{
+        height:12vw;
     }
-    .tile{
-  height:24.5vw;
-    } }
+    
+
+}
+
+/* Landscape phones and down XS */
+@media (max-width: 480px) {
+    .autor{
+        height:43%;
+    }
+    .autor_name{
+        height:45%;
+    }
+    .autor img{
+        top:-8.3333333333vw;
+        height:16.66666667vw;
+    }
+    .mini_tile{
+        height:12.5vw;
+    }
+     .tile{
+  height:50vw;
+    } 
+    .big_tile{
+        height:100vw;
+    }
+    .album_info{
+        height:16vw;
+    }
+     }
 
