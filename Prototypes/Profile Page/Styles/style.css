@@ -3,34 +3,8 @@
   margin: 10px 10px;  
 }
 
-.orange, .blue{
-    height:50px;
-}
-
-.orange{
-    background-color:#FFB600;
-}
-
-.blue{
-    background-color:#40A7FF;
-}
-
-.tile img {
-  min-height: 100%;
-  min-width: 100%;
-}
-  
 .some-margin{
     margin-top:4vw;
-}
-
-.center-text{
-    font-size: 1.5vw;
-    text-align : center;
-}
-
-.no-center-text{
-    text-align : left;
 }
 
 .mini-photo{
@@ -76,8 +50,35 @@
 }
 
 .logo{
+    margin-left:1.4vw;
     max-width:185px;
     max-height: 287px;
     width: 100%;
     height: auto;
+    color:white
+}
+
+table{
+    align-items:center;
+    text-align:center;
+}
+
+.drop-down-text{
+    color:white;
+}
+
+.center-text{
+    text-align:center;
+}
+
+.drop-btn{
+    margin-top: 2vh;
+    margin-left: -8vw;
+    opacity:1;
+    color:white;
+}
+
+html{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:3vh;
 }
