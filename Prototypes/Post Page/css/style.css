@@ -8,14 +8,13 @@ button:focus { outline: 0; }
 .header{
     background: url(http://cdn.fishki.net/upload/post/201505/15/1533332/gotowallcom20111226_142538_2862.jpg) center top ;
     background-size:cover;
-    height: 100vh;
-    margin-bottom:10px;
+    height: 10vh;
 }
 
 .head_overlay{
     height:100%;
     position:relative;
-    background-color: rgba(0,0,0, 0.3); 
+    background-color: rgba(255,255,255, 0.3); 
 }
 .head_border{
     border-bottom:1px solid gray;
@@ -36,11 +35,17 @@ button:focus { outline: 0; }
 
 #logo{
     position:absolute;
-    top:2.5vh;
-    left:2.5vh;
+    top:1vh;
+    left:1vh;
 }
 #logo img{
     width:100%;
+}
+.cover{
+    max-width:100%;
+}
+.cover img{
+    max-height:100%;
 }
 
 .photo_minimize{
@@ -67,14 +72,13 @@ button:focus { outline: 0; }
 }
 .album_info{
     height:5.5vw;
-    margin-bottom:10px;
 }
 .main_info{
     height:100%;
 }
     .tags{
         padding-left:10px;
-        height:50%;
+        height:46%;
     }
         .tags a{
             padding: 0 2px;
@@ -94,15 +98,18 @@ button:focus { outline: 0; }
     .autor_block{
         height:100%
     }
+    .autor{
+        height:100%;
+    }
     .autor_name{
         height:50%;
     }
+    
     
     .autor img{
         width:100%;
         height:8.3333333vw;
         position:absolute;
-        top:-4.15vw;
         border:3px solid white;
     }
 
@@ -118,7 +125,7 @@ button:focus { outline: 0; }
     width:0;
 }
 
-.comments{
+.block{
    position: relative;
     padding: 15px 15px 15px;
     border:1px solid;
@@ -165,8 +172,7 @@ button:focus { outline: 0; }
 /* Large desktop  LG*/
 @media (min-width: 1200px) {
     .autor img{
-        top:-4.15vw;
-        height:8.33333333vw;
+        height:5.5vw;
     }
     .mini_tile{
         height:8.3333333333vw;
@@ -185,8 +191,7 @@ button:focus { outline: 0; }
 /* MD*/
 @media (min-width: 992px) and (max-width:1199px) {
     .autor img{
-        top:-4.15vw;
-        height:8.33333333vw;
+            height: 7vw;
     }
     .mini_tile{
         height:12.5vw;
@@ -200,13 +205,16 @@ button:focus { outline: 0; }
     .album_info{
         height:7vw;
     }
+     .comment_autor_icon {
+        width: 3.6vw;
+        height: 3.6vw;
+    }
     
 }
 
 /* Portrait tablet to landscape and desktop SM */
 @media (min-width: 768px)    and (max-width: 991px) {
     .autor img{
-        top:-4.15vw;
         height:8.33333333vw;
     }
     .mini_tile{
@@ -220,6 +228,10 @@ button:focus { outline: 0; }
     }
     .album_info{
         height:8vw;
+    }
+     .comment_autor_icon {
+        width: 5.6vw;
+        height: 5.6vw;
     }
     
 }
@@ -235,7 +247,6 @@ button:focus { outline: 0; }
         height:45%;
     }
     .autor img{
-        top:-8.3333333333vw;
         height:16.66666667vw;
     }
     .mini_tile{
@@ -248,35 +259,47 @@ button:focus { outline: 0; }
         height:100vw;
     }
     .album_info{
-        height:12vw;
+        height:17vw;
     }
-    
+    .comment_autor_icon {
+        width: 8.6vw;
+        height: 8.6vw;
+    }
 
 }
 
 /* Landscape phones and down XS */
 @media (max-width: 480px) {
-    .autor{
-        height:43%;
+    .autor {
+        height: 43%;
     }
-    .autor_name{
-        height:45%;
-    }
-    .autor img{
-        top:-8.3333333333vw;
-        height:16.66666667vw;
-    }
-    .mini_tile{
-        height:12.5vw;
-    }
-     .tile{
-  height:50vw;
-    } 
-    .big_tile{
-        height:100vw;
-    }
-    .album_info{
-        height:16vw;
-    }
-     }
 
+    .autor_name {
+        height: 45%;
+    }
+
+    .autor img {
+        height: 16.66666667vw;
+    }
+
+    .mini_tile {
+        height: 12.5vw;
+    }
+
+    .tile {
+        height: 50vw;
+    }
+
+    .big_tile {
+        height: 100vw;
+    }
+
+    .album_info {
+        height: 16vw;
+    }
+
+    .comment_autor_icon {
+        width: 10.6vw;
+        height: 10.6vw;
+    }
+}
