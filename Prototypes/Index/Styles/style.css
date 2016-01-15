@@ -48,4 +48,17 @@
 .footer p {
     margin: 20px 0;
 }
+.margin-border{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.margin-reg-menu{
+    margin: 2px;
+}
+.margin-reg-button{
+    margin-top: 13px;
+}
+.margin-entry-menu{
+    margin-bottom: 2px;
+}
 

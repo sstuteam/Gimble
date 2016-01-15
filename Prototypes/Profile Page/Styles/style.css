@@ -93,11 +93,3 @@ html{
     position: relative;
     width: 100%;
 }
-.img-circle {
-    border-radius: 50%;
-}
-.img-responsive {
-    display: block;
-    height: auto;
-    max-width: 100%;
-}
