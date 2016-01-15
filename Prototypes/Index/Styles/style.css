@@ -52,4 +52,22 @@
 .margin-entry-menu{
     margin-bottom: 2px;
 }
+.foo {
+    max-height: 98px;
+    overflow: hidden;
+    position: relative;
+}
+.foo:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: -o-linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
+    background: -moz-linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
+    background: -webkit-linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
+    background: linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
+}
 
