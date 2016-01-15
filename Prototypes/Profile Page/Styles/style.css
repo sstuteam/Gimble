@@ -7,75 +7,12 @@
     margin-top:4vw;
 }
 
-.mini-photo{
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position-y: center;
-    background-position-x: center;
-}
-
-.tile-radius{
-    background-size: cover;
-    overflow:hidden;
-    border-radius: 30vw;
-    height:15vw;
-    width:15vw;    
-    box-shadow: 7px 5px 23px 1px #000000;
-    margin-bottom:2vw;
-    text-align:center;
-}
-
-.negative-footer-margin{
-    margin-left:-15px;
-    margin-right:-15px;
-}
-
 .photo{
     background-image:url(https://source.unsplash.com/random);
 }
 
-.head-page{
-    padding-bottom: 9px;
-    border-bottom: 1px solid #eee;
-    height:100px;
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-}
-
-.white-text + dropdown{
-    color:white;
-}
-
-.logo{
-    margin-left:1.4vw;
-    max-width:185px;
-    max-height: 287px;
-    width: 100%;
-    height: auto;
-    color:white
-}
-
-table{
-    align-items:center;
-    text-align:center;
-}
-
-.drop-down-text{
-    color:white;
-}
-
 .center-text{
     text-align:center;
-}
-
-.drop-btn{
-    margin-top: 2vh;
-    margin-left: -8vw;
-    opacity:1;
-    color:white;
 }
 
 html{

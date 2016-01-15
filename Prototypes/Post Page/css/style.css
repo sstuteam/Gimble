@@ -4,45 +4,9 @@
         }
 button:focus { outline: 0; }
 
-
-.header{
-    background: url(http://cdn.fishki.net/upload/post/201505/15/1533332/gotowallcom20111226_142538_2862.jpg) center top ;
-    background-size:cover;
-    height: 10vh;
-}
-
-.head_overlay{
-    height:100%;
-    position:relative;
-    background-color: rgba(255,255,255, 0.3); 
-}
-.head_border{
-    border-bottom:1px solid gray;
-    
-}
-.title{
-    position:relative;
-}
-.title h1{
-    margin-top:0;
-    position:relative;
-    top:51vh;
-    color:#ffffff;
-}
-.title h1 small{
-    color:#f2f2f2;
-}
-
-#logo{
-    position:absolute;
-    top:1vh;
-    left:1vh;
-}
-#logo img{
-    width:100%;
-}
 .cover{
     max-width:100%;
+	margin-top:100px;
 }
 .cover img{
     max-height:100%;

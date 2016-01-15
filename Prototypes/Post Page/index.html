@@ -8,20 +8,32 @@
     <link href="../Styles/libs/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-override.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
+	<link href="../Styles/header.css" rel="stylesheet">
+	<link href="../Styles/footer.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class=" head_border header photo1">
-                <div class="head_overlay">
-
-                </div>
+<div class="container-fluid">
+    <header class="head-page row">
+            <!--logotype-->
+            <div class="logo_pull-left">
+                <a id="head-logo" href="../Index/index.html"></a>
             </div>
-
-            <div id="logo" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                <img src="Content/logo.png" />
-            </div>
-        </div>
+            <ul class="profile-button list-unstyled pull-right">
+                <li class="dropdown">
+                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Имя пользователя
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../Profile Page/index.html">Мой профиль</a></li>
+                        <li><a href="#">Настройки</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Выйти из себя</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
 
         <div class="row ">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -147,7 +159,13 @@
             </div>
         </div>
     </div>
-	<script src="../Scripts/libs/jquery-1.11.3.js"></script>
+	<footer class="footer center-block">
+        <!--Название компании и год её основания-->
+        <div class="container">
+            <p class="text-muted">IBS Production &copy; 2015</p>
+        </div>
+    </footer>
+	<script src="../Scripts/libs/jquery-2.2.0.js"></script>
     <script src="js/scripts.js"></script>
 </body>
     
