@@ -7,133 +7,136 @@
         <title>Gimble: Профиль</title>
         <link href="../Styles/libs/bootstrap.css" rel="stylesheet" />
         <link href="Styles/style.css" rel="stylesheet" />
+ 	<link href="../Styles/header.css" rel="stylesheet" />
     </head>
     <body>
-        <header class="head-page container-fluid">
-            <!--logotype-->
-            <div class="logo pull-left" src="img/logo.png">
-                <h2>GIMBLE</h2>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user">
-                            Профиль
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Мой профиль</a></li>
-                        <li><a href="#">Настройки</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Выйти из себя</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </header>
-        <p></p>
-        <section class="container-fluid">    
+        <div class="container-fluid">
+            <header class="head-page row">
+                <!--logotype-->
+                <div class="logo_pull-left">
+                    <a id="head-logo" href="../Index/index.html"></a>
+                </div>
+                <ul class="profile-button list-unstyled pull-right">
+                    <li class="dropdown">
+                        <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Имя пользователя
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../Profile Page/index.html">Мой профиль</a></li>
+                            <li><a href="#">Настройки</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Выйти из себя</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </header>
+            <p></p>
+            <section class="container-fluid" style="margin-top:110px;">
                 <div class="row">
-                   <div class="col-xs-2">
-                        <div class="ratio img-responsive img-circle photo" ></div>
+                    <div class="col-xs-2">
+                        <div class="ratio img-responsive img-circle photo"></div>
                     </div>
                     <div class="col-xs-7 some-margin">Иванов Иван Иванович</div>
                     <div class="col-xs-7"><small>Верхний Волочек</small></div>
                 </div>
-	<p></p>
-        <!--Здесь записи польз. и избранное-->
-        <ul class="nav nav-tabs row centered">
-            <li class="active col-xs-5 center-text"><a data-toggle="tab" href="#panel1">Записи пользователя</a></li>
-            <li class="col-xs-7 center-text"><a data-toggle="tab" href="#panel2">Избранное</a></li>
-        </ul>
-        <!--промежуток должен быть--> 
-        <p> </p>
-        <div class="tab-content">
-            <!--Понель номеро уно-->
-            <div id="panel1" class="tab-pane fade in active">
-                <div class="row">
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
+                <p></p>
+                <!--Здесь записи польз. и избранное-->
+                <ul class="nav nav-tabs row centered">
+                    <li class="active col-xs-5 center-text"><a data-toggle="tab" href="#panel1">Записи пользователя</a></li>
+                    <li class="col-xs-7 center-text"><a data-toggle="tab" href="#panel2">Избранное</a></li>
+                </ul>
+                <!--промежуток должен быть-->
+                <p> </p>
+                <div class="tab-content">
+                    <!--Понель номеро уно-->
+                    <div id="panel1" class="tab-pane fade in active">
+                        <div class="row">
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                        </div>
                     </div>
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
-                    </div>
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
+                    <!--Понель закладок-->
+                    <div id="panel2" class="tab-pane fade">
+                        <div class="row">
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=2" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=3" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=4" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=5" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                            <!--важная картночка-->
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=6" />
+                                <span class="text-left">Много чуда не бывает</span>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
+                                </footer>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--Понель закладок-->
-            <div id="panel2" class="tab-pane fade">
-                <div class="row">
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
-                    </div>
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=2" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
-                    </div>
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=3" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
-                    </div>
-                </div>
-                <div class="row">
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=4" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
-                    </div>
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=5" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
-                    </div>
-                    <!--важная картночка-->
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=6" />
-                        <span class="text-left">Много чуда не бывает</span>
-                        <footer>
-                            <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span> <span class="glyphicon glyphicon-user">admin</span>
-                        </footer>
-                    </div>
-                </div>
-            </div>      
-        </div>                          
-        </section>
+            </section>
+        </div>
         <div class="container">
             <p class="text-muted">IBS Production &copy; 2015</p>
         </div>
