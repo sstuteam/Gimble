@@ -12,18 +12,23 @@
     <link href="Styles/footer.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="container col-centered ">
+    <div class="container-fluid main-content">
+        <div class="container col-centered">
             <div class="row pading">
-                <div class="col-centered">
+                <div class="col-centered name">
                     <h2>Название:<input /></h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-centered">
-                    <form enctype="multipart/form-data" method="post">
-                        <h2>Изображения:</h2><input type="file" multiple accept="image/*,image/jpeg" />
-                    </form>
+                        <div class="col-sm-5 col-xs-12">
+                            <h2>Изображения:</h2>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+                            <form enctype="multipart/form-data" method="post">
+                                <input class="load-btn" type="file" multiple accept="image/*,image/jpeg" />
+                            </form>
+                        </div>
                 </div>
             </div>
             <p></p>
