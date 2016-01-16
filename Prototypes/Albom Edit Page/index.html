@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="../Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="../Styles/header.css" rel="stylesheet" />
+    <script src="../Scripts/libs/jquery-2.2.0.js"></script>
+    <script src="build/squire-raw.js"></script>
+    <script src="build/squire.js"></script>
+    <script src="scripts/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            new SquireUI({ replace: 'textarea#foo', height: 300 });
+        });
+    </script>
+</head>
+<body>
+    <header class="head-page">
+        <div class="logo_pull-left">
+            <a id="head-logo" href="../Index/index.html"></a>
+        </div>
+    </header>
+    <div class="container col-centered ">
+        <div class="row pading">
+            <div class="col-centered">
+                <h2>Название:<input /></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-centered">
+                <form enctype="multipart/form-data" method="post">
+                    <h2>Изображения:</h2><input type="file" multiple accept="image/*,image/jpeg" />
+                </form>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="col-centered">
+                <textarea id="foo"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <input class="right" type="submit" value="Сохранить" />
+            <!--<button class="btn btn-default right">Сохранить</button>-->
+        </div>
+    </div>
+    <footer class="footer center-block">
+        <!--Название компании и год её основания-->
+        <div class="container">
+            <p class="text-muted">IBS Production &copy; 2015</p>
+        </div>
+    </footer>
+</body>
+</html>
