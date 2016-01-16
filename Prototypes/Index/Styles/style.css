@@ -65,9 +65,9 @@
     left: 0;
     right: 0;
     height: 45%;
-    background: -o-linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
-    background: -moz-linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
-    background: -webkit-linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
-    background: linear-gradient(to bottom, rgba(221,221,255,0), rgba(221,221,255,1));
+    background: -o-linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
+    background: -moz-linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
+    background: -webkit-linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
+    background: linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
 }
 
