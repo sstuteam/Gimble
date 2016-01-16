@@ -70,4 +70,11 @@
     background: -webkit-linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
     background: linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
 }
+a{
+	color: black;
+	
+}
+a:hover{
+	text-decoration: none !important;
+}
 
