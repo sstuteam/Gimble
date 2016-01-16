@@ -15,27 +15,7 @@
 <body>
     <!--Логотип + Панель регистрации-->
     <div class="full-height top-background-image container-fluid">
-		<header class="head-page row">
-					<!--logotype-->
-					<div class="logo_pull-left">
-						<a id="head-logo" href="index.html"></a>
-					</div>
-					<ul class="profile-button list-unstyled pull-right">
-						<li class="dropdown">
-							<a class="drop-btn dropdown-toggle" data-toggle="dropdown">
-								<span class="glyphicon glyphicon-user"></span>
-								Имя пользователя
-								<span class="glyphicon glyphicon-triangle-bottom"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="profile.html">Мой профиль</a></li>
-								<li><a href="settings.html">Настройки</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Выйти из себя</a></li>
-							</ul>
-						</li>
-					</ul>
-		</header>
+		
         <div class="row">
             <!--Логотип-->
             <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
@@ -328,17 +308,12 @@
             </div>
         </div>
     </div>
-    <footer class="footer center-block">
-        <!--Название компании и год её основания-->
-        <div class="container">
-            <p class="text-muted">IBS Production &copy; 2015</p>
-        </div>
-    </footer>
-
+	
     <script src="Scripts/libs/jquery-2.2.0.js"></script>
     <script src="Scripts/libs/jquery.easing.min.js"></script>
     <script src="Scripts/libs/bootstrap.min.js"></script>
-
+    <script src="Scripts/header.js"></script> <!-- header вставляется в первый попавшийся класс container-fluid -->
+	<script src="Scripts/footer.js"></script> <!-- footer вставляется в конец body -->
     <!-- Управление модальными окнами -->
     <script src="Scripts/modalwindow.js"></script>
 
