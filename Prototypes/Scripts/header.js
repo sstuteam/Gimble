@@ -12,6 +12,8 @@ var html = `
                         <span class="glyphicon glyphicon-triangle-bottom"></span>
                     </a>
                     <ul class="dropdown-menu">
+					     <li><a href="addpost.html">Создать запись</a></li>
+                        <li class="divider"></li>
                         <li><a href="profile.html">Мой профиль</a></li>
                         <li><a href="settings.html">Настройки</a></li>
                         <li class="divider"></li>
