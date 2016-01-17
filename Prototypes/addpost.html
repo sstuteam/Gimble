@@ -2,10 +2,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Добавление записи</title>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="Styles/libs/bootstrap.min.css" rel="stylesheet" />
     <link href="Styles/libs/font-awesome.css" rel="stylesheet" />
     <link href="Styles/addpost.css" rel="stylesheet" />
     <link href="Styles/header.css" rel="stylesheet" />
@@ -15,20 +16,25 @@
     <div class="container-fluid main-content">
         <div class="container col-centered">
             <div class="row pading">
-                <div class="col-centered name">
-                    <h2>Название:<input /></h2>
+                <div class="col-centered">
+                    <div class="col-md-3 col-xs-12">
+                        <label>Название:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="padding-input"/>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-centered">
-                        <div class="col-sm-5 col-xs-12">
-                            <h2>Изображения:</h2>
-                        </div>
-                        <div class="col-sm-4 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                            <form enctype="multipart/form-data" method="post">
-                                <input class="load-btn" type="file" multiple accept="image/*,image/jpeg" />
-                            </form>
-                        </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <label>Изображение:</label>
+                    </div>
+                    <div class="col-md-5 col-xs-6">
+                        <form enctype="multipart/form-data" method="post">
+                            <input type="file" class="filestyle" data-buttonText="Выбрать файл" accept="image/*,image/jpeg">
+                        </form>
+                    </div>
                 </div>
             </div>
             <p></p>
@@ -78,7 +84,11 @@
             </div>
 
             <div class="row">
-                <a class="btn btn-large btn-default pull-right" href="#">Сохранить</a>
+                <div class="col-centered">
+                    <div class="pull-right">
+                        <a class="btn btn-large btn-default" href="#">Сохранить</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -95,6 +105,9 @@
         $(".dropdown-menu > input").click(function (e) {
             e.stopPropagation();
         });
+    </script>
+    <script type="text/javascript" src="Scripts/libs/bootstrap-filestyle.min.js">
+        $(":file").filestyle({ input: false });
     </script>
 </body>
 </html>

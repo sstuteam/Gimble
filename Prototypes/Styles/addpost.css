@@ -8,12 +8,8 @@
 .name{
     padding-left:15px;
 }
-.load-btn{
-    margin-top: 27px;
-    margin-left: 5px;
-}
 .pading {
-    padding-top:95px;
+    padding-top: 115px;
 }
 .footer p {
     margin: 20px 0;
@@ -51,6 +47,16 @@
 }
 .menu {
     text-align: center;
+}
+label{
+    font-size: 19px;
+}
+.padding-input{
+    width: 300px;
+}
+.input-group{
+    width: 302px;
+    z-index: 1;
 }
 
 #editor, #first-editor, #second-editor {
