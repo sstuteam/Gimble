@@ -96,7 +96,7 @@ button:focus { outline: 0; }
     border-color: #e5e5e5 #eee #eee;
 }
     .comment{
-         overflow: hidden;
+         /*overflow: hidden;*/
         margin-bottom:10px;
     }
         .comment_autor_icon{
@@ -115,12 +115,11 @@ button:focus { outline: 0; }
         }
         
         .date{
-            float:right;
             padding-left:4px;
+            font-size: 11px;
         }
-         .time{
-             float:right;
-            padding-left:4px;
+        .time{
+            font-size: 11px;
         }
         .comment_form{
             margin-top:10px;
@@ -130,8 +129,29 @@ button:focus { outline: 0; }
 .right{
     float:right;
 }
-
-
+.glyphicon-thumbs-up{
+    margin-left: 15px;
+}
+.dropdown-menu{
+    min-width: 100px;
+    font-size: 13px;
+    z-index: 1;
+}
+.media{
+    overflow:visible;
+}
+.media-body{
+    overflow:visible;
+}
+b{
+    color: #191815;
+}
+.like-icon{
+    background-color:white;
+    padding: 0px 1px;
+    border: none;
+    margin-right: 12px;
+}
 
 /* Large desktop  LG*/
 @media (min-width: 1200px) {

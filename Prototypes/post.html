@@ -7,11 +7,11 @@
     <title>Post Page</title>
     <link href="Styles/libs/bootstrap.css" rel="stylesheet">
     <link href="Styles/post.css" rel="stylesheet" />
-	<link href="Styles/header.css" rel="stylesheet">
-	<link href="Styles/footer.css" rel="stylesheet">
+    <link href="Styles/header.css" rel="stylesheet">
+    <link href="Styles/footer.css" rel="stylesheet">
 </head>
 <body>
-<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="block ">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
 
-                    <div class=" autor_block col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                    <div class="autor_block col-lg-2 col-md-2 col-sm-2 col-xs-4">
                         <div class="autor col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-push-6 col-md-push-6 col-sm-push-6 col-xs-push-6">
                             <img src="https://source.unsplash.com/random" class="img-circle img-responsive autor_icon" />
 
@@ -89,37 +89,101 @@
                 <!--Комменты-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
-
-                        <div class="comment_autor_icon">
-                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        <div class="media-left media-top">
+                            <a class="text-muted">
+                                <img class="img-circle comment_autor_icon" src="https://source.unsplash.com/random">
+                            </a>
                         </div>
-                        <a class="text-muted">
-                            Семенов Семен
-                        </a>
-                        <span class="date text-muted">11.11.2011</span><span class="time text-muted">17:16</span>
-                        <br />
-                        <span class="comment_text">Это просто кусок текста, не несущий смыслового значения, просто чтобы был большой кусок текста. Если содержимое блока превышает указанную высоту, то высота элемента останется неизменной, а содержимое будет отображаться поверх него. Из-за этой особенности может получиться наложение содержимого элементов друг на друга, когда элементы в коде HTML идут последовательно. Чтобы этого </span>
-
+                        <div class="media-body">
+                            <a class="media-heading text-muted">
+                                <b>Семенов Семен</b>
+                                <span class="time text-muted">17:16</span><span class="date text-muted">11.11.2011</span>
+                                
+                            </a>
+                            <ul class="list-unstyled pull-right">
+                                <li class="dropdown">
+                                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a><center>Изменить</center></a></li>
+                                        <li><a><center>Удалить</center></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div>
+                                Это просто кусок текста, не несущий смыслового значения, просто чтобы был большой кусок текста. Если содержимое блока превышает указанную высоту, то высота элемента останется неизменной, а содержимое будет отображаться поверх него. Из-за этой особенности может получиться наложение содержимого элементов друг на друга, когда элементы в коде HTML идут последовательно. Чтобы этого
+                            </div>
+                            <div class="btn-group right">
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-down like-icon"></a>
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-up like-icon"></a>
+                                <label class="text-muted">0</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
-
-                        <div class="comment_autor_icon">
-                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        <div class="media-left media-top">
+                            <a class="text-muted">
+                                <img class="img-circle comment_autor_icon" src="https://source.unsplash.com/random">
+                            </a>
                         </div>
-                        <a class="text-muted">Петров Пётр</a>
-                        <span class="date text-muted">11.11.2011</span><span class="time text-muted">17:16</span>
-                        <br />
-                        <span class="comment_text">И тут тоже</span>
+                        <div class="media-body">
+                            <a class="media-heading text-muted">
+                                <b>Петров Петр</b>
+                                <span class="time text-muted">17:16</span><span class="date text-muted">11.11.2011</span>
+                            </a>
+                            <ul class="list-unstyled pull-right">
+                                <li class="dropdown">
+                                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a><center>Изменить</center></a></li>
+                                        <li><a><center>Удалить</center></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div>
+                                И тут тоже
+                            </div>
+                            <div class="btn-group right">
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-down like-icon"></a>
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-up like-icon"></a>
+                                <label class="text-muted">0</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
-
-                        <div class="comment_autor_icon">
-                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive comment_autor_icon" />
+                        <div class="media-left media-top">
+                            <a class="text-muted">
+                                <img class="img-circle comment_autor_icon" src="https://source.unsplash.com/random">
+                            </a>
                         </div>
-                        <a class="text-muted">Васильев Василий</a>
-                        <span class="date text-muted">11.11.2011</span><span class="time text-muted">17:16</span>
-                        <br />
-                        <span class="comment_text">Вау, еще один</span>
+                        <div class="media-body">
+                            <a class="media-heading text-muted">
+                                <b>Васильев Василий</b>
+                                <span class="time text-muted">17:16</span><span class="date text-muted">11.11.2011</span>
+                            </a>
+                            <ul class="list-unstyled pull-right">
+                                <li class="dropdown">
+                                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a><center>Изменить</center></a></li>
+                                        <li><a><center>Удалить</center></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div>
+                                Вау, еще один
+                            </div>
+                            <div class="btn-group right">
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-down like-icon"></a>
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-up like-icon"></a>
+                                <label class="text-muted">0</label>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -136,12 +200,11 @@
             </div>
         </div>
     </div>
-	
-	<script src="Scripts/libs/jquery-2.2.0.js"></script>
-	<script src="Scripts/libs/bootstrap.js"></script>
+    <script src="Scripts/libs/jquery-2.2.0.js"></script>
+    <script src="Scripts/libs/bootstrap.js"></script>
     <script src="Scripts/post.js"></script>
     <script src="Scripts/header.js"></script> <!-- header вставляется в первый попавшийся класс container-fluid -->
-	<script src="Scripts/footer.js"></script> <!-- footer вставляется в конец body -->
-	</body>
-    
+    <script src="Scripts/footer.js"></script> <!-- footer вставляется в конец body -->
+</body>
+
 </html>
