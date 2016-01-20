@@ -1,3 +1,4 @@
+
 var html = `
   <header class="head-page row">
             <!--logotype-->
@@ -24,4 +25,23 @@ var html = `
 </header>
 `;
 
-$( ".container-fluid:first" ).prepend(html);
+$(".container-fluid:first").prepend(html);
+
+(function ($) {
+    $(function () {
+        var scr = $(document).scrollTop();
+        var limit = $('.head-page').outerHeight();
+        $(this).scroll(function () {
+            var outLimit = $(document).scrollTop();
+            if (outLimit > limit)
+                $('.head-page').css({ 'top': '50px', 'transition': '1' });
+            else
+                $('.head-page').css({ 'top': '0px', 'transition': '1' });
+            if (outLimit > scr)
+                $('.head-page').css({ 'top': '-100px', 'transition': '1' });
+            else
+                $('.head-page').css({ 'top': '0px', 'transition': '1' });
+            scr = $(document).scrollTop();
+        });
+    });
+})(jQuery);
