@@ -34,13 +34,13 @@ $(".container-fluid:first").prepend(html);
         $(this).scroll(function () {
             var outLimit = $(document).scrollTop();
             if (outLimit > limit)
-                $('.head-page').css({ 'top': '50px', 'transition': '1' });
+                $('.head-page').css({ 'top': '50px', 'transition': 'all 0.5s ease-in-out' });
             else
-                $('.head-page').css({ 'top': '0px', 'transition': '1' });
+                $('.head-page').css({ 'top': '0px', 'transition': 'all 0.5s ease-in-out' });
             if (outLimit > scr)
-                $('.head-page').css({ 'top': '-100px', 'transition': '1' });
+                $('.head-page').css({ 'top': '-100px', 'transition': 'all 0.5s ease-in-out' });
             else
-                $('.head-page').css({ 'top': '0px', 'transition': '1' });
+                $('.head-page').css({ 'top': '0px', 'transition': 'all 0.5s ease-in-out' });
             scr = $(document).scrollTop();
         });
     });
