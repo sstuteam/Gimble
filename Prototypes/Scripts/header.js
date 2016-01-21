@@ -1,7 +1,6 @@
-
 var html = `
-  <header class="head-page row">
-            <!--logotype-->
+  <div class ="head-page">
+              <!--logotype-->
             <div class="logo_pull-left">
                 <a id="head-logo" href="index.html"></a>
             </div>
@@ -13,8 +12,6 @@ var html = `
                         <span class="glyphicon glyphicon-triangle-bottom"></span>
                     </a>
                     <ul class="dropdown-menu">
-					     <li><a href="addpost.html">Создать запись</a></li>
-                        <li class="divider"></li>
                         <li><a href="profile.html">Мой профиль</a></li>
                         <li><a href="settings.html">Настройки</a></li>
                         <li class="divider"></li>
@@ -22,26 +19,10 @@ var html = `
                     </ul>
                 </li>
             </ul>
-</header>
+</div>
 `;
-
-$(".container-fluid:first").prepend(html);
-
-(function ($) {
-    $(function () {
-        var scr = $(document).scrollTop();
-        var limit = $('.head-page').outerHeight();
-        $(this).scroll(function () {
-            var outLimit = $(document).scrollTop();
-            if (outLimit > limit)
-                $('.head-page').css({ 'top': '50px', 'transition': 'all 0.5s ease-in-out' });
-            else
-                $('.head-page').css({ 'top': '0px', 'transition': 'all 0.5s ease-in-out' });
-            if (outLimit > scr)
-                $('.head-page').css({ 'top': '-100px', 'transition': 'all 0.5s ease-in-out' });
-            else
-                $('.head-page').css({ 'top': '0px', 'transition': 'all 0.5s ease-in-out' });
-            scr = $(document).scrollTop();
-        });
-    });
-})(jQuery);
+$("body").prepend(html);
+var options = {
+    offset: 400
+}
+var header = new Headhesive('.head-page', options);
