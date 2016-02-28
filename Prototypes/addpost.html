@@ -1,13 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Добавление записи</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="Styles/libs/bootstrap.css" rel="stylesheet" />
     <link href="Styles/libs/bootstrap.min.css" rel="stylesheet" />
+    <link href="Styles/libs/prettify.css" rel="stylesheet">
     <link href="Styles/libs/font-awesome.css" rel="stylesheet" />
+    <link href="Styles/libs/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="Styles/addpost.css" rel="stylesheet" />
     <link href="Styles/header.css" rel="stylesheet" />
     <link href="Styles/footer.css" rel="stylesheet" />
@@ -17,34 +19,20 @@
         <div class="container col-centered">
             <div class="row pading">
                 <div class="col-centered">
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-2 col-xs-12">
                         <label>Название:</label>
                     </div>
                     <div class="col-sm-6">
-                        <input class="padding-input"/>
+                        <input class="padding-input" />
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-centered">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <label>Изображение:</label>
-                    </div>
-                    <div class="col-md-5 col-xs-6">
-                        <form enctype="multipart/form-data" method="post">
-                            <input type="file" class="filestyle" data-buttonText="Выбрать файл" accept="image/*,image/jpeg">
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <p></p>
             <!-- Текстовый редактор -->
             <div class="row">
                 <div class="col-centered">
                     <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
                         <div class="btn-group">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                               title="Размер шрифта">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Размер шрифта">
                                 <i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -72,7 +60,10 @@
                                 <input placeholder="URL" type="text" data-edit="createLink" />
                                 <button class="btn" type="button">Добавить</button>
                             </div>
-
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn" title="Выбрать изображение"><i class="icon-picture"></i></a>
+                            <input class="addImg" type="file" multiple accept="image/*,image/jpeg" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage"/>
                         </div>
                         <div class="btn-group">
                             <a class="btn btn-default" data-edit="undo" title="Отменить"><i class="fa fa-undo"></i></a>
@@ -86,16 +77,16 @@
             <div class="row">
                 <div class="col-centered">
                     <div class="pull-right">
-                        <a class="btn btn-large btn-default" href="#">Сохранить</a>
+                        <a class="btn  btn-default" href="#">Сохранить</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="Scripts/libs/jquery-2.2.0.js"></script>
-    <script src="Scripts/libs/bootstrap.js"></script>
     <script src="Scripts/libs/bootstrap-wysiwyg.js"></script>
     <script src="Scripts/libs/jquery.hotkeys.js"></script>
+    <script src="Scripts/libs/prettify.js"></script>
     <script src="Scripts/addpost.js"></script>
     <script src="Scripts/header.js"></script> <!-- header вставляется в первый попавшийся класс container-fluid -->
     <script src="Scripts/footer.js"></script> <!-- footer вставляется в конец body -->
@@ -105,9 +96,6 @@
         $(".dropdown-menu > input").click(function (e) {
             e.stopPropagation();
         });
-    </script>
-    <script type="text/javascript" src="Scripts/libs/bootstrap-filestyle.min.js">
-        $(":file").filestyle({ input: false });
     </script>
 </body>
 </html>
