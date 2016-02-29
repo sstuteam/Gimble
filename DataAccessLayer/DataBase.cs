@@ -23,14 +23,18 @@ namespace DataAccessLayer
         {
             //TODO: добавить создание роли
             string queryString =
-                "INSERT INTO Accounts (Login, Email, Hash) " +
-                "VALUES (@login, @email, @hash)";
+                "INSERT INTO accounts (accountid, login, name, mail, password, createdtime) " +
+                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime)";
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("accountid", Guid.NewGuid());
                 command.Parameters.AddWithValue("login", account.Login);
-                command.Parameters.AddWithValue("email", account.Email);
-                command.Parameters.AddWithValue("hash", account.Password);
+                command.Parameters.AddWithValue("name", account.Login);
+                command.Parameters.AddWithValue("mail", account.Email);
+                command.Parameters.AddWithValue("password", account.Password);
+                command.Parameters.AddWithValue("createdtime", DateTime.Now);
+
                 try
                 {
                     connection.Open();
@@ -46,26 +50,28 @@ namespace DataAccessLayer
             return true;
         }
 
-        public Account GetAccountById(int id)
+        public Account GetAccountById(Guid id)
         {
             string queryString =
-                "SELECT AccountId, Login, Email " +
-                "FROM dbo.Accounts " +
-                "WHERE AccountId = @id";
+                "SELECT accountid, login, mail, city, country " +
+                "FROM [dbo].accounts " +
+                "WHERE accountid = @accountid";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
-                command.Parameters.AddWithValue("id", id);
+                command.Parameters.AddWithValue("accountid", id);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 if (reader.Read())
                 {
                     return new Account()
                     {
-                        Id = (int)reader[0],
+                        Id = (Guid)reader[0],
                         Login = (string)reader[1],
-                        Email = (string)reader[2]
+                        Email = (string)reader[2],
+                        City = (string)reader[3],
+                        Country = (string)reader[4]
                     };
                 }
                 return null;
@@ -75,8 +81,8 @@ namespace DataAccessLayer
         public IEnumerable<Account> GetAllAccounts()
         {
             string queryString =
-                "SELECT AccountId, Login, Email " +
-                "FROM dbo.Accounts";
+                "SELECT accountid, login, mail " +
+                "FROM [dbo].accounts";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -88,7 +94,7 @@ namespace DataAccessLayer
                 {
                     yield return new Account()
                     {
-                        Id = (int)reader[0],
+                        Id = (Guid)reader[0],
                         Login = (string)reader[1],
                         Email = (string)reader[2]
                     };
@@ -96,11 +102,10 @@ namespace DataAccessLayer
             }
         }
 
-
         public string[] GetAllRoles()
         {
-            string queryString = "SELECT RoleId, Name " +
-                                 "FROM dbo.Roles";
+            string queryString = "SELECT roleid, name " +
+                                 "FROM [dbo].Roles";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -120,9 +125,9 @@ namespace DataAccessLayer
 
         public Dictionary<int, List<string>> GetRolesOfAccounts()
         {
-            string queryString = "SELECT AccountId, Roles.Name AS RoleName " +
+            string queryString = "SELECT accountid, Roles.name AS RoleName " +
                                  "FROM AccountsRoles " +
-                                 "INNER JOIN Roles ON AccountsRoles.RoleId = Roles.RoleId";
+                                 "INNER JOIN Roles ON AccountsRoles.roleid = Roles.roleid";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -157,13 +162,12 @@ namespace DataAccessLayer
             }
         }
 
-
         public Account GetAccountByLogin(string username)
         {
             string queryString =
-    "SELECT Id, login, Email, Hash " +
-    "FROM dbo.Users " +
-    "WHERE Login = @login";
+                "SELECT accountid, login, password, mail, city, country, name " +
+                "FROM [dbo].accounts " +
+                "WHERE login = @login";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -172,14 +176,23 @@ namespace DataAccessLayer
 
                 connection.Open();
                 var reader = command.ExecuteReader();
+
+                if (reader == null)
+                {
+                    return null;
+                }
+
                 while (reader.Read())
                 {
                     return new Account()
                     {
-                        Id = (int)reader[0],
+                        Id = (Guid)reader[0],
                         Login = (string)reader[1],
-                        Email = (string)reader[2],
-                        Password = (string)reader[3]
+                        Password = (string)reader[2],
+                        Email = (string)reader[3],
+                        City = (string)reader[4],
+                        Country = (string)reader[5],
+                        Name = (string)reader[6]
                     };
                 }
 
@@ -187,14 +200,156 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Update(Account obj)
+        public bool Update(Account account)
         {
-            throw new NotImplementedException();
+            var queryString =
+                 "UPDATE [dbo].[accounts] " +
+                     ",[login] = @login " +
+                     ",[name] =    @name" +
+                     ",[country] = @country" +
+                     ",[city] = @city" +
+                     ",[mail] = @mail" +
+                 "WHERE [dbo].accounts.accountid = @accountid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("login", account.Login);
+                command.Parameters.AddWithValue("password", account.Password);
+                command.Parameters.AddWithValue("name", account.Name);
+                command.Parameters.AddWithValue("country", account.Country);
+                command.Parameters.AddWithValue("city", account.City);
+                command.Parameters.AddWithValue("accountid", account.Id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+
+                return true;
+
+            }
         }
 
-        public bool DeleteAccount(int id)
+        public bool UpdatePassword(Guid id, string password)
         {
-            throw new NotImplementedException();
+            var queryString =
+                 "UPDATE [dbo].[accounts] " +                     
+                     ",[password] = @password" +
+                 "WHERE [dbo].accounts.accountid = @accountid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("password", password);
+                command.Parameters.AddWithValue("accountid", id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+
+                return true;
+
+            }
+        }
+
+        public bool UpdateMail(Guid id, string newMail)
+        {
+            var queryString =
+                 "UPDATE [dbo].[accounts] " +
+                     ",[mail] = @mail" +
+                 "WHERE [dbo].accounts.accountid = @accountid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("mail", newMail);
+                command.Parameters.AddWithValue("accountid", id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+
+                return true;
+
+            }
+        }
+
+        public bool UpdateCityAndCountry(Guid id, string newCity, string newCountry)
+        {
+            var queryString =
+                 "UPDATE [dbo].[accounts] " +
+                     ",[country] = @country" +
+                     ",[city] = @city" +
+                 "WHERE [dbo].accounts.accountid = @accountid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("country", newCountry);
+                command.Parameters.AddWithValue("city", newCity);
+                command.Parameters.AddWithValue("accountid", id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+
+                return true;
+
+            }
+        }
+
+        public bool DeleteAccount(Guid id)
+        {
+            string queryString =
+            "DELETE FROM[dbo].[accounts] " +
+              "WHERE accounts.accountid = @accountid;";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("accountid", id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+
+                return true;
+            }
         }
     }
 }

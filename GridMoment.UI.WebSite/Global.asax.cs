@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using WebMatrix.WebData;
 
 namespace GridMoment.UI.WebSite
@@ -13,8 +14,7 @@ namespace GridMoment.UI.WebSite
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "Accounts", "AccountId", "Login", autoCreateTables: false);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);  
         }
     }
 }

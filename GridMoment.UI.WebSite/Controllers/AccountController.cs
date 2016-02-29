@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
+﻿using System.Text;
 using System.Web.Mvc;
 using GridMoment.UI.WebSite.Models;
-using WebMatrix.WebData;
+using System.Web.Security;
+using Entities;
 
 namespace GridMoment.UI.WebSite.Controllers
 {
@@ -16,45 +13,32 @@ namespace GridMoment.UI.WebSite.Controllers
         {
             return View();
         }
-
+          
+        [AllowAnonymous]      
         public ActionResult Login()
         {
-            //Выйти, если пользователь залогинен
-            if (WebSecurity.IsAuthenticated)
-            {
-                WebSecurity.Logout();
-                return RedirectToAction("Index", "Home");
-            }
-
             return View();
         }
 
-
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(LoginInputModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (WebSecurity.IsAccountLockedOut(model.Login, 5, 600))
+        public ActionResult Login(LoginInputModel model, string stringUrl)
+        {           
+                if ((Adapter.GetAccount(model.Login) != null) && Adapter.GetAccount(model.Login).Password == model.Password)
                 {
-                    ModelState.AddModelError("Password",
-                       "Вы пытались ввести пароль слишком много раз. Вам придеться подождать час, прежде чем попытаться войти снова.");
+                    FormsAuthentication.SetAuthCookie(model.Login, true);
+                    if (Url.IsLocalUrl(stringUrl))
+                    {
+                        return Redirect(stringUrl);
+                    }
+                    else
+                    {
+                        RedirectToAction("Index", "Home");
+                    }                    
                 }
+            //IndexShowNameViewModel viewModel = new IndexShowNameViewModel { Name = model.Login };
 
-                if (WebSecurity.Login(model.Login, model.Password, persistCookie: true))
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Вы ввели неправильный логин или пароль!");
-                }
-            }
-
-            //TODO: сделать вывод ошибки 
-            //return RedirectToAction("Index", "Home");
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
 
         [AllowAnonymous]
@@ -72,16 +56,10 @@ namespace GridMoment.UI.WebSite.Controllers
                 return View(model);
             }
 
-            if (WebSecurity.UserExists(model.Login))
+            if (Adapter.GetAccount(model.Login) != null)
             {
                 ModelState.AddModelError("Login", "Пользователь с таким логином уже существует!");
             }
-
-            //TODO: добавить проверку существования почты
-            //if ()
-            //{
-            //    ModelState.AddModelError("Email", "Пользователь с таким email уже существует!");
-            //}
 
             //Чтобы показать новые ошибки
             if (!ModelState.IsValid)
@@ -89,23 +67,28 @@ namespace GridMoment.UI.WebSite.Controllers
                 return View(model);
             }
 
-            WebSecurity.CreateUserAndAccount(model.Login, model.Password, new
+            Account account = new Account
             {
-                Email = model.Email,
-                //AddTime = DateTime.Now
-            });
-            WebSecurity.Login(model.Login, model.Password, persistCookie: true);
+                Login = model.Login,
+                Password = model.Password,
+                Email = model.Email
+            };
+
+            Adapter.CreateUserAndAccount(account);
+
+            FormsAuthentication.SetAuthCookie(account.Login, true);
 
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public ActionResult Logout()
         {
-            WebSecurity.Logout();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
-        //подозрение, что этого метода не должно быть здесь
+        //подозрение действительно есть, что этого метода не должно быть здесь
         static string GetSHA256(string password, string salt = "Vuhgmfgz")
         {
             string inputString = password + salt;
@@ -118,5 +101,5 @@ namespace GridMoment.UI.WebSite.Controllers
             }
             return hash.ToString();
         }
-    }
+    }       
 }

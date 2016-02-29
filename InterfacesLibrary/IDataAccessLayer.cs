@@ -9,13 +9,26 @@ namespace InterfacesLibrary
 {
     public interface IDataAccessLayer
     {
-        bool CreateAccount(Account obj);
-        bool Update(Account obj);
-        bool DeleteAccount(int id);
-        Account GetAccountById(int id);
-        Account GetAccountByLogin(string login);
+        bool CreateAccount(Account account);
+
+        Account GetAccountById(Guid id);
+
         IEnumerable<Account> GetAllAccounts();
+
         string[] GetAllRoles();
+
         Dictionary<int, List<string>> GetRolesOfAccounts();
+
+        Account GetAccountByLogin(string username);
+
+        bool Update(Account account);
+
+        bool UpdatePassword(Guid id, string password);
+
+        bool UpdateMail(Guid id, string newMail);
+      
+        bool UpdateCityAndCountry(Guid id, string newCity, string newCountry);
+
+        bool DeleteAccount(Guid id);        
     }
 }

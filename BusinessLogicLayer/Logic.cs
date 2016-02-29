@@ -11,11 +11,9 @@ namespace BusinessLogicLayer
 {
     public class Logic
     {
-
         //TODO: разместить в Dependency Resolver
         readonly IDataAccessLayer _data = new DataBase();
-
-
+        
         public bool CreateAccount(Account account)
         {
             if (GetAccountByLogin(account.Login) != null)
@@ -26,31 +24,34 @@ namespace BusinessLogicLayer
         }
 
         public IEnumerable<Account> GetAllAccounts()
-        {
-            return _data.GetAllAccounts();
-        }
+            =>_data.GetAllAccounts();
 
         public Account GetAccountByLogin(string name)
-        {
-            return _data.GetAccountByLogin(name);
-        }
+            =>_data.GetAccountByLogin(name);
 
-        public Account GetUserById(int id)
-        {
-            return _data.GetAccountById(id);
-        }
+        public Account GetUserById(Guid id)
+            => _data.GetAccountById(id);
 
         public string[] GetAllRoles()
-        {
-            return _data.GetAllRoles();
-        }
+            => _data.GetAllRoles();
 
         public Dictionary<int, List<string>> GetRolesOfAccounts()
-        {
-            var result = _data.GetRolesOfAccounts();
+            => _data.GetRolesOfAccounts();
 
-            return result;
-        }
+        public bool UpdateCityAndCountry(Guid id, string newCity, string newCountry)
+            => _data.UpdateCityAndCountry(id, newCity, newCountry);
+
+        public bool DeleteAccount(Guid id)
+            => _data.DeleteAccount(id);
+
+        public bool UpdateMail(Guid id, string newMail)
+            => _data.UpdateMail(id, newMail);
+
+        public bool UpdatePassword(Guid id, string password)
+            => _data.UpdatePassword(id, password);
+
+        public bool Update(Account account)
+            => _data.Update(account);
     }
 }
 

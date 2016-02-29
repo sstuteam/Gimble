@@ -1,0 +1,66 @@
+.head {
+  font-size: 25px;
+  margin: 10px 10px;  
+}
+
+.some-margin{
+    margin-top:4vw;
+}
+
+.photo{
+    background-image:url(https://source.unsplash.com/random);
+}
+
+.center-text{
+    text-align:center;
+}
+
+html{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:3vh;
+}
+
+.ratio {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.footer p {
+    margin: 20px 0;
+}
+
+.foo {
+    max-height: 98px;
+    overflow: hidden;
+    position: relative;
+}
+.foo:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: -o-linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
+    background: -moz-linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
+    background: -webkit-linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
+    background: linear-gradient(to bottom, rgba(247, 247, 247, 0), rgb(249, 249, 249));
+}
+a{
+	color: black;
+	
+}
+a:hover{
+	text-decoration: none !important;
+}
+.margin-border {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

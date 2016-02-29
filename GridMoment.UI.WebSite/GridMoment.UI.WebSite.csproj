@@ -101,23 +101,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\drops.jpg" />
+    <Content Include="Content\Images\log.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\header.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Styles\addpost.css" />
+    <Content Include="Styles\bootstrap-theme.css" />
+    <Content Include="Styles\bootstrap-theme.min.css" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\footer.css" />
+    <Content Include="Styles\header.css" />
+    <Content Include="Content\Images\drops.jpg" />
+    <Content Include="Styles\index.css" />
+    <Content Include="Styles\libs\bootstrap-theme.css" />
+    <Content Include="Styles\libs\bootstrap-theme.min.css" />
+    <Content Include="Styles\libs\bootstrap.css" />
+    <Content Include="Styles\libs\bootstrap.min.css" />
+    <Content Include="Styles\libs\font-awesome.css" />
+    <Content Include="Styles\post.css" />
+    <Content Include="Styles\profile.css" />
+    <Content Include="Styles\settings.css" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\arrow.png" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Scripts\addpost.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Styles\bootstrap.min.css.map" />
+    <Content Include="Styles\bootstrap.css.map" />
+    <Content Include="Styles\bootstrap-theme.min.css.map" />
+    <Content Include="Styles\bootstrap-theme.css.map" />
+    <Content Include="Styles\libs\bootstrap-theme.css.map" />
+    <Content Include="Styles\libs\bootstrap-theme.min.css.map" />
+    <Content Include="Styles\libs\bootstrap.css.map" />
+    <Content Include="Styles\libs\bootstrap.min.css.map" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\footer.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -127,25 +158,31 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\bootstrap-filestyle.min.js" />
+    <Content Include="Scripts\libs\bootstrap-wysiwyg.js" />
+    <Content Include="Scripts\libs\bootstrap-wysiwyg.min.js" />
+    <Content Include="Scripts\libs\bootstrap.js" />
+    <Content Include="Scripts\libs\bootstrap.min.js" />
+    <Content Include="Scripts\libs\npm.js" />
     <Content Include="Scripts\modalwindow.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\post.js" />
     <Content Include="Scripts\scrolling-nav.js" />
-    <Content Include="Styles\bootstrap-theme.css" />
-    <Content Include="Styles\bootstrap-theme.min.css" />
-    <Content Include="Styles\bootstrap.css" />
-    <Content Include="Styles\bootstrap.min.css" />
-    <Content Include="Styles\scrolling-nav.css" />
-    <Content Include="Styles\style.css" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Adapter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileShowNameViewModel.cs" />
     <Compile Include="Models\LoginInputModel.cs" />
     <Compile Include="Models\RegisterInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,16 +191,18 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Styles\bootstrap-theme.css.map" />
-    <Content Include="Styles\bootstrap.css.map" />
-    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\jquery-1.11.3.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\ViewProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -173,6 +212,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
+      <Project>{dbbeec43-6311-406b-9dc6-9cf9f1750fac}</Project>
+      <Name>BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{894058fd-f076-4b44-9a3b-2432b1e6f8fd}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
