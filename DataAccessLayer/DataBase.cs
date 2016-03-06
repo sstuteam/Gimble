@@ -241,7 +241,7 @@ namespace DataAccessLayer
         {
             var queryString =
                  "UPDATE [dbo].[accounts] " +                     
-                     ",[password] = @password" +
+                 "SET password = @password " +
                  "WHERE [dbo].accounts.accountid = @accountid";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -270,7 +270,7 @@ namespace DataAccessLayer
         {
             var queryString =
                  "UPDATE [dbo].[accounts] " +
-                     ",[mail] = @mail" +
+                 "SET mail = @mail " +
                  "WHERE [dbo].accounts.accountid = @accountid";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))

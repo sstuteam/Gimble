@@ -18,32 +18,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-    <header>
-        <div class="headhesive row">
-            <!--logotype-->
-            <div class="logo_pull-left">
-                <a id="head-logo" href=#></a>
-            </div>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <ul class="profile-button list-unstyled pull-right">
-                    <li class="dropdown">
-                        <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user"></span>
-                            Имя пользователя
-                            <span class="glyphicon glyphicon-triangle-bottom"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li> @Html.ActionLink("Мой профиль", "Index", "Profile") </li>
-                            <li><a href="settings.html">Настройки</a></li>
-                            <li class="divider"></li>
-                            <li> @Html.ActionLink("Выйти из себя", "Logout", "Account") </li>
-                        </ul>
-                    </li>
-                </ul>
-            }
-        </div>
-        
+    <header class="headhesive row">
+        <!--logotype-->
+
+        <a href="@Url.Action("Index", "Home")" class="logo_pull-left">
+            <div id="head-logo" href=#></div>
+        </a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <ul class="profile-button list-unstyled pull-right">
+                <li class="dropdown">
+                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        @User.Identity.Name
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li> @Html.ActionLink("Мой профиль", "Index", "Profile") </li>
+                        <li> @Html.ActionLink("Настройки", "Index", "Settings")</li>
+                        <li class="divider"></li>
+                        <li> @Html.ActionLink("Выйти из себя", "Logout", "Account") </li>
+                    </ul>
+                </li>
+            </ul>
+        }
+    </header>
+            
         <!--Логотип + Панель регистрации-->
         <div class=" col-xs-12 full-height top-background-image">
             <div>
@@ -104,7 +104,6 @@
         </div>
 
         <br />
-    </header>
     <div class="container-fluid">
         <!-- Основной контент -->
         <ul class="nav nav-tabs row centered">
@@ -124,7 +123,7 @@
         <div class="tab-content">
             <div id="last-story-panel" class="tab-pane fade in active">
                 <!--Доска последних историй-->
-                <div class="row center-block">
+            <div class="row center-block">
                     <!-- BEGIN ROW -->
                     <a href="post.html">
                         <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
@@ -169,7 +168,8 @@
                         </div>
                     </a>
                 </div> <!-- END ROW -->
-                <div class="row center-block">
+
+            <div class="row center-block">
                     <!-- BEGIN ROW -->
                     <a href="post.html">
                         <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
@@ -214,9 +214,11 @@
                         </div>
                     </a>
                 </div> <!-- END ROW -->
+             </div>
+
             <div id="best-story-7" class="tab-pane fade">
                 <!--Доска лучших историй за 7 дней-->
-                <div class="row center-block">
+            <div class="row center-block">
                     <!-- BEGIN ROW -->
                     <a href="post.html">
                         <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
@@ -261,9 +263,8 @@
                         </div>
                     </a>
                 </div> <!-- END ROW -->
-                <div class="row center-block">
-                    <!-- BEGIN ROW -->
-                    <div class="row center-block">
+                
+            <div class="row center-block">
                         <!-- BEGIN ROW -->
                         <a href="post.html">
                             <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
@@ -308,6 +309,8 @@
                             </div>
                         </a>
                     </div> <!-- END ROW -->
+                </div>
+
             <div id="best-story-30" class="tab-pane fade">
                 <!--Доска лучших историй за 30 дней-->
                 <div class="row center-block">
@@ -403,14 +406,16 @@
                     </div> <!-- END ROW -->
             </div>
         </div>
+            
+    </div>   
         <footer class="footer center-block">
             <!--Название компании и год её основания-->
             <div class="container">
                 <p class="text-muted">IBS Production &copy; @DateTime.UtcNow.Year год</p>
-                <p>Поддержи отечественного девелопера, положи мне деньги внизу страницы!!11</p>
             </div>
-        </footer>     
-    </div>
+        </footer>               
+</div>
+           
 
     <br>   
 

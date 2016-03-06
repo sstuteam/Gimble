@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer;
 using Entities;
+using GridMoment.UI.WebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,32 +13,48 @@ namespace GridMoment.UI.WebSite.Controllers
     {        
         public static Account GetAccount(string name)
         {
-            Logic logic = new Logic();
+            Logic _logic = new Logic();
 
-            var toReturn = logic.GetAccountByLogin(name);
+            var toReturn = _logic.GetAccountByLogin(name);
 
             return toReturn;
         }
 
         public static Account GetAccount(Guid id)
         {
-            Logic logic = new Logic();
+            Logic _logic = new Logic();
 
-            var toReturn = logic.GetUserById(id);
+            var toReturn = _logic.GetUserById(id);
 
             return toReturn;
         }
 
         public static bool CreateUserAndAccount(Account account)
         {
-            Logic logic = new Logic();
+            Logic _logic = new Logic();
 
-            if (logic.CreateAccount(account))
+            if (_logic.CreateAccount(account))
             {
                 return true;
             }
 
             return false;
         }
+
+        public static bool ChangePassword(Guid id, string password)
+        {
+            Logic _logic = new Logic();
+
+            return _logic.UpdatePassword(id, password);
+        }
+
+        public static bool ChangeMail(Guid id, string mail)
+        {
+            Logic _logic = new Logic();
+
+            return _logic.UpdateMail(id, mail);
+        }
+
     }
 }
+

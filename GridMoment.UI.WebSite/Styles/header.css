@@ -49,10 +49,10 @@ html {
     left: 0;
     padding: 20px 0;
     width: 100%;
-    opacity: 1;
     -webkit-transition: all 50ms ease-in-out;
     -moz-transition: all 50ms ease-in-out;
     transition: all 50ms ease-in-out;
+    background-color: rebeccapurple;
  }
 
 .headhesive--stick {

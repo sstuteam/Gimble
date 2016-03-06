@@ -179,9 +179,11 @@
     <Compile Include="Controllers\Adapter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SettingsViewModel.cs" />
     <Compile Include="Models\ProfileShowNameViewModel.cs" />
     <Compile Include="Models\LoginInputModel.cs" />
     <Compile Include="Models\RegisterInputModel.cs" />
@@ -203,6 +205,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\ViewProfile.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
