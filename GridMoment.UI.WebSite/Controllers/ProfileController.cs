@@ -13,7 +13,7 @@ namespace GridMoment.UI.WebSite.Controllers
         public ActionResult Index()
         {
             var account = Adapter.GetAccount(User.Identity.Name);
-            var model = new ProfileShowNameViewModel { Name = account.Name, City = account.City };
+            var model = new ProfileShowNameViewModel { Name = account.Name, City = account.City, Role = account.Role };
             return View(model);
         }
 
@@ -27,9 +27,14 @@ namespace GridMoment.UI.WebSite.Controllers
                 return HttpNotFound();
             }
 
-            var model = new ProfileShowNameViewModel { Name = account.Name, City = account.City };
+            var model = new ProfileShowNameViewModel { Name = account.Name, City = account.City, Role = account.Role };
 
             return View(model);
+        }
+
+        public ActionResult CreatePost()
+        {
+            return View();
         }
     }
 }

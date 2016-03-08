@@ -183,6 +183,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\SettingsViewModel.cs" />
     <Compile Include="Models\ProfileShowNameViewModel.cs" />
     <Compile Include="Models\LoginInputModel.cs" />

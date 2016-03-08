@@ -24,7 +24,10 @@ namespace DataAccessLayer
             //TODO: добавить создание роли
             string queryString =
                 "INSERT INTO accounts (accountid, login, name, mail, password, createdtime) " +
-                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime)";
+                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime); " +
+                "INSERT INTO UsersRoles (RoleId, accountid) " +
+                "VALUES(@RoleId, @accountid)";
+
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
@@ -34,6 +37,7 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("mail", account.Email);
                 command.Parameters.AddWithValue("password", account.Password);
                 command.Parameters.AddWithValue("createdtime", DateTime.Now);
+                command.Parameters.AddWithValue("RoleId", 1);
 
                 try
                 {
@@ -53,9 +57,9 @@ namespace DataAccessLayer
         public Account GetAccountById(Guid id)
         {
             string queryString =
-                "SELECT accountid, login, mail, city, country " +
-                "FROM [dbo].accounts " +
-                "WHERE accountid = @accountid";
+               "SELECT [dbo].accounts.accountid, login, password, mail, city, country, [dbo].accounts.name, [dbo].Roles.Name " +
+                "FROM [dbo].accounts, [dbo].UsersRoles, [dbo].Roles " +
+                "WHERE ([dbo].accounts = @accountid) AND ([dbo].Roles.RoleId = [dbo].UsersRoles.RoleId);";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -165,13 +169,14 @@ namespace DataAccessLayer
         public Account GetAccountByLogin(string username)
         {
             string queryString =
-                "SELECT accountid, login, password, mail, city, country, name " +
-                "FROM [dbo].accounts " +
-                "WHERE login = @login";
+                "SELECT [dbo].accounts.accountid, login, password, mail, city, country, [dbo].accounts.name, [dbo].Roles.Name " +
+                "FROM [dbo].accounts, [dbo].UsersRoles, [dbo].Roles " +
+                "WHERE (login = @login) AND ([dbo].Roles.RoleId = [dbo].UsersRoles.RoleId);";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+
                 command.Parameters.AddWithValue("login", username);
 
                 connection.Open();
@@ -192,7 +197,8 @@ namespace DataAccessLayer
                         Email = (string)reader[3],
                         City = (string)reader[4],
                         Country = (string)reader[5],
-                        Name = (string)reader[6]
+                        Name = (string)reader[6],
+                        Role = (string)reader[7]
                     };
                 }
 
@@ -214,6 +220,7 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+
                 command.Parameters.AddWithValue("login", account.Login);
                 command.Parameters.AddWithValue("password", account.Password);
                 command.Parameters.AddWithValue("name", account.Name);
@@ -247,6 +254,7 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("accountid", id);
 
@@ -276,6 +284,7 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+
                 command.Parameters.AddWithValue("mail", newMail);
                 command.Parameters.AddWithValue("accountid", id);
 
@@ -287,6 +296,7 @@ namespace DataAccessLayer
                 catch (Exception)
                 {
                     throw;
+
                     return false;
                 }
 
@@ -335,6 +345,8 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+
+
                 command.Parameters.AddWithValue("accountid", id);
 
                 try
