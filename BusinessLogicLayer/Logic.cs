@@ -52,6 +52,12 @@ namespace BusinessLogicLayer
 
         public bool Update(Account account)
             => _data.Update(account);
+
+        public bool CreatePost(Post post)
+            => _data.CreatePost(post);
+
+        public Post GetPost(Guid postid)
+            => _data.GetPost(postid);
     }
 }
 

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Entities;
 
 namespace InterfacesLibrary
@@ -29,6 +26,10 @@ namespace InterfacesLibrary
       
         bool UpdateCityAndCountry(Guid id, string newCity, string newCountry);
 
-        bool DeleteAccount(Guid id);        
+        bool DeleteAccount(Guid id);
+
+        bool CreatePost(Post post);
+
+        Post GetPost(Guid postId);
     }
 }

@@ -55,6 +55,19 @@ namespace GridMoment.UI.WebSite.Controllers
             return _logic.UpdateMail(id, mail);
         }
 
+        public static bool CreatePost(Post post)
+        {
+            Logic _logic = new Logic();
+
+            return _logic.CreatePost(post);
+        }
+
+        public static Post GetPost(Guid posid)
+        {
+            Logic _logic = new Logic();
+
+            return _logic.GetPost(posid);
+        }
+
     }
 }
-

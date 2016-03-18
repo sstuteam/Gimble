@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Entities;
 using InterfacesLibrary;
 
@@ -21,7 +18,7 @@ namespace DataAccessLayer
 
         public bool CreateAccount(Account account)
         {
-            //TODO: добавить создание роли
+            
             string queryString =
                 "INSERT INTO accounts (accountid, login, name, mail, password, createdtime) " +
                 "VALUES (@accountid, @login, @name, @mail, @password, @createdtime); " +
@@ -362,6 +359,83 @@ namespace DataAccessLayer
 
                 return true;
             }
+        }
+
+        public Post GetPost(Guid postId)
+        {
+            string queryString =
+                "SELECT [dbo].posts.postid, postname, source, createdtime, accountid, rating, text, [dbo].accounts.name, tag " +
+                "FROM [dbo].posts, [dbo].tagposts, [dbo].accounts " +
+                "WHERE (postid = @postid) AND ([dbo].tagposts.postid = [dbo].posts.postid) " +
+                "AND ([dbo].posts.accountid = [dbo].accounts.accountid)";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("postid", postId);
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader == null)
+                {
+                    return null;
+                }
+
+                while (reader.Read())
+                {
+                    return new Post()
+                    {
+                        PostId = (Guid)reader[0],
+                        NamePost = (string)reader[1],
+             /*!!!!!*/  Source = (string)reader[2],
+                        CreatedTime = (DateTime)reader[3],
+                        AccountId = (Guid)reader[4],
+                        Rating = (int)reader[5],
+                        Text = (string)reader[6],
+                        AuthorName = (string)reader[7],
+                        Tags = ((string)reader[8]).ToString().Split(',')
+                    };
+                }
+
+                return null;
+            }
+        }
+
+        public bool CreatePost(Post post)
+        {
+
+            string queryString =
+                "INSERT INTO [dbo].posts ([dbo].posts.postid, postname, source, createdtime, accountid, text) " +
+                "VALUES (@postid, @postname, @source, @createdtime, @accountid, @createdtime, @text); " +
+                "INSERT INTO tags (postid, tag) " +
+                "VALUES(@postid, @tag)";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("postid", Guid.NewGuid());
+                command.Parameters.AddWithValue("postname",post.NamePost);
+                command.Parameters.AddWithValue("source", post.Source);
+                command.Parameters.AddWithValue("createdtime", DateTime.Now);
+                command.Parameters.AddWithValue("accountid", post.AccountId);
+                command.Parameters.AddWithValue("text", post.Text);
+                command.Parameters.AddWithValue("tag", post.Tags.ToString());
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

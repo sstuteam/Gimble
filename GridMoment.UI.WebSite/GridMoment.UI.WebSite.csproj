@@ -109,6 +109,7 @@
     <Content Include="Scripts\header.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\libs\prettify.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Styles\addpost.css" />
     <Content Include="Styles\bootstrap-theme.css" />
@@ -119,11 +120,13 @@
     <Content Include="Styles\header.css" />
     <Content Include="Content\Images\drops.jpg" />
     <Content Include="Styles\index.css" />
+    <Content Include="Styles\libs\bootstrap-combined.no-icons.min.css" />
     <Content Include="Styles\libs\bootstrap-theme.css" />
     <Content Include="Styles\libs\bootstrap-theme.min.css" />
     <Content Include="Styles\libs\bootstrap.css" />
     <Content Include="Styles\libs\bootstrap.min.css" />
     <Content Include="Styles\libs\font-awesome.css" />
+    <Content Include="Styles\libs\prettify.css" />
     <Content Include="Styles\post.css" />
     <Content Include="Styles\profile.css" />
     <Content Include="Styles\settings.css" />
@@ -178,6 +181,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Adapter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Global.asax.cs">
