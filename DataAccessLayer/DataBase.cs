@@ -389,13 +389,14 @@ namespace DataAccessLayer
                     {
                         PostId = (Guid)reader[0],
                         NamePost = (string)reader[1],
-             /*!!!!!*/  Source = (string)reader[2],
+                        Image = (byte [])reader[2],
                         CreatedTime = (DateTime)reader[3],
                         AccountId = (Guid)reader[4],
                         Rating = (int)reader[5],
                         Text = (string)reader[6],
                         AuthorName = (string)reader[7],
-                        Tags = ((string)reader[8]).ToString().Split(',')
+                        Tags = ((string)reader[8]).ToString().Split(','),
+                        Avatar = GetAccountByLogin((string)reader[7]).Avatar                         
                     };
                 }
 
@@ -405,22 +406,27 @@ namespace DataAccessLayer
 
         public bool CreatePost(Post post)
         {
+            var postid = Guid.NewGuid();
+
+            post.Rating = 0;
 
             string queryString =
-                "INSERT INTO [dbo].posts ([dbo].posts.postid, postname, source, createdtime, accountid, text) " +
-                "VALUES (@postid, @postname, @source, @createdtime, @accountid, @createdtime, @text); " +
-                "INSERT INTO tags (postid, tag) " +
+                "INSERT INTO [dbo].posts ([dbo].posts.postid, postname, source, createdtime, mimetype, accountid, text, rating) " +
+                "VALUES (@postid, @postname, @source, @createdtime, @mimetype, @accountid, @text, @rating); " +
+                "INSERT INTO tags ([dbo].tags.postid, tag) " +
                 "VALUES(@postid, @tag)";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
-                command.Parameters.AddWithValue("postid", Guid.NewGuid());
+                command.Parameters.AddWithValue("postid", postid);
                 command.Parameters.AddWithValue("postname",post.NamePost);
-                command.Parameters.AddWithValue("source", post.Source);
+                command.Parameters.AddWithValue("source", post.Image);
                 command.Parameters.AddWithValue("createdtime", DateTime.Now);
+                command.Parameters.AddWithValue("mimetype", post.MimetypeSource);
                 command.Parameters.AddWithValue("accountid", post.AccountId);
                 command.Parameters.AddWithValue("text", post.Text);
+                command.Parameters.AddWithValue("rating", post.Rating);
                 command.Parameters.AddWithValue("tag", post.Tags.ToString());
 
                 try
@@ -428,10 +434,10 @@ namespace DataAccessLayer
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    throw;
-                    return false;
+                    var stack = e.StackTrace;                    
+                    throw new Exception();                    
                 }
             }
 

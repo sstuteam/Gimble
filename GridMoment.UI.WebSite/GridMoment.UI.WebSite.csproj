@@ -106,6 +106,7 @@
     <Content Include="Content\Images\log.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\addprofile.js" />
     <Content Include="Scripts\header.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

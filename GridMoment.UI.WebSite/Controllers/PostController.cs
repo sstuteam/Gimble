@@ -1,6 +1,9 @@
 ﻿using System.Web.Mvc;
 using GridMoment.UI.WebSite.Models;
 using System.Collections.Generic;
+using Entities;
+using System.Web;
+using System.IO;
 
 namespace GridMoment.UI.WebSite.Controllers
 {
@@ -9,26 +12,6 @@ namespace GridMoment.UI.WebSite.Controllers
         // GET: Post
         public ActionResult Index()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(PostViewModel model)
-        {
-            var modelToSend = new Entities.Post
-            {
-                AccountId = Adapter.GetAccount(User.Identity.Name).Id,
-                AuthorName = model.Author,
-                Rating = 0,
-                Source = "Image",
-                NamePost = model.NamePost,
-                Avatar = "Image",
-                Tags = model.Tags.ToArray(),
-                Text = model.Text
-            };
-
-            Adapter.CreatePost(modelToSend);
-
             return View();
         }
 
@@ -46,17 +29,56 @@ namespace GridMoment.UI.WebSite.Controllers
                 PostId = post.PostId,
                 Tags = new List<string>(post.Tags),
                 NamePost = post.NamePost,
-                Source = post.Source,
+                Image = post.Image,
                 Text = post.Text
             };
 
             return View("Index", model);
         }
-
+        
         public ActionResult Add()
+        {            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(PostViewModel model, HttpPostedFileBase uploadImage)
         {
-            var model = new PostViewModel { PostId = System.Guid.NewGuid() };
-            return View(model);
+            var postCreator = Adapter.GetAccount(User.Identity.Name);
+
+            string ext;
+
+            var tagsArray = model.TagsAddiction.Split(',');
+
+            if (uploadImage == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                ext = uploadImage.ContentType;
+
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    model.Image = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+            }
+
+            var modelToSend = new Post
+            {
+                AccountId = postCreator.Id,
+                AuthorName = postCreator.Name,
+                Rating = 0,
+                Image = model.Image,
+                NamePost = model.NamePost,
+                Tags = tagsArray,
+                Text = model.Text,
+                MimetypeSource = ext
+            };
+
+            Adapter.CreatePost(modelToSend);
+
+            return View();
         }
     }
 }

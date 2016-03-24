@@ -92,16 +92,18 @@
             }
             else
             {
-                <h1 class="col-xs-12 text-center">Добро пожаловать, @User.Identity.Name</h1>
-            }
+              <p><h1 class="col-xs-12 text-center">Добро пожаловать, @User.Identity.Name</h1></p>
+              <p><h2 class="col-xs-12 text-center">@User.Identity.Name, асуществи свои мечты, например, 
+                  @Html.ActionLink("Создай пост", "Add", "Post")</h2></p>
+             }
 
-            <!-- Стрелка -->
-            <div class="col-xs-10 col-xs-offset-1 hidden-xs arrow-scroll">
-                <a class="page-scroll" href="#main-content">
-                    <img class="center-block" src="/Content/Images/arrow.png" />
-                </a>
-            </div>
-        </div>
+                <!-- Стрелка -->
+                <div class="col-xs-10 col-xs-offset-1 hidden-xs arrow-scroll">
+                    <a class="page-scroll" href="#main-content">
+                        <img class="center-block" src="/Content/Images/arrow.png" />
+                    </a>
+                </div>
+</div>
 
         <br />
     <div class="container-fluid">

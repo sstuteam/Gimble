@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace GridMoment.UI.WebSite.Models
 {
     public class PostViewModel
     {
-        public string Avatar { get; set; }
+        public byte[] Avatar { get; set; }
 
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
-        public System.Guid Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Идентификатор поста. 
         /// </summary>
-        public System.Guid PostId { get; set; }
+        public Guid PostId { get; set; }
 
         [StringLength(250), Display(Name = "Текст поста")]
         public string Text { get; set; }
@@ -30,12 +30,22 @@ namespace GridMoment.UI.WebSite.Models
         /// <summary>
         /// Основная картеначка
         /// </summary>
-        public string Source { get; set; }
+        public byte[] Image { get; set; }
+
+        /// <summary>
+        /// Тип картинки
+        /// </summary>
+        public string MimeType { get; set; }
 
         /// <summary>
         /// Меточки для т. .
         /// </summary>
         public List<string> Tags { get; set; }
+
+        /// <summary>
+        /// Меточки для т. .
+        /// </summary>
+        public string TagsAddiction { get; set; }
 
         public DateTime DateOfCreation { get; set; }
 

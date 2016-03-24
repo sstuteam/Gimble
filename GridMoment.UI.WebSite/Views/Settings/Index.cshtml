@@ -3,7 +3,10 @@
     ViewBag.Title = "Settings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<head>
+    <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+</head>
 <div class="full-height container-fluid delete-bonding">
     @if (User.Identity.IsAuthenticated)
     {
@@ -55,6 +58,7 @@
             </div>
         </div>
     </div>
-                    }
+    }
+    <script src="/Scripts/bootstrap.min.js"></script>
 </div>
                     

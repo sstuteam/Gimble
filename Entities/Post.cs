@@ -8,8 +8,10 @@ using static System.Net.Mime.MediaTypeNames;
 namespace Entities
 {
     public class Post
-    {       
-        public string Avatar { get; set; }
+    {
+        public byte[] Avatar { get; set; }
+
+        public string MimeTypeAvatar { get; set; }
 
         public string AuthorName { get; set; }
 
@@ -19,7 +21,7 @@ namespace Entities
         
         public string NamePost { get; set; }
 
-        public string Source { get; set; }
+        public byte[] Image { get; set; }
 
         public DateTime CreatedTime { get; set; }
 
@@ -28,6 +30,8 @@ namespace Entities
         public string [] Tags { get; set; }
 
         public int Rating { get; set; }
+
+        public string MimetypeSource { get; set; }
 
     }
 }

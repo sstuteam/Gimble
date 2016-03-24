@@ -2,6 +2,8 @@
 {
     public class Account
     {
+        public byte [] Avatar { get; set; }
+
         public System.Guid Id { get; set; }
 
         public string Email { get; set; }
