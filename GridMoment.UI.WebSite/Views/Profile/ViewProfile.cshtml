@@ -1,0 +1,274 @@
+﻿@model GridMoment.UI.WebSite.Models.ProfileShowNameViewModel
+@{
+    ViewBag.Title = "Profile: " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>   
+    <link href="~/Styles/profile.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>   
+        <p></p>
+        <section class="container-fluid" style="margin-top:110px;">
+            <div class="row">
+                <div class="col-xs-2">
+                    <div class="ratio img-responsive img-circle photo"></div>
+                </div>
+                <div class="col-xs-7 some-margin">@Model.Name</div>
+                <div class="col-xs-7"><small>@Model.City</small></div>
+            </div>
+
+            <p></p>
+            <!--Здесь записи польз. и избранное-->
+            <ul class="nav nav-tabs row centered">
+                <li class="active col-xs-5 center-text"><a data-toggle="tab" href="#panel1">Записи пользователя</a></li>
+                <li class="col-xs-7 center-text"><a data-toggle="tab" href="#panel2">Избранное</a></li>
+            </ul>
+            <!--промежуток должен быть-->
+            <p> </p>
+            <div class="tab-content">
+                <!--Понель номеро уно-->
+                <div id="panel1" class="tab-pane fade in active">
+                    <div class="row center-block">
+                        <!-- BEGIN ROW -->
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
+                                <div class="text-left foo">Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно. Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=2" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=3" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+                        </a>
+                    </div> <!-- END ROW -->
+                    <div class="row center-block">
+                        <!-- BEGIN ROW -->
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=5" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=4" />
+                                <div class="text-left foo">Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно. Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=6" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+                        </a>
+                    </div> <!-- END ROW -->
+
+                    <div class="row center-block">
+                        <!-- BEGIN ROW -->
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
+                                <div class="text-left foo">Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно. Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=2" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=3" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+                        </a>
+                    </div> <!-- END ROW -->
+
+                </div>
+                <!--Понель закладок-->
+                <div id="panel2" class="tab-pane fade">
+                    <div class="row center-block">
+                        <!-- BEGIN ROW -->
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=8" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=7" />
+                                <div class="text-left foo">Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно. Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=9" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+                        </a>
+                    </div> <!-- END ROW -->
+                    <div class="row center-block">
+                        <!-- BEGIN ROW -->
+
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=10" />
+                                <div class="text-left foo">Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно. Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=11" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+
+                        </a>
+                        <a href="post.html">
+                            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                                <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=12" />
+                                <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                                <footer>
+                                    <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                    <div>
+                                        @Html.ActionLink("admin", "ViewProfile", "Profile", new { login = "admin" }, null)<span class="glyphicon glyphicon-user"></span>
+                                    </div>
+
+                                </footer>
+                            </div>
+                        </a>
+                    </div> <!-- END ROW -->
+                </div>
+            </div>
+        </section>
+    <script src="/Scripts/bootstrap.min.js"></script>
+</body>

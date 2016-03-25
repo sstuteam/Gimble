@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Gimble: Главная</title>
+    <meta charset="utf-8" />
+    <link href="Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Styles/index.css" rel="stylesheet" />
+    <link href="Styles/header.css" rel="stylesheet" />
+    <link href="Styles/footer.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <!--Логотип + Панель регистрации-->
+    <div class="full-height top-background-image container-fluid">
+
+        <div class="row">
+            <!--Логотип-->
+
+            <img class="gimble-logo img-responsive" src="Content/Images/logo.png" />
+
+        </div>
+
+        <!-- Модальное окно регистрации-->
+        <div id="registerModal" class="modal fade">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Регистрация</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-register" role="form">
+                            <input type="email" class="form-control margin-reg-menu" placeholder="Email" required autofocus>
+                            <input type="text" class="form-control margin-reg-menu" placeholder="Имя пользователя" required>
+                            <input type="password" class="form-control margin-reg-menu" placeholder="Пароль" required>
+                            <input type="password" class="form-control margin-reg-menu" placeholder="Повторите пароль" required>
+                            <button class="btn btn-md btn-primary btn-block margin-reg-button" type="button">Зарегистрироваться</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Модальное окно входа-->
+        <div id="loginModal" class="modal fade">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Вход</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" role="form">
+                            <input type="text" class="form-control margin-entry-menu" placeholder="Имя пользователя" required
+                                   autofocus>
+                            <input type="password" class="form-control" placeholder="Пароль" required>
+                            <label class="checkbox col-xs-offset-1">
+                                <input type="checkbox" value="remember-me"> Запомнить
+                            </label>
+                            <button class="btn btn-md btn-primary btn-block" type="button">Войти</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <span>Вы у нас впервые? </span><a id="registerLink" href="#">Зарегистрироваться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="btnShowLogin" class="btn btn-default btn-lg col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
+            Войти
+        </button>
+    </div>
+    <div class="container-fluid">
+        <!-- Основной контент -->
+        <ul class="nav nav-tabs row centered">
+            <!-- Menu -->
+            <li id="main-content" class="active"><a data-toggle="tab" href="#last-story-panel">Последние записи</a></li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    Лучшие записи
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="tab" href="#best-story-7">За неделю</a></li>
+                    <li><a data-toggle="tab" href="#best-story-30">За месяц</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="last-story-panel" class="tab-pane fade in active">
+                <!--Доска последних историй-->
+                <div class="row center-block">
+                    <!-- BEGIN ROW -->
+
+
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=1" />
+                            <div class="text-left foo">Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д. Так как цель применения такого текста исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно. Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+
+                    </a>
+
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=2" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=3" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                </div> <!-- END ROW -->
+                <div class="row center-block">
+                    <!-- BEGIN ROW -->
+
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=4" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=5" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=6" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                </div> <!-- END ROW -->
+            </div>
+            <div id="best-story-7" class="tab-pane fade">
+                <!--Доска лучших историй за 7 дней-->
+                <div class="row center-block">
+                    <!-- BEGIN ROW -->
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=7" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=8" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=9" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                </div> <!-- END ROW -->
+                <div class="row center-block">
+                    <!-- BEGIN ROW -->
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=10" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=11" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=12" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                </div> <!-- END ROW -->
+            </div>
+            <div id="best-story-30" class="tab-pane fade">
+                <!--Доска лучших историй за 30 дней-->
+                <div class="row center-block">
+                    <!-- BEGIN ROW -->
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=13" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=14" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=15" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                </div> <!-- END ROW -->
+                <div class="row center-block">
+                    <!-- BEGIN ROW -->
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=16" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=17" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                    <a href="post.html">
+                        <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                            <img class="img-thumbnail" src="https://source.unsplash.com/random/&time=18" />
+                            <div class="text-left foo">Съешь ещё этих мягких французских булок, да выпей же чаю</div>
+                            <footer>
+                                <span class="glyphicon glyphicon-calendar pull-right">28.11.15</span>
+                                <a href="profile.html"><span class="glyphicon glyphicon-user">admin</span></a>
+                            </footer>
+                        </div>
+                    </a>
+                </div> <!-- END ROW -->
+            </div>
+        </div>
+    </div>
+
+    <script src="Scripts/libs/jquery-2.2.0.js"></script>
+    <script src="Scripts/libs/jquery.easing.min.js"></script>
+    <script src="Scripts/libs/bootstrap.min.js"></script>
+    <script src="Scripts/libs/headhesive.js"></script> <!--изменение размера шапки про скролле-->
+    <script src="Scripts/header.js"></script><!-- header вставляется в первый попавшийся класс container-fluid -->
+    <script src="Scripts/footer.js"></script> <!-- footer вставляется в конец body -->
+    <!-- Управление модальными окнами -->
+    <script src="Scripts/modalwindow.js"></script>
+
+
+</body>
+</html>

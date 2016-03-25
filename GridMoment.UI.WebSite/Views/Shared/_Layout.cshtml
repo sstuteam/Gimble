@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Gimble: Главная</title>
+        <meta charset="utf-8" />
+        <link href="~/Styles/header.css" rel="stylesheet" />
+        <link href="~/Styles/footer.css" rel="stylesheet" />
+    </head>
+<body>
+    <header class="headhesive row">
+        <!--logotype-->
+
+        <a href="@Url.Action("Index", "Home")" class="logo_pull-left">
+            <div id="head-logo" href=#></div>
+        </a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <ul class="profile-button list-unstyled pull-right">
+                <li class="dropdown">
+                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        @User.Identity.Name
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li> @Html.ActionLink("Мой профиль", "Index", "Profile") </li>
+                        <li> @Html.ActionLink("Настройки", "Index", "Settings")</li>
+                        <li class="divider"></li>
+                        <li> @Html.ActionLink("Выйти из себя", "Logout", "Account") </li>
+                    </ul>
+                </li>
+            </ul>
+        }
+    </header>
+    
+    <!--Основной контент здесь-->
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr /> 
+          
+    </div>
+
+    <footer class="footer center-block">
+        <!--Название компании и год её основания-->
+        <div class="container">
+            <p class="text-muted">IBS Production &copy; @DateTime.UtcNow.Year год</p>
+        </div>
+    </footer>  
+
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/modalwindow.js"></script><!-- Управление модальными окнами -->
+    <script src="~/Scripts/scrolling-nav.js"></script>
+    <script src="~/Scripts/jquery.easing.min.js"></script>
+    <script src="~/Scripts/header.js"></script><!-- header вставляется в первый попавшийся класс container-fluid -->
+</body>
+</html>

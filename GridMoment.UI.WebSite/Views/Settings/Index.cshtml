@@ -1,0 +1,67 @@
+﻿@model GridMoment.UI.WebSite.Models.SettingsViewModel
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<div class="full-height container-fluid delete-bonding">
+    @if (User.Identity.IsAuthenticated)
+    {
+    <div style="margin-top:200px;" class="container-fluid topper">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <!--Фотография-->
+                <div class="row">
+                @using (Html.BeginForm("ChangeAvatar", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <label class="col-xs-12 name">Фотография</label>
+                    
+                    <div class="col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0">
+                        <input type="file" name="uploadImage" />
+                    </div>
+
+                    <input type="submit" value="Создать" class= "btn btn-default" />
+                }
+                </div>
+                <!--Адрес электронной  почты-->
+                <div class="row">
+                    <label class="col-xs-12 name">Адрес электронной почты</label>
+                    <div class="col-lg-12">
+                        @using (Html.BeginForm("ChangeMail", "Settings", FormMethod.Post))
+                        {
+                            <input class="mail" type="text" value="******" name="Email" />
+                            
+                            <br />
+                            <input type="submit" class="btn btn-default" value="Подтверждение" />
+                        }
+                    </div>
+                </div>
+                                
+                <!--Изменение пароля-->
+                <div class="row">
+                    <label class="col-xs-12 name">Изменение пароля</label>
+                    <div class="col-lg-12 mail">
+                        <!--Форма для смены пароля-->
+                        @using (Html.BeginForm("ChangePassword", "Settings", FormMethod.Post))
+                        {
+                            <input class="mail" type="text" value="******" name="Password" />
+
+                            <input class="mail" type="text" value="******" name="NewPassword" />
+
+                            <input class="mail" type="text" value="******" name="NewPasswordRepeat" />
+
+                            <br />
+                            <input type="submit" class="btn btn-default" value="Подтверждение" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <script src="/Scripts/bootstrap.min.js"></script>
+</div>
+                    

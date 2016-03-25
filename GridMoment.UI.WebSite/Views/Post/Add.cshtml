@@ -1,0 +1,56 @@
+﻿@model GridMoment.UI.WebSite.Models.PostViewModel
+@{
+    ViewBag.Title = "AddPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />    
+</head>
+<div class="container-fluid main-content">
+@if (User.Identity.IsAuthenticated)
+{
+    <div style="margin-top:8vw;" class="container col-centered">
+        @using (Html.BeginForm("Add", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-horizontal">
+            <h4>Создай новый пост :)</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                             
+            <div id="temp3" class="form-group focused">
+                <h2>Дайте полёт фантазии, опишите Ваши эмоции</h2>
+                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="temp3" class="form-group">
+                <h2>Дайте эмоциям название</h2>
+                @Html.LabelFor(model => model.NamePost, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NamePost, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NamePost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!--Основная картинка поста-->
+            <input type="file" name="uploadImage" />
+            
+            <div id="temp4" class="form-group">
+                <h2>И добавьте много меточек</h2>
+                @Html.LabelFor(model => model.TagsAddiction, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TagsAddiction, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TagsAddiction, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <input type="submit" value="Создать" />
+        </div>
+        }
+        <script src="~/Scripts/addprofile.js"></script>      
+</div>
+} 
+    
+</div>

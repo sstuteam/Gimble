@@ -1,0 +1,30 @@
+﻿body{
+    overflow-x:hidden;
+}
+.topper{
+    padding: 100px 0px 0px 0px;
+}
+.name{
+    padding: 4px;
+    border-bottom: 2px solid #eeeeee;
+    font-size: 18px;
+    margin: 11px 0px 15px;
+}
+.container{
+    padding: 4px;
+}
+.change-photo{
+    margin: 25px 0px 0px;
+}
+.avatar{
+    margin: 15px 0px 0px;
+}
+.mail{
+    margin: 15px 0px 0px;
+}
+label{
+    font-size: 12px;
+}
+.delete-bonding{
+    margin-bottom: 20px;
+}

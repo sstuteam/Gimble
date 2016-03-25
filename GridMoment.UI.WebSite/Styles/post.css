@@ -1,0 +1,289 @@
+﻿a:hover{
+        cursor:pointer;
+        text-decoration: none;
+        }
+button:focus { outline: 0; }
+
+.cover{
+    max-width:100%;
+	margin-top:100px;
+}
+.cover img{
+    max-height:100%;
+}
+
+.photo_minimize{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position-y: center;
+    background-position-x: center;
+}
+.mini_tile{
+    height:8.33333333vw;
+    padding:1px 1px;
+}
+.tile{  
+    /*height: 16.666666666vw;*/
+    padding:1px 1px;
+}
+.big_tile{
+    
+    padding:1px 1px;
+}
+.photo1{
+    background-image:url(https://source.unsplash.com/random);
+}
+.album_info{
+    height:5.5vw;
+}
+.main_info{
+    height:100%;
+}
+    .tags{
+        padding-left:10px;
+        height:46%;
+    }
+        .tags a{
+            padding: 0 2px;
+        }
+        .tags a:hover{
+            color:black;
+        }
+
+    .favorite{
+        padding-left:10px;
+        height:50%;
+    }
+    /*.watches{
+        padding-left:10px;
+        height:33.333333%;
+    }*/
+    .autor_block{
+        height:100%
+    }
+    .autor{
+        height:100%;
+    }
+    .autor_name{
+        height:50%;
+    }
+    
+    
+    .autor img{
+        width:100%;
+        height:8.3333333vw;
+        position:absolute;
+        border:3px solid white;
+    }
+
+.vcenter {
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.helper {
+    display:inline-block;
+    vertical-align:middle;
+    height:100%;
+    width:0;
+}
+
+.block{
+   position: relative;
+    padding: 15px 15px 15px;
+    border:1px solid;
+    border-color: #e5e5e5 #eee #eee;
+}
+    .comment{
+         /*overflow: hidden;*/
+        margin-bottom:10px;
+    }
+        .comment_autor_icon{
+            margin-right: 5px;
+            width:3.6vw;
+            height:3.6vw;
+            float:left;
+        } 
+        .comment_autor_icon img{
+            width:100%;
+            height:100%;
+        }
+        .comment a:hover{
+        cursor:pointer;
+        text-decoration: none;
+        }
+        
+        .date{
+            padding-left:4px;
+            font-size: 11px;
+        }
+        .time{
+            font-size: 11px;
+        }
+        .comment_form{
+            margin-top:10px;
+        }.comment_text{
+            
+        }
+.right{
+    float:right;
+}
+.glyphicon-thumbs-up{
+    margin-left: 15px;
+}
+.dropdown-menu{
+    min-width: 100px;
+    font-size: 13px;
+    z-index: 1;
+}
+.media{
+    overflow:visible;
+}
+.media-body{
+    overflow:visible;
+}
+b{
+    color: #191815;
+}
+.like-icon{
+    background-color:white;
+    padding: 0px 1px;
+    border: none;
+    margin-right: 12px;
+}
+
+/* Large desktop  LG*/
+@media (min-width: 1200px) {
+    .autor img{
+        height:5.5vw;
+    }
+    .mini_tile{
+        height:8.3333333333vw;
+    }
+    .tile {
+        height: 16.666666666vw;
+    }
+    .big_tile{
+        height:33.33333333vw;
+    }
+    .album_info{
+        height:5.5vw;
+    }
+
+} 
+/* MD*/
+@media (min-width: 992px) and (max-width:1199px) {
+    .autor img{
+            height: 7vw;
+    }
+    .mini_tile{
+        height:12.5vw;
+    }
+    .tile{
+        height:25vw;
+    } 
+    .big_tile{
+        height:50vw;
+    }
+    .album_info{
+        height:7vw;
+    }
+     .comment_autor_icon {
+        width: 3.6vw;
+        height: 3.6vw;
+    }
+    
+}
+
+/* Portrait tablet to landscape and desktop SM */
+@media (min-width: 768px)    and (max-width: 991px) {
+    .autor img{
+        height:8.33333333vw;
+    }
+    .mini_tile{
+        height:12.5vw;
+    }
+    .tile{
+  height:50vw;
+    } 
+    .big_tile{
+        height:100vw;
+    }
+    .album_info{
+        height:8vw;
+    }
+     .comment_autor_icon {
+        width: 5.6vw;
+        height: 5.6vw;
+    }
+    
+}
+ 
+/* Landscape phone to portrait tablet XS */
+@media 
+/*(min-width:481px) and */ 
+(max-width: 767px) {
+    .autor{
+        height:65%;
+    }
+    .autor_name{
+        height:45%;
+    }
+    .autor img{
+        height:16.66666667vw;
+    }
+    .mini_tile{
+        height:12.5vw;
+    }
+     .tile{
+  height:50vw;
+    } 
+    .big_tile{
+        height:100vw;
+    }
+    .album_info{
+        height:17vw;
+    }
+    .comment_autor_icon {
+        width: 8.6vw;
+        height: 8.6vw;
+    }
+
+}
+
+/* Landscape phones and down XS */
+@media (max-width: 480px) {
+    .autor {
+        height: 43%;
+    }
+
+    .autor_name {
+        height: 45%;
+    }
+
+    .autor img {
+        height: 16.66666667vw;
+    }
+
+    .mini_tile {
+        height: 12.5vw;
+    }
+
+    .tile {
+        height: 50vw;
+    }
+
+    .big_tile {
+        height: 100vw;
+    }
+
+    .album_info {
+        height: 16vw;
+    }
+
+    .comment_autor_icon {
+        width: 10.6vw;
+        height: 10.6vw;
+    }
+}

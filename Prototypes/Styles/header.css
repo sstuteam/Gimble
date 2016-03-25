@@ -1,0 +1,75 @@
+#head-logo {
+    float: left;
+    width: 100%;
+    margin-right: 10px;
+    margin-left: 30px;
+    padding: 33px 0;
+    vertical-align: middle;
+    background-image: url('../Content/Images/log.png');
+    background-repeat: no-repeat;
+}
+
+.gimble-logo {
+    margin: 150px auto 10px auto;
+    width: 52%;
+    height: auto;
+}
+
+.profile-button, .profile-button a, .profile-button a:hover {
+    margin-top: -45px;
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-menu a, .dropdown-menu a:hover {
+    margin-top: 0;
+}
+
+.drop-btn {
+    margin-top: 15px;
+    margin-right: 18px;
+    opacity: 1;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3vh;
+}
+
+.head-page {
+    width: 100%;
+    position: relative; /* 1 */
+    z-index: 2; /* 1 */
+    background: rgb(2, 4, 33);
+}
+.headhesive {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    width: 100%;
+    opacity: 1;
+    -webkit-transition: all 50ms ease-in-out;
+    -moz-transition: all 50ms ease-in-out;
+    transition: all 50ms ease-in-out;
+ }
+
+.headhesive--stick {
+    padding: 5px 0;
+    background: -moz-linear-gradient(top, rgb(2, 4, 33) 0, rgba(2, 4, 33, 0.50) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgb(2, 4, 33) 0, rgba(2, 4, 33, 0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgb(2, 4, 33) 0, rgba(2, 4, 33, 0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+    .headhesive--stick.head-logo {
+        width: 30%;
+        padding: 15px 0;
+    }
+
+ 
+
+
+
+
+ 

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Добавление записи</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="Styles/libs/bootstrap.min.css" rel="stylesheet" />
+    <link href="Styles/libs/prettify.css" rel="stylesheet">
+    <link href="Styles/libs/font-awesome.css" rel="stylesheet" />
+    <link href="Styles/libs/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="Styles/addpost.css" rel="stylesheet" />
+    <link href="Styles/header.css" rel="stylesheet" />
+    <link href="Styles/footer.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid main-content">
+        <div class="container col-centered">
+            <div class="row pading">
+                <div class="col-centered">
+                    <div class="col-md-2 col-xs-12">
+                        <label>Название:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="padding-input" />
+                    </div>
+                </div>
+            </div>
+            <!-- Текстовый редактор -->
+            <div class="row">
+                <div class="col-centered">
+                    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                        <div class="btn-group">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Размер шрифта">
+                                <i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a data-edit="fontSize 5" class="fs-Five">Большой</a></li>
+                                <li><a data-edit="fontSize 3" class="fs-Three">Нормальный</a></li>
+                                <li><a data-edit="fontSize 1" class="fs-One">Маленький</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default" data-edit="bold" title="Полужирный"><i class="fa fa-bold"></i></a>
+                            <a class="btn btn-default" data-edit="italic" title="Курсив"><i class="fa fa-italic"></i></a>
+                            <a class="btn btn-default" data-edit="strikethrough" title="Зачеркнутый"><i class="fa fa-strikethrough"></i></a>
+                            <a class="btn btn-default" data-edit="underline" title="Подчеркнутый"><i class="fa fa-underline"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default" data-edit="justifyleft" title="Выровнять текст по левому краю"><i class="fa fa-align-left"></i></a>
+                            <a class="btn btn-default" data-edit="justifycenter" title="Выровнять текст по центру"><i class="fa fa-align-center"></i></a>
+                            <a class="btn btn-default" data-edit="justifyright" title="Выровнять текст по правому краю"><i class="fa fa-align-right"></i></a>
+                            <a class="btn btn-default" data-edit="justifyfull" title="Выровнять текст по ширине"><i class="fa fa-align-justify"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Добавить гиперссылку"><i class="fa fa-link"></i></a>
+                            <a class="btn btn-default" data-edit="unlink" title="Удалить гиперссылку"><i class="fa fa-unlink"></i></a>
+                            <div class="dropdown-menu input-append">
+                                <input placeholder="URL" type="text" data-edit="createLink" />
+                                <button class="btn" type="button">Добавить</button>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn" title="Выбрать изображение"><i class="icon-picture"></i></a>
+                            <input class="addImg" type="file" multiple accept="image/*,image/jpeg" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage"/>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default" data-edit="undo" title="Отменить"><i class="fa fa-undo"></i></a>
+                            <a class="btn btn-default" data-edit="redo" title="Повторить"><i class="fa fa-repeat"></i></a>
+                        </div>
+                    </div>
+                    <div id="editor" class="lead" data-placeholder="Пиши&hellip;"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-centered">
+                    <div class="pull-right">
+                        <a class="btn  btn-default" href="#">Сохранить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/libs/jquery-2.2.0.js"></script>
+    <script src="Scripts/libs/bootstrap-wysiwyg.js"></script>
+    <script src="Scripts/libs/jquery.hotkeys.js"></script>
+    <script src="Scripts/libs/prettify.js"></script>
+    <script src="Scripts/addpost.js"></script>
+    <script src="Scripts/header.js"></script> <!-- header вставляется в первый попавшийся класс container-fluid -->
+    <script src="Scripts/footer.js"></script> <!-- footer вставляется в конец body -->
+    <script type="text/javascript">
+        $('#editor').wysiwyg();
+
+        $(".dropdown-menu > input").click(function (e) {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
