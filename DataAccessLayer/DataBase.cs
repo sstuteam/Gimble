@@ -306,7 +306,7 @@ namespace DataAccessLayer
         {
             var queryString =
                  "UPDATE [dbo].[accounts] " +
-                     ",[country] = @country" +
+                     "SET [country] = @country" +
                      ",[city] = @city" +
                  "WHERE [dbo].accounts.accountid = @accountid";
 
@@ -316,6 +316,37 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("country", newCountry);
                 command.Parameters.AddWithValue("city", newCity);
                 command.Parameters.AddWithValue("accountid", id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                    return false;
+                }
+
+                return true;
+
+            }
+        }
+
+        public bool UpdateAvatar(Guid accountId, byte[] Image, string mimeType)
+        {
+            var queryString =
+                 "UPDATE [dbo].[accounts] " +
+                     "SET [photo] = @photo " +
+                     ",[mimetype] = @mimetype " +
+                 "WHERE [dbo].accounts.accountid = @accountid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("photo", Image);
+                command.Parameters.AddWithValue("mimetype", mimeType);
+                command.Parameters.AddWithValue("accountid", accountId);
 
                 try
                 {

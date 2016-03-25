@@ -31,5 +31,7 @@ namespace InterfacesLibrary
         bool CreatePost(Post post);
 
         Post GetPost(Guid postId);
+
+        bool UpdateAvatar(Guid accountId, byte[] avatar, string mimetype);
     }
 }

@@ -69,5 +69,11 @@ namespace GridMoment.UI.WebSite.Controllers
             return _logic.GetPost(posid);
         }
 
+        public static bool ChangeAvatar(Guid accountId, byte[] avatar, string mimetype)
+        {
+            Logic _logic = new Logic();
+
+            return _logic.UpdateAvatar(accountId, avatar, mimetype);
+        }
     }
 }

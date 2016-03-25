@@ -1,6 +1,7 @@
 ﻿using GridMoment.UI.WebSite.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,6 +42,28 @@ namespace GridMoment.UI.WebSite.Controllers
 
             return RedirectToAction("Index");
 
+        }
+
+        public ActionResult ChangeAvatar(HttpPostedFileBase uploadImage)
+        {
+            if (uploadImage == null)
+            {
+                return HttpNotFound();
+            }
+
+            var account = Adapter.GetAccount(User.Identity.Name);            
+            string ext = uploadImage.ContentType;
+            byte[] Image;    
+
+            using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+            {
+                Image = binaryReader.ReadBytes(uploadImage.ContentLength);
+            }
+
+            Adapter.ChangeAvatar(account.Id, Image, ext);
+
+            return RedirectToAction("Index");
+            
         }
     }
 }

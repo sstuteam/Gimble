@@ -15,13 +15,16 @@
             <div class="col-md-6 col-md-offset-3">
                 <!--Фотография-->
                 <div class="row">
+                @using (Html.BeginForm("ChangeAvatar", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
                     <label class="col-xs-12 name">Фотография</label>
-                    <div class="col-sm-5 col-xs-5">
-                        <img src="Content/Images/avatar.jpeg" class="img-rounded pull-right" />
-                    </div>
+                    
                     <div class="col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0">
-                        <input class="change-photo" type="file" />
+                        <input type="file" name="uploadImage" />
                     </div>
+
+                    <input type="submit" value="Создать" class= "btn btn-default" />
+                }
                 </div>
                 <!--Адрес электронной  почты-->
                 <div class="row">

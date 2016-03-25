@@ -58,6 +58,9 @@ namespace BusinessLogicLayer
 
         public Post GetPost(Guid postid)
             => _data.GetPost(postid);
+
+        public bool UpdateAvatar(Guid accountId, byte[] Avatar, string mimetype)
+            => _data.UpdateAvatar(accountId, Avatar, mimetype);
     }
 }
 
