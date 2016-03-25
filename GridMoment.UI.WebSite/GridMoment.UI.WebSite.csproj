@@ -213,6 +213,7 @@
     <Content Include="Views\Profile\ViewProfile.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Post\Add.cshtml" />
+    <Content Include="Views\Post\Show.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -33,7 +33,7 @@ namespace GridMoment.UI.WebSite.Controllers
                 Text = post.Text
             };
 
-            return View("Index", model);
+            return View(model);
         }
         
         public ActionResult Add()
@@ -80,5 +80,6 @@ namespace GridMoment.UI.WebSite.Controllers
 
             return View();
         }
+
     }
 }

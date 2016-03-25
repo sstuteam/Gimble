@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Post Page</title>
+    <link href="Styles/libs/bootstrap.css" rel="stylesheet">
+    <link href="Styles/post.css" rel="stylesheet" />
+    <link href="Styles/header.css" rel="stylesheet">
+    <link href="Styles/footer.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="block ">
+                    <div class="cover">
+                        <img class="img-thumbnail center-block" src="https://source.unsplash.com/random" />
+                    </div>
+                    <h1>Lorem ipsum</h1><br>
+                    olor sit amet, <b>consectetur</b> adipiscing elit. Nunc finibus neque nunc, ut finibus orci venenatis eu. Nulla gravida dictum sodales. Nulla dui sem, vestibulum sit amet mattis eget, blandit eu lectus. Pellentesque vel fermentum felis. Phasellus porttitor commodo dui, sed tempor enim gravida vel. Proin maximus risus ut eros sagittis, ac aliquet ligula auctor. Sed pulvinar dolor nec sem mollis, sit amet tempor odio iaculis. Praesent lobortis lacus at faucibus auctor. Vivamus ligula arcu, fringilla a ante at, malesuada molestie orci. Phasellus lacinia magna nunc, non laoreet urna sollicitudin iaculis. Sed porta faucibus ex, <a href="http://ya.ru">ultrices molestie quam accumsan nec</a>.
+                    <br>
+                    <div><br></div><div>
+                        Aenean et ante molestie, placerat velit quis, viverra orci. Aenean posuere vehicula euismod. Aenean eu metus eget velit pretium pretium a sit amet turpis. Curabitur et vehicula leo. Nam in magna sit amet arcu dapibus congue vulputate sit amet sem. Ut tempus arcu eget cursus rutrum. Praesent rutrum blandit ex gravida convallis. Morbi vitae nisi nulla.
+                        <br>
+                    </div><div>
+                        Maecenas ultrices libero et mauris pharetra posuere. Curabitur nibh libero, tincidunt nec bibendum vel, blandit at dui. Praesent maximus vestibulum enim, nec tristique nisl consequat vel. Sed mattis feugiat semper. In hac habitasse platea dictumst. Vivamus vestibulum, ex quis mattis sollicitudin, tortor turpis posuere erat, id scelerisque nibh dui nec justo. Maecenas ac orci vel odio efficitur egestas euismod egestas nunc. Maecenas id interdum tellus. In vestibulum turpis a vehicula varius. Maecenas tempor aliquam nisl id interdum.
+                        <br>
+                    </div><div><br></div>
+                    <div>
+                        <ul>
+                            <li>
+                                Phasellus ac lacus quam. Etiam vehicula, dui eget venenatis convallis, tellus arcu posuere felis, in pharetra velit tortor eu metus. Vestibulum porta enim consequat nisl pulvinar sodales. Etiam congue leo at congue egestas. Nunc non accumsan mauris, eu laoreet ligula. Nulla varius, dui nec laoreet interdum, sem augue aliquet turpis, eget pulvinar urna felis sit amet ligula. Aenean tellus metus, fringilla sed facilisis porta, lacinia non risus.
+                                <br>
+                            </li>
+
+                            <li>Sed feugiat, mauris sed pulvinar scelerisque, nisi urna tempor ligula, porta mollis diam quam vitae purus. Sed quis varius nibh. Aliquam volutpat ex nunc, non iaculis tellus lacinia ac. Vivamus a convallis dolor, ut posuere odio. Integer convallis sollicitudin nisi. Etiam molestie lacus augue, eget tempor elit cursus ac. Phasellus dui neque, tempor ut varius at, interdum a elit. Nullam in venenatis metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--инфо о альбоме-->
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="album_info">
+                    <div class=" col-lg-10 col-md-10 col-sm-10 col-xs-8 main_info">
+                        <div class="tags col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="vcenter">
+                                Метки:
+                                <a>Солнце</a>
+                                <a>Пляж</a>
+                                <a>Радость</a>
+
+                            </div>
+                            <div class="helper"></div>
+                        </div>
+
+                        <div class="favorite col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="vcenter">
+                                <div class="btn-group">
+                                    <button id="favour_button" class="btn btn-default btn-sm">В избранное </button>
+                                    <button id="plus-rating-btn" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <button id="minus-rating-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></button>
+                                    <button id="rating" class="btn btn-default btn-sm disabled">143</button>
+                                </div>
+                            </div>
+
+                            <div class="helper"> </div>
+                        </div>
+                    </div>
+
+                    <div class="autor_block col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                        <div class="autor col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-push-6 col-md-push-6 col-sm-push-6 col-xs-push-6">
+                            <img src="https://source.unsplash.com/random" class="img-circle img-responsive autor_icon" />
+
+                        </div>
+                        <div class="autor_name text-center col-lg-6 col-md-6 col-sm-6 col-xs-6  col-lg-pull-6 col-md-pull-6 col-sm-pull-6 col-xs-pull-6">
+                            <div class="vcenter ">
+                                <span class="text-muted text-center ">Иванов Иван</span>
+                            </div>
+                            <div class="helper"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--Комменты-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+                        <div class="media-left media-top">
+                            <a class="text-muted">
+                                <img class="img-circle comment_autor_icon" src="https://source.unsplash.com/random">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <a class="media-heading text-muted">
+                                <b>Семенов Семен</b>
+                                <span class="time text-muted">17:16</span><span class="date text-muted">11.11.2011</span>
+
+                            </a>
+                            <ul class="list-unstyled pull-right">
+                                <li class="dropdown">
+                                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a><center>Изменить</center></a></li>
+                                        <li><a><center>Удалить</center></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div>
+                                Это просто кусок текста, не несущий смыслового значения, просто чтобы был большой кусок текста. Если содержимое блока превышает указанную высоту, то высота элемента останется неизменной, а содержимое будет отображаться поверх него. Из-за этой особенности может получиться наложение содержимого элементов друг на друга, когда элементы в коде HTML идут последовательно. Чтобы этого
+                            </div>
+                            <div class="btn-group right">
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-down like-icon"></a>
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-up like-icon"></a>
+                                <label class="text-muted">0</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+                        <div class="media-left media-top">
+                            <a class="text-muted">
+                                <img class="img-circle comment_autor_icon" src="https://source.unsplash.com/random">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <a class="media-heading text-muted">
+                                <b>Петров Петр</b>
+                                <span class="time text-muted">17:16</span><span class="date text-muted">11.11.2011</span>
+                            </a>
+                            <ul class="list-unstyled pull-right">
+                                <li class="dropdown">
+                                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a><center>Изменить</center></a></li>
+                                        <li><a><center>Удалить</center></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div>
+                                И тут тоже
+                            </div>
+                            <div class="btn-group right">
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-down like-icon"></a>
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-up like-icon"></a>
+                                <label class="text-muted">0</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+                        <div class="media-left media-top">
+                            <a class="text-muted">
+                                <img class="img-circle comment_autor_icon" src="https://source.unsplash.com/random">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <a class="media-heading text-muted">
+                                <b>Васильев Василий</b>
+                                <span class="time text-muted">17:16</span><span class="date text-muted">11.11.2011</span>
+                            </a>
+                            <ul class="list-unstyled pull-right">
+                                <li class="dropdown">
+                                    <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a><center>Изменить</center></a></li>
+                                        <li><a><center>Удалить</center></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div>
+                                Вау, еще один
+                            </div>
+                            <div class="btn-group right">
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-down like-icon"></a>
+                                <a class="btn text-muted glyphicon glyphicon-thumbs-up like-icon"></a>
+                                <label class="text-muted">0</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <form role="form" class="comment_form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="inputComment" placeholder="Оставьте свой отзыв">
+                        </div>
+
+                        <button type="submit" class="btn btn-default right">Отправить</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/libs/jquery-2.2.0.js"></script>
+    <script src="Scripts/libs/bootstrap.js"></script>
+    <script src="Scripts/post.js"></script>
+    <script src="Scripts/header.js"></script> <!-- header вставляется в первый попавшийся класс container-fluid -->
+    <script src="Scripts/footer.js"></script> <!-- footer вставляется в конец body -->
+</body>
+
+</html>
+
+
