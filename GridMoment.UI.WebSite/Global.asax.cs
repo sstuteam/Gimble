@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using GridMoment.UI.WebSite.App_Start;
+using GridMoment.UI.WebSite.Controllers;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace GridMoment.UI.WebSite
@@ -8,7 +10,9 @@ namespace GridMoment.UI.WebSite
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);  
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            MappingConfig.RegisterMappings();
+            Adapter.Init();
         }
     }
 }

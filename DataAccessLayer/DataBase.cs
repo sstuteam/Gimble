@@ -10,6 +10,9 @@ namespace DataAccessLayer
     public class DataBase : IDataAccessLayer
     {
         private readonly string _connectionString;
+        private readonly string _basixCity = "Не указан город";
+        private readonly string _basixCountry = "Не указана страна";
+        private readonly byte[] _basixAvatar = { 0, 0, 0, 25, 1, 0, 4 };
 
         public DataBase()
         {
@@ -21,10 +24,16 @@ namespace DataAccessLayer
             var accountId = Guid.NewGuid();
 
             string queryString =
-                "INSERT INTO accounts (accountid, login, name, mail, password, createdtime) " +
-                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime); " +
+                "INSERT INTO accounts (accountid, login, name, mail, password, createdtime, country, city) " +
+                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime, @country, @city); " +
                 "INSERT INTO UsersRoles (id, RoleId, accountid) " +
                 "VALUES(@id, @RoleId, @accountid)";
+            if (account.Avatar == null)
+                account.Avatar = (byte[])_basixAvatar;
+            if (account.City == null)
+                account.City = _basixCity;
+            if (account.Country == null)
+                account.Country = _basixCountry;
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -37,6 +46,8 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("createdtime", DateTime.Now);
                 command.Parameters.AddWithValue("id", Guid.NewGuid());
                 command.Parameters.AddWithValue("RoleId", 1);
+                command.Parameters.AddWithValue("country", account.Country);
+                command.Parameters.AddWithValue("city", account.City);
 
                 try
                 {
@@ -53,6 +64,11 @@ namespace DataAccessLayer
             return true;
         }
 
+        /// <summary>
+        /// Получение экземпляра класса Account по Guid пользователя
+        /// </summary>
+        /// <param name="id">Guid пользователя</param>
+        /// <returns>Account</returns>
         public Account GetAccountById(Guid id)
         {
             string queryString =
@@ -63,9 +79,13 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+
                 command.Parameters.AddWithValue("accountid", id);
+
                 connection.Open();
+
                 var reader = command.ExecuteReader();
+
                 if (reader.Read())
                 {
                     return new Account()
@@ -81,6 +101,10 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Получение Перечисления всех аккаунтов.
+        /// </summary>
+        /// <returns>Перечисление аккаунтов</returns>
         public IEnumerable<Account> GetAllAccounts()
         {
             string queryString =
@@ -92,7 +116,9 @@ namespace DataAccessLayer
                 var command = new SqlCommand(queryString, connection);
 
                 connection.Open();
+
                 var reader = command.ExecuteReader();
+
                 while (reader.Read())
                 {
                     yield return new Account()
@@ -105,6 +131,10 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Получение списка всех ролей
+        /// </summary>
+        /// <returns>Массив ролей</returns>
         public string[] GetAllRoles()
         {
             string queryString = "SELECT roleid, name " +
@@ -115,8 +145,11 @@ namespace DataAccessLayer
                 var command = new SqlCommand(queryString, connection);
 
                 connection.Open();
+
                 var reader = command.ExecuteReader();
+
                 var result = new List<string>();
+
                 while (reader.Read())
                 {
                     result.Add((string)reader[1]);
@@ -126,11 +159,15 @@ namespace DataAccessLayer
             }
         }
 
-        public Dictionary<int, List<string>> GetRolesOfAccounts()
+        /// <summary>
+        /// Функция для получения всех ролей аккаунтов.
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<Guid, List<string>> GetRolesOfAccounts()
         {
-            string queryString = "SELECT accountid, Roles.name AS RoleName " +
-                                 "FROM AccountsRoles " +
-                                 "INNER JOIN Roles ON AccountsRoles.roleid = Roles.roleid";
+            string queryString = "SELECT accountid, Roles.name " +
+                                 "FROM  Roles, UsersRoles " +
+                                 "INNER JOIN Roles ON UsersRoles.RoleId = Roles.RoleId";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -138,16 +175,17 @@ namespace DataAccessLayer
 
                 connection.Open();
                 var reader = command.ExecuteReader();
-                var result = new Dictionary<int, List<string>>();
+
+                var result = new Dictionary<Guid, List<string>>();
 
                 while (reader.Read())
                 {
                     List<string> roles;
 
-                    if (result.TryGetValue((int)reader[0], out roles))
+                    if (result.TryGetValue((Guid)reader[0], out roles))
                     {
                         roles.Add((string)reader[1]);
-                        result[(int)reader[0]].Add((string)reader[1]);
+                        result[(Guid)reader[0]].Add((string)reader[1]);
                     }
                     else
                     {
@@ -155,16 +193,21 @@ namespace DataAccessLayer
                         {
                             (string) reader[1]
                         };
-                        result.Add((int)reader[0], roles);
+                        result.Add((Guid)reader[0], roles);
                     }
-
                 }
-
-
                 return result;
             }
         }
 
+        /// <summary>
+        /// Функция для получения данных аккаунта по логину
+        /// </summary>
+        /// <param name="username">Параметр - login пользователя</param>
+        /// <param name="checkExisting">Флаг, если установить true, то результатом вызова будет аккаунт
+       ///  с минимальным число полей, например, для проверки на существование.
+       /// Значение флага false эквивлентно возврату всех полей аккаунта. </param>
+        /// <returns>Аккаунт пользователя</returns>
         public Account GetAccountByLogin(string username, bool checkExisting)
         {
             string queryString =
@@ -199,7 +242,7 @@ namespace DataAccessLayer
                             City = (string)reader[4],
                             Country = (string)reader[5],
                             Name = (string)reader[6],
-                            Role = (string)reader[7]
+                            Role = ((string)reader[7]).Split(',')
                         };
                     }
                     else
@@ -208,7 +251,7 @@ namespace DataAccessLayer
                         {
                             Id = (Guid)reader[0],
                             Password = (string)reader[2],
-                            Role = (string)reader[7]
+                            Role = ((string)reader[7]).Split(',')
                         };
                     }
                     
@@ -217,45 +260,14 @@ namespace DataAccessLayer
                 return null;
             }
         }
-
-        public bool Update(Account account)
-        {
-            var queryString =
-                 "UPDATE [dbo].[accounts] " +
-                     ",[login] = @login " +
-                     ",[name] =    @name" +
-                     ",[country] = @country" +
-                     ",[city] = @city" +
-                     ",[mail] = @mail" +
-                 "WHERE [dbo].accounts.accountid = @accountid";
-
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand(queryString, connection);
-
-                command.Parameters.AddWithValue("login", account.Login);
-                command.Parameters.AddWithValue("password", account.Password);
-                command.Parameters.AddWithValue("name", account.Name);
-                command.Parameters.AddWithValue("country", account.Country);
-                command.Parameters.AddWithValue("city", account.City);
-                command.Parameters.AddWithValue("accountid", account.Id);
-
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception)
-                {
-                    throw;
-                    return false;
-                }
-
-                return true;
-
-            }
-        }
-
+        
+        /// <summary>
+        /// Функция для смены пароля по имеющемуся id.
+        /// Вызов подразумевается от аккаунта авторизованного пользователя.
+        /// </summary>
+        /// <param name="id">Guid пользователя</param>
+        /// <param name="password">Новый пароль</param>
+        /// <returns>Успешность операции</returns>
         public bool UpdatePassword(Guid id, string password)
         {
             var queryString =
@@ -286,6 +298,13 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Функция для смены почтового ящика по имеющемуся id.
+        /// Вызов подразумевается от аккаунта авторизованного пользователя.
+        /// </summary>
+        /// <param name="id">Guid пользователя</param>
+        /// <param name="newMail">Новый EMail</param>
+        /// <returns>Успешность операции</returns>
         public bool UpdateMail(Guid id, string newMail)
         {
             var queryString =
@@ -317,6 +336,14 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Функция для смены города и страны.
+        /// Вызов подразумевается от аккаунта авторизованного пользователя.
+        /// </summary>
+        /// <param name="id">Guid пользователя</param>
+        /// <param name="newCity">Новый город</param>
+        /// /// <param name="newCountry">Новыая страна</param>
+        /// <returns>Успешность операции</returns>
         public bool UpdateCityAndCountry(Guid id, string newCity, string newCountry)
         {
             var queryString =
@@ -328,6 +355,7 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
+
                 command.Parameters.AddWithValue("country", newCountry);
                 command.Parameters.AddWithValue("city", newCity);
                 command.Parameters.AddWithValue("accountid", id);
@@ -348,6 +376,13 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Функция смены аватара на странице.
+        /// </summary>
+        /// <param name="accountId">Guid пользователя</param>
+        /// <param name="Image">Массив байтов от фатографии</param>
+        /// <param name="mimeType">mimeType для операции преобразования массива байтов в фотографию</param>
+        /// <returns></returns>
         public bool UpdateAvatar(Guid accountId, byte[] Image, string mimeType)
         {
             var queryString =
@@ -379,17 +414,23 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Удаление аккаунта из базы данных и его постов 
+        /// </summary>
+        /// <param name="id">Guid пользователя</param>
+        /// <returns>Успешность операции</returns>
         public bool DeleteAccount(Guid id)
         {
             string queryString =
             "DELETE FROM[dbo].[accounts] " +
-              "WHERE accounts.accountid = @accountid;";
+            "WHERE accounts.accountid = @accountid; " +
+            "DELETE FROM [dbo].[posts], [dbo].[tags] " +
+            "WHERE posts.accountid = @accountid; ";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
-
-
+                
                 command.Parameters.AddWithValue("accountid", id);
 
                 try
@@ -407,6 +448,11 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Получение поста по Guid поста
+        /// </summary>
+        /// <param name="postId">Guid поста</param>
+        /// <returns>Экземпляр класса Post</returns>
         public Post GetPost(Guid postId)
         {
             string queryString =
@@ -450,6 +496,60 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Получение всех постов.
+        /// </summary>
+        /// <returns>Список постов</returns>
+        public List<Post> GetAllPosts()
+        {
+            string queryString =
+                "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, [dbo].accounts.login, tag " +
+                "FROM [dbo].posts, [dbo].tags, [dbo].accounts " +
+                "WHERE ([dbo].tags.postid = [dbo].posts.postid) " +
+                "AND ([dbo].posts.accountid = [dbo].accounts.accountid)";
+
+            List<Post> _list;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader == null)
+                {
+                    return null;
+                }
+               
+                _list = new List<Post>();
+
+                while (reader.Read())
+                {                   
+                    _list.Add(new Post()
+                    {
+                        PostId = (Guid)reader[0],
+                        NamePost = (string)reader[1],
+                        Image = (byte[])reader[2],
+                        CreatedTime = (DateTime)reader[3],
+                        AccountId = (Guid)reader[4],
+                        Rating = (int)reader[5],
+                        Text = (string)reader[6],
+                        AuthorName = (string)reader[7],
+                        Tags = ((string)reader[8]).ToString().Split(','),
+                        Avatar = GetAccountByLogin((string)reader[7], false).Avatar
+                    });
+                }
+
+                return _list;
+            }
+        }
+
+        /// <summary>
+        /// Функция добавления поста.
+        /// </summary>
+        /// <param name="post">Экзмемляр класса Post(Доменной модели)</param>
+        /// <returns>Успешность операции</returns>
         public bool CreatePost(Post post)
         {
             var postid = Guid.NewGuid();

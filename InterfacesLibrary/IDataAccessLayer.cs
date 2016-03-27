@@ -14,12 +14,10 @@ namespace InterfacesLibrary
 
         string[] GetAllRoles();
 
-        Dictionary<int, List<string>> GetRolesOfAccounts();
+        Dictionary<Guid, List<string>> GetRolesOfAccounts();
 
         Account GetAccountByLogin(string username, bool checkExisting);
-
-        bool Update(Account account);
-
+        
         bool UpdatePassword(Guid id, string password);
 
         bool UpdateMail(Guid id, string newMail);
@@ -31,6 +29,8 @@ namespace InterfacesLibrary
         bool CreatePost(Post post);
 
         Post GetPost(Guid postId);
+
+        List<Post> GetAllPosts();
 
         bool UpdateAvatar(Guid accountId, byte[] avatar, string mimetype);
     }

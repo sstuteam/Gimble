@@ -1,0 +1,35 @@
+﻿@model List<GridMoment.UI.WebSite.Models.PostViewModel>
+@{ 
+    int length = Model.ToList().Count,   //длина всей коллекции постов
+        w = length % 3,                  //остаток постов(последняя строчка)
+        contextRounds = (length - w) / 3,//цисло строк в представлении
+        countHorizontalElements = 3;     //число элементов в строке
+
+}
+@for (int i = 0; i < contextRounds; i++)
+{
+    <div class="row center-block">
+        <!-- BEGIN ROW -->
+        @for (int j = 0; j < countHorizontalElements; j++)
+        {
+            <a href="@Html.ActionLink(Model[i].NamePost, "Show", "Post", new { postid = Model[i].PostId }, null)">
+                <!--Begin post-->
+                <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                    <img class="img-thumbnail" src="@Model[i].ImageView" />
+                    <div class="text-left foo">@Model[i].Text</div>
+                    <footer>
+                        <span class="glyphicon glyphicon-calendar pull-right">@Model[i].CreatedTime</span>
+                        <div>
+                            @Html.ActionLink(Model[i].AuthorName, "ViewProfile", "Profile", new { login = Model[i].AuthorName }, null)<span class="glyphicon glyphicon-user"></span>
+                        </div>
+                    </footer>
+                </div>
+            </a> <!--End post-->
+        }        
+
+    </div> <!-- END ROW -->
+}
+    
+
+
+
