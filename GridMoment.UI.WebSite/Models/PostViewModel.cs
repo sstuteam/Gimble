@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.UI.WebControls;
 
 namespace GridMoment.UI.WebSite.Models
 {
@@ -58,11 +57,6 @@ namespace GridMoment.UI.WebSite.Models
         /// Меточки для добавления
         /// </summary>
         public string TagsAddiction { get; set; }
-
-        /// <summary>
-        /// Собранная картинка поста.
-        /// </summary>
-        public object ImageView { get; set; }
 
         /// <summary>
         /// Дата создания

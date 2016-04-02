@@ -15,6 +15,10 @@ namespace GridMoment.UI.WebSite.App_Start
             Mapper.CreateMap<Post, PostViewModel>();
 
             Mapper.CreateMap<PostViewModel, Post>();
+
+            Mapper.CreateMap<Photo, PhotoViewModel>();
+
+            Mapper.CreateMap<PhotoViewModel, Photo>();
         }
     }
 }

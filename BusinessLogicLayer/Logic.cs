@@ -4,6 +4,7 @@ using System.Linq;
 using DataAccessLayer;
 using Entities;
 using InterfacesLibrary;
+using System.Text;
 
 namespace BusinessLogicLayer
 {
@@ -226,6 +227,58 @@ namespace BusinessLogicLayer
                          select item;
 
             return result;
+        }
+        
+        /// <summary>
+        /// Получить хэш SHA256
+        /// </summary>
+        /// <param name="password">Исходный пароль</param>
+        /// <returns>Хэш SHA256</returns>
+        public string GetSHA256(string password)
+        {
+            var salt = "Vuhgmfgz";
+            var inputString = password + salt;
+            var crypt = new System.Security.Cryptography.SHA256Managed();
+            var hash = new StringBuilder();
+
+            var crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(inputString), 0, Encoding.UTF8.GetByteCount(inputString));
+
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+
+            return hash.ToString();
+        }
+
+        /// <summary>
+        /// Получить связку массив байтов и mime type 
+        /// </summary>
+        /// <param name="name">Имя пользователя</param>
+        /// <returns>Данные изображения</returns>
+        public Photo GetAvatar(string name)
+        {
+            var account = _data.GetAccountByLogin(name, false); //false потому что получаем полную информацию об
+            var bytes = account.Avatar;                         //аккаунте
+            var mimeType = account.MimeType;
+
+            return new Photo { Image = bytes, MimeType = mimeType };
+        }
+
+        /// <summary>
+        /// Получение изображения поста.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>Данные изображения</returns>
+        public Photo GetPostsSource(Guid postId)
+        {
+            var postData = _data.GetAllPosts();
+            //var post = _data.GetPost(postId); 
+            var post = postData.Where(x => x.PostId == postId);
+            var bytes = post.FirstOrDefault().Image;           
+            var mimeType = post.FirstOrDefault().MimeType;
+
+            return new Photo { Image = bytes, MimeType = mimeType };
         }
     }
 }

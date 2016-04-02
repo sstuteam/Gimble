@@ -18,6 +18,7 @@ namespace GridMoment.UI.WebSite.Controllers
         }
 
         [HttpGet]
+        [ChildActionOnly]
         public ActionResult Show(System.Guid postid)
         {
             var post = Adapter.GetPost(postid);
@@ -69,6 +70,7 @@ namespace GridMoment.UI.WebSite.Controllers
             }
 
             var modelToSend = Mapper.Map<Post>(model);
+
             new Post
             {
                 AccountId = postCreator.Id,
@@ -78,7 +80,7 @@ namespace GridMoment.UI.WebSite.Controllers
                 NamePost = model.NamePost,
                 Tags = tagsArray,
                 Text = model.Text,
-                MimetypeSource = ext
+                MimeType = ext
             };
 
             Adapter.CreatePost(modelToSend);
@@ -86,7 +88,8 @@ namespace GridMoment.UI.WebSite.Controllers
             return View();
         }
 
-        public ActionResult Show7DaysNews()
+        [HttpGet]
+        public PartialViewResult Show7DaysNews()
         {            
             var model = Mapper.Map<IEnumerable<Post>, 
                 List<PostViewModel>>(Adapter.List7Times());
@@ -94,7 +97,9 @@ namespace GridMoment.UI.WebSite.Controllers
             return PartialView("~/Views/Shared/UsersPosts.cshtml", model);
         }
 
-        public ActionResult Show30DaysNews()
+        [HttpGet]
+        [ChildActionOnly]
+        public PartialViewResult Show30DaysNews()
         {
             var model = Mapper.Map<IEnumerable<Post>,
                 List<PostViewModel>>(Adapter.List30Times());
@@ -102,7 +107,9 @@ namespace GridMoment.UI.WebSite.Controllers
             return PartialView("~/Views/Shared/UsersPosts.cshtml", model);
         }
 
-        public ActionResult ShowLatestNews()
+        [HttpGet]
+        [ChildActionOnly]
+        public PartialViewResult ShowLatestNews()
         {
             var model = Mapper.Map<IEnumerable<Post>,
                 List<PostViewModel>>(Adapter.ListOfLatestPosts());
@@ -110,12 +117,23 @@ namespace GridMoment.UI.WebSite.Controllers
             return PartialView("~/Views/Shared/UsersPosts.cshtml", model);
         }
 
-        public ActionResult ShowUserNews(string modelName)
+        [HttpGet]
+        [ChildActionOnly]
+        public PartialViewResult ShowUserNews(string modelName)
         {
             var model = Mapper.Map<IEnumerable<Post>,
                 List<PostViewModel>>(Adapter.ListUsersPosts(modelName));
 
             return PartialView("~/Views/Shared/UsersPosts.cshtml", model);
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        public FileResult ShowSourceOfPost(System.Guid postId)
+        {
+            var image = Mapper.Map<PhotoViewModel>(Adapter.GetSourceOfPost(postId));
+
+            return File(image.Image, image.MimeType);
         }
 
     }

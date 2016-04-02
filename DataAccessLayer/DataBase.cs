@@ -9,10 +9,12 @@ namespace DataAccessLayer
 {
     public class DataBase : IDataAccessLayer
     {
+        #region Fields
         private readonly string _connectionString;
         private readonly string _basixCity = "Не указан город";
         private readonly string _basixCountry = "Не указана страна";
         private readonly byte[] _basixAvatar = { 0, 0, 0, 25, 1, 0, 4 };
+        #endregion
 
         public DataBase()
         {
@@ -57,7 +59,6 @@ namespace DataAccessLayer
                 catch (Exception)
                 {
                     throw;
-                    return false;
                 }
             }
 
@@ -205,8 +206,8 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="username">Параметр - login пользователя</param>
         /// <param name="checkExisting">Флаг, если установить true, то результатом вызова будет аккаунт
-       ///  с минимальным число полей, например, для проверки на существование.
-       /// Значение флага false эквивлентно возврату всех полей аккаунта. </param>
+        ///  с минимальным число полей, например, для проверки на существование.
+        /// Значение флага false эквивлентно возврату всех полей аккаунта. </param>
         /// <returns>Аккаунт пользователя</returns>
         public Account GetAccountByLogin(string username, bool checkExisting)
         {
@@ -290,7 +291,6 @@ namespace DataAccessLayer
                 catch (Exception)
                 {
                     throw;
-                    return false;
                 }
 
                 return true;
@@ -327,8 +327,6 @@ namespace DataAccessLayer
                 catch (Exception)
                 {
                     throw;
-
-                    return false;
                 }
 
                 return true;
@@ -368,7 +366,6 @@ namespace DataAccessLayer
                 catch (Exception)
                 {
                     throw;
-                    return false;
                 }
 
                 return true;
@@ -406,7 +403,6 @@ namespace DataAccessLayer
                 catch (Exception)
                 {
                     throw;
-                    return false;
                 }
 
                 return true;
@@ -441,7 +437,6 @@ namespace DataAccessLayer
                 catch (Exception)
                 {
                     throw;
-                    return false;
                 }
 
                 return true;
@@ -456,10 +451,10 @@ namespace DataAccessLayer
         public Post GetPost(Guid postId)
         {
             string queryString =
-                "SELECT [dbo].posts.postid, postname, source, createdtime, accountid, rating, text, [dbo].accounts.name, tag " +
-                "FROM [dbo].posts, [dbo].tagposts, [dbo].accounts " +
-                "WHERE (postid = @postid) AND ([dbo].tagposts.postid = [dbo].posts.postid) " +
-                "AND ([dbo].posts.accountid = [dbo].accounts.accountid)";
+                "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, [dbo].accounts.login, tag, [dbo].posts.mimetype " +
+                "FROM [dbo].posts, [dbo].tags, [dbo].accounts " +
+                "WHERE ([dbo].posts.postid = @postid) AND ([dbo].tagposts.postid = [dbo].posts.postid) " +
+                "AND ([dbo].accounts.accountid = [dbo].posts.accountid)";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -503,7 +498,7 @@ namespace DataAccessLayer
         public List<Post> GetAllPosts()
         {
             string queryString =
-                "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, [dbo].accounts.login, tag " +
+                "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, [dbo].accounts.login, tag, [dbo].posts.mimetype " +
                 "FROM [dbo].posts, [dbo].tags, [dbo].accounts " +
                 "WHERE ([dbo].tags.postid = [dbo].posts.postid) " +
                 "AND ([dbo].posts.accountid = [dbo].accounts.accountid)";
@@ -537,7 +532,9 @@ namespace DataAccessLayer
                         Text = (string)reader[6],
                         AuthorName = (string)reader[7],
                         Tags = ((string)reader[8]).ToString().Split(','),
-                        Avatar = GetAccountByLogin((string)reader[7], false).Avatar
+                        MimeType = (string)reader[9],
+                        Avatar = GetAccountByLogin((string)reader[7], false).Avatar,
+                        MimeTypeAvatar = GetAccountByLogin((string)reader[7], false).MimeType
                     });
                 }
 
@@ -569,7 +566,7 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("postname",post.NamePost);
                 command.Parameters.AddWithValue("source", post.Image);
                 command.Parameters.AddWithValue("createdtime", DateTime.Now);
-                command.Parameters.AddWithValue("mimetype", post.MimetypeSource);
+                command.Parameters.AddWithValue("mimetype", post.MimeType);
                 command.Parameters.AddWithValue("accountid", post.AccountId);
                 command.Parameters.AddWithValue("text", post.Text);
                 command.Parameters.AddWithValue("rating", post.Rating);

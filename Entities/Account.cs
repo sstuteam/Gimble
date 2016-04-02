@@ -11,6 +11,11 @@
         public byte [] Avatar { get; set; }
 
         /// <summary>
+        /// Тип картинки
+        /// </summary>
+        public string MimeType { get; set; }
+
+        /// <summary>
         /// Уникальный идентификатор пользователя
         /// </summary>
         public System.Guid Id { get; set; }

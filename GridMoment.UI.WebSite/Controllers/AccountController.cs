@@ -1,8 +1,8 @@
-﻿using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GridMoment.UI.WebSite.Models;
 using System.Web.Security;
 using Entities;
+using AutoMapper;
 
 namespace GridMoment.UI.WebSite.Controllers
 {
@@ -27,9 +27,10 @@ namespace GridMoment.UI.WebSite.Controllers
 
             var checking = Adapter.CheckAccount(model.Login);
 
-            if ((checking != null) && (checking.Password == model.Password))
+            if ((checking != null) && (Adapter.GetSHA256(checking.Password) == model.Password))
             {
                 FormsAuthentication.SetAuthCookie(model.Login, true);
+
                 if (Url.IsLocalUrl(stringUrl))
                 {
                     return Redirect(stringUrl);
@@ -73,7 +74,7 @@ namespace GridMoment.UI.WebSite.Controllers
             Account account = new Account
             {
                 Login = model.Login,
-                Password = model.Password,
+                Password = Adapter.GetSHA256(model.Password),
                 Email = model.Email
             };
 
@@ -91,18 +92,12 @@ namespace GridMoment.UI.WebSite.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //подозрение действительно есть, что этого метода не должно быть здесь
-        static string GetSHA256(string password, string salt = "Vuhgmfgz")
+        [HttpGet]
+        public FileResult ShowSourceOfPost(string name)
         {
-            string inputString = password + salt;
-            System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();
-            StringBuilder hash = new StringBuilder();
-            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(inputString), 0, Encoding.UTF8.GetByteCount(inputString));
-            foreach (byte theByte in crypto)
-            {
-                hash.Append(theByte.ToString("x2"));
-            }
-            return hash.ToString();
+            var image = Mapper.Map<PhotoViewModel>(Adapter.GetAvatar(name));
+
+            return File(image.Image, image.MimeType);
         }
     }       
 }

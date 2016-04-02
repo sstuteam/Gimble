@@ -18,9 +18,9 @@ namespace Entities
         public string MimeTypeAvatar { get; set; }
 
         /// <summary>
-        /// Имя автора поста
+        /// Id аккаунта автора поста.
         /// </summary>
-        public string AuthorName { get; set; }
+        public Guid AccountId { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор поста
@@ -41,26 +41,30 @@ namespace Entities
         /// Основная картинка поста
         /// </summary>
         public byte[] Image { get; set; }
-
+        
         /// <summary>
         /// мime туре основной картинки поста.
         /// </summary>
-        public string MimetypeSource { get; set; }
+        public string MimeType { get; set; }
+
+        /// <summary>
+        /// Список меточек к данному посту
+        /// </summary>
+        public string[] Tags { get; set; }
+
+        /// <summary>
+        /// Имя автора поста
+        /// </summary>
+        public string AuthorName { get; set; }
 
         /// <summary>
         /// Дата создания. Нужна для выборок на главной.
         /// </summary>
         public DateTime CreatedTime { get; set; }
 
-        /// <summary>
-        /// Id аккаунта автора поста.
-        /// </summary>
-        public Guid AccountId { get; set; }
+       
 
-        /// <summary>
-        /// Список меточек к данному посту
-        /// </summary>
-        public string [] Tags { get; set; }
+       
 
         /// <summary>
         /// Колчиество лайков данного поста.

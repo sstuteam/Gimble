@@ -32,6 +32,7 @@ namespace GridMoment.UI.WebSite.Controllers
                
         //cодержание биндера
         #region Предоставление логики контроллеру 
+
         public static Account GetAccount(string name)
             => _logic.GetAccountByLogin(name, false);
 
@@ -81,6 +82,16 @@ namespace GridMoment.UI.WebSite.Controllers
             }
             return _resultList;
         }
-        #endregion   
+
+        public static string GetSHA256(string source)
+            => _logic.GetSHA256(source);
+
+        public static Photo GetSourceOfPost(Guid postId)
+           => _logic.GetPostsSource(postId);
+
+        public static Photo GetAvatar(string name)
+           => _logic.GetAvatar(name);
+
+        #endregion
     }
 }
