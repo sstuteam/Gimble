@@ -18,27 +18,15 @@ namespace GridMoment.UI.WebSite.Controllers
         }
 
         [HttpGet]
-        [ChildActionOnly]
         public ActionResult Show(System.Guid postid)
         {
             var post = Adapter.GetPost(postid);
                        
             MemoryStream memoryStream = new MemoryStream(post.Image);
-            
-            //var model = new PostViewModel()
-            //{
-            //    Author = post.AuthorName,
-            //    Avatar = post.Avatar,
-            //    DateOfCreation = post.CreatedTime,
-            //    Id = post.AccountId,
-            //    PostId = post.PostId,
-            //    Tags = new List<string>(post.Tags),
-            //    NamePost = post.NamePost,
-            //    ImageView = Image.FromStream(memoryStream),
-            //    Text = post.Text
-            //};
 
-            return View(/*model*/);
+            var model = Mapper.Map<PostViewModel>(post);
+
+            return View(model);
         }
         
         public ActionResult Add()
@@ -128,7 +116,6 @@ namespace GridMoment.UI.WebSite.Controllers
         }
 
         [HttpGet]
-        [ChildActionOnly]
         public FileResult ShowSourceOfPost(System.Guid postId)
         {
             var image = Mapper.Map<PhotoViewModel>(Adapter.GetSourceOfPost(postId));

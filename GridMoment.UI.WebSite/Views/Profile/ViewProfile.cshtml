@@ -14,7 +14,9 @@
         <section class="container-fluid" style="margin-top:110px;">
             <div class="row">
                 <div class="col-xs-2">
-                    <div class="ratio img-responsive img-circle photo"></div>
+                    <div class="ratio img-responsive img-circle photo">
+                        <img src="@Url.Action("ShowAvatar", "Account", new { name = Model.Name })" alt="Фотография участника" />
+                    </div>
                 </div>
                 <div class="col-xs-7 some-margin">@Model.Name</div>
                 <div class="col-xs-7"><small>@Model.City</small></div>

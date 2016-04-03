@@ -14,6 +14,7 @@ namespace DataAccessLayer
         private readonly string _basixCity = "Не указан город";
         private readonly string _basixCountry = "Не указана страна";
         private readonly byte[] _basixAvatar = { 0, 0, 0, 25, 1, 0, 4 };
+        private readonly string _basixMimeType = "image/jpeg";
         #endregion
 
         public DataBase()
@@ -26,16 +27,18 @@ namespace DataAccessLayer
             var accountId = Guid.NewGuid();
 
             string queryString =
-                "INSERT INTO accounts (accountid, login, name, mail, password, createdtime, country, city) " +
-                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime, @country, @city); " +
+                "INSERT INTO accounts (accountid, login, name, mail, password, createdtime, country, city, photo, mimetype) " +
+                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime, @country, @city, @photo, @mimetype); " +
                 "INSERT INTO UsersRoles (id, RoleId, accountid) " +
                 "VALUES(@id, @RoleId, @accountid)";
             if (account.Avatar == null)
-                account.Avatar = (byte[])_basixAvatar;
+                account.Avatar = _basixAvatar;
             if (account.City == null)
                 account.City = _basixCity;
             if (account.Country == null)
                 account.Country = _basixCountry;
+            if (account.MimeType == null)
+                account.MimeType = _basixMimeType;
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -50,6 +53,8 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("RoleId", 1);
                 command.Parameters.AddWithValue("country", account.Country);
                 command.Parameters.AddWithValue("city", account.City);
+                command.Parameters.AddWithValue("photo", account.Avatar);
+                command.Parameters.AddWithValue("mimetype", account.MimeType);
 
                 try
                 {
@@ -212,7 +217,7 @@ namespace DataAccessLayer
         public Account GetAccountByLogin(string username, bool checkExisting)
         {
             string queryString =
-                "SELECT [dbo].accounts.accountid, login, password, mail, city, country, [dbo].accounts.name, [dbo].Roles.Name " +
+                "SELECT [dbo].accounts.accountid, login, password, mail, city, country, [dbo].accounts.name, [dbo].Roles.Name, [dbo].accounts.photo, [dbo].accounts.mimetype " +
                 "FROM [dbo].accounts, [dbo].UsersRoles, [dbo].Roles " +
                 "WHERE (login = @login) AND ([dbo].Roles.RoleId = [dbo].UsersRoles.RoleId);";
 
@@ -243,7 +248,9 @@ namespace DataAccessLayer
                             City = (string)reader[4],
                             Country = (string)reader[5],
                             Name = (string)reader[6],
-                            Role = ((string)reader[7]).Split(',')
+                            Role = ((string)reader[7]).Split(','),
+                            Avatar = (byte [])reader[8],
+                            MimeType = (string)reader[9]
                         };
                     }
                     else
@@ -453,7 +460,7 @@ namespace DataAccessLayer
             string queryString =
                 "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, [dbo].accounts.login, tag, [dbo].posts.mimetype " +
                 "FROM [dbo].posts, [dbo].tags, [dbo].accounts " +
-                "WHERE ([dbo].posts.postid = @postid) AND ([dbo].tagposts.postid = [dbo].posts.postid) " +
+                "WHERE ([dbo].posts.postid = @postid) AND ([dbo].tags.postid = [dbo].posts.postid) " +
                 "AND ([dbo].accounts.accountid = [dbo].posts.accountid)";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -474,7 +481,7 @@ namespace DataAccessLayer
                 {
                     return new Post()
                     {
-                        PostId = (Guid)reader[0],
+                        PostId = postId,
                         NamePost = (string)reader[1],
                         Image = (byte [])reader[2],
                         CreatedTime = (DateTime)reader[3],
@@ -483,7 +490,7 @@ namespace DataAccessLayer
                         Text = (string)reader[6],
                         AuthorName = (string)reader[7],
                         Tags = ((string)reader[8]).ToString().Split(','),
-                        Avatar = GetAccountByLogin((string)reader[7], false).Avatar                         
+                        MimeType = (string)reader[9]
                     };
                 }
 

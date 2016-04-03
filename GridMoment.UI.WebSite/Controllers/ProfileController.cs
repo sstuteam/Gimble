@@ -1,8 +1,4 @@
 ﻿using GridMoment.UI.WebSite.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GridMoment.UI.WebSite.Controllers
@@ -12,11 +8,16 @@ namespace GridMoment.UI.WebSite.Controllers
        
         public ActionResult Index()
         {
-            var account = Adapter.GetAccount(User.Identity.Name);
-            var model = new ProfileShowNameViewModel { Name = account.Name, City = account.City, Role = account.Role };
-            return View(model);
-        }
+            if (User.Identity.IsAuthenticated)
+            {
+                var account = Adapter.GetAccount(User.Identity.Name);
+                var model = new ProfileShowNameViewModel { Name = account.Name, City = account.City, Role = account.Role };
+                return View(model);
+            }
 
+         return RedirectToAction("Index", "Home");
+            
+        }
         
         public ActionResult ViewProfile(string login)
         {

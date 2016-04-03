@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer;
 using Entities;
+using GridMoment.UI.WebSite.Models;
 using System;
 using System.Collections.Generic;
 
@@ -90,7 +91,13 @@ namespace GridMoment.UI.WebSite.Controllers
            => _logic.GetPostsSource(postId);
 
         public static Photo GetAvatar(string name)
-           => _logic.GetAvatar(name);
+        {
+            var avatar = _logic.GetAvatar(name);
+
+            return avatar;
+
+        }
+           
 
         #endregion
     }

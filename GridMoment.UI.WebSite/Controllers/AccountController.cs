@@ -93,7 +93,7 @@ namespace GridMoment.UI.WebSite.Controllers
         }
 
         [HttpGet]
-        public FileResult ShowSourceOfPost(string name)
+        public FileResult ShowAvatar(string name)
         {
             var image = Mapper.Map<PhotoViewModel>(Adapter.GetAvatar(name));
 

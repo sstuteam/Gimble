@@ -3,9 +3,7 @@
     int length = Model.ToList().Count,   //длина всей коллекции постов
         w = length % 3,                  //остаток постов(последняя строчка)
         contextRounds = (length - w) / 3,//цисло строк в представлении
-        countHorizontalElements = 3,     //число элементов в строке
-        postCounter = 0;                 //счётчик постов
-
+        countHorizontalElements = 3;     //число элементов в строке
 }
 
 @for (int i = 0; i < length; i++)
@@ -14,20 +12,23 @@
         <!-- BEGIN ROW -->
         @for (int j = 0; j < countHorizontalElements; j++)
         {
-            <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
-                <a href="@Html.ActionLink(Model[postCounter].NamePost, "Show", "Post", new { postId = Model[postCounter].PostId }, null)">
-                    <!--Begin post-->
-                    <img class=" img-thumbnail" src="@Html.Action("ShowSourceOfPost", "Post", new { postId = Model[postCounter].PostId })" />
-                <div class="text-left foo">@Model[postCounter].Text</div>
-                <footer>
-                    <span class="glyphicon glyphicon-calendar pull-right">@Model[postCounter].CreatedTime</span>
-                    <div>
-                        @Html.ActionLink(Model[postCounter].AuthorName, "ViewProfile", "Profile", new { login = Model[postCounter].AuthorName }, null)<span class="glyphicon glyphicon-user"></span>
-                    </div>
-                </footer>
-                </a>
-            </div> <!--End post-->
-            { postCounter++; /*инкремент постов*/ }
+            if (i < length)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
+                    @Html.ActionLink(Model[i].NamePost, "Show", "Post", new { postId = Model[i].PostId }, null)"
+                        <!--Begin post-->
+                        <img class=" img-thumbnail" src="@Url.Action("ShowSourceOfPost", "Post", new { postId = Model[i].PostId })" />
+                        <div class="text-left foo">@Model[i].Text</div>
+                        <footer>
+                            <span class="glyphicon glyphicon-calendar pull-right">@Model[i].CreatedTime</span>
+                            <div>
+                                @Html.ActionLink(Model[i].AuthorName, "ViewProfile", "Profile", new { login = Model[i].AuthorName }, null)<span class="glyphicon glyphicon-user"></span>
+                            </div>
+                        </footer>
+                </div> <!--End post-->
+                i++;
+            }
+
         }
         </div>
 }
