@@ -268,7 +268,7 @@ namespace BusinessLogicLayer
         /// <summary>
         /// Получение изображения поста.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="postId">Идентификатор поста</param>
         /// <returns>Данные изображения</returns>
         public Photo GetPostsSource(Guid postId)
         {
@@ -280,5 +280,38 @@ namespace BusinessLogicLayer
 
             return new Photo { Image = bytes, MimeType = mimeType };
         }
+
+        /// <summary>
+        /// Получение коллекции комментариев к данному посту
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns>Коллекцию комментариев</returns>
+        public List<Comment> GetComments(Guid postId)
+            => _data.GetComents(postId);
+
+        /// <summary>
+        /// Создание комментария
+        /// </summary>
+        /// <param name="comment">Экземпляр класса Comment</param>
+        /// <returns>Успешность операции</returns>
+        public bool CreateComment(Comment comment)
+            => _data.CreateComment(comment);
+
+        /// <summary>
+        /// Обновление комментария
+        /// </summary>
+        /// <param name="comment">Экзмемпляр класса Comment</param>
+        /// <returns>Успешность операции</returns>
+        public bool UpdateComment(Comment comment)
+            => _data.UpdateComment(comment);
+
+        /// <summary>
+        /// Получить Идентификатор пользователя по имени 
+        /// аутентификационных данных
+        /// </summary>
+        /// <param name="login">User.Identity.Name</param>
+        /// <returns>Уникальный идентификатор пользоваетля</returns>
+        public Guid GetIdByName(string login)
+            => _data.GetIdByName(login);
     }
 }

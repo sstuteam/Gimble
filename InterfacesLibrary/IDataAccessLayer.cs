@@ -33,5 +33,13 @@ namespace InterfacesLibrary
         List<Post> GetAllPosts();
 
         bool UpdateAvatar(Guid accountId, byte[] avatar, string mimetype);
+
+        List<Comment> GetComents(Guid postId);
+
+        bool CreateComment(Comment comment);
+
+        bool UpdateComment(Comment comment);
+
+        Guid GetIdByName(string login);
     }
 }

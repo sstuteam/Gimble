@@ -123,5 +123,59 @@ namespace GridMoment.UI.WebSite.Controllers
             return File(image.Image, image.MimeType);
         }
 
+        public ActionResult ShowComments(System.Guid postId)
+        {
+            var comments = Adapter.GetComments(postId);
+
+            return PartialView(comments);
+        }
+
+        public ActionResult UpdateComment()
+            => View();
+
+        [HttpPost]
+        public ActionResult UpdateComment(CommentViewModel comment, string text)
+        {
+            if (Adapter.CheckRules(User.Identity.Name) || User.Identity.Name.Equals(comment.AuthorName))
+            {
+                comment.Text = text;
+                var successful = Adapter.UpdateComment(comment);
+
+                if (successful)
+                {
+                    RedirectToAction("Show", "Post", new { postId = comment.PostId });
+                }
+            }
+            return RedirectToAction("Index", "Home"); //издевательство
+        }
+                
+        public ActionResult DeleteComment(System.Guid comId)
+        {
+            if (Adapter.CheckRules(User.Identity.Name))
+            {
+
+
+                //ToDo - Дописать      !!!
+
+            }
+                  
+            return RedirectToAction("Index", "Home"); //издевательство
+        }
+
+        public ActionResult AddComment()
+            => PartialView();
+
+        [HttpPost]
+        public ActionResult AddComment(CommentViewModel comment)
+        {
+            comment.AccountId = Adapter.GetIdByName(User.Identity.Name);
+
+            if (Adapter.CreateComment(comment))
+            {
+                return RedirectToAction("Show", "Post", new { postId = comment.PostId });
+            }
+
+            return RedirectToAction("Index", "Home"); //издевательство
+        }        
     }
 }

@@ -376,7 +376,6 @@ namespace DataAccessLayer
                 }
 
                 return true;
-
             }
         }
 
@@ -499,6 +498,110 @@ namespace DataAccessLayer
         }
 
         /// <summary>
+        /// Получить список всех комментариев к данному посту
+        /// </summary>
+        /// <param name="postId">Уникальный идентификатор поста</param>
+        /// <returns>Коллекцию всех комментариев</returns>
+        public List<Comment> GetComents(Guid postId)
+        {
+            string queryString =
+                "SELECT [dbo].comments.text, [dbo].comments.createdtime, comments.accountid, comments.name " +
+                "FROM [dbo].comments " +
+                "WHERE [dbo].comments.postid = @postid;";
+                       
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("postid", postId);
+
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+                var list = new List<Comment>();
+
+                if (reader == null)
+                    return null;
+
+                while (reader.Read())
+                {
+                    list.Add(new Comment()
+                    {
+                        Text = (string)reader[0],
+                        CreatedTime = (DateTime)reader[1],
+                        AccountId = (Guid)reader[2],
+                        AuthorName = (string)reader[3]
+                    });
+                }
+
+                return list;
+            }
+        }
+
+        public bool CreateComment(Comment comment)
+        {
+            var queryString =
+                "INSERT INTO [dbo].comments([dbo].comments.comid, [dbo].comments.createdtime, [dbo].comments.accountid, [dbo].comments.postid, [dbo].comments.name) " +
+                "VALUES(@comid, @createdtime), @accountid, @postid, @name);";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("comid", Guid.NewGuid());
+                command.Parameters.AddWithValue("createdtime", DateTime.Now);
+                command.Parameters.AddWithValue("accountid", comment.AccountId);
+                command.Parameters.AddWithValue("postid", comment.PostId);
+                command.Parameters.AddWithValue("name", comment.AuthorName);
+                connection.Open();
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    var stack = e.StackTrace;
+                    throw new Exception();
+                }
+
+                return true;
+            }
+        }
+
+        public bool UpdateComment(Comment comment)
+        {
+            var queryString =
+                 "UPDATE [dbo].[comments] " +
+                     "SET [text] = @text " +
+                 "WHERE [dbo].comment.comid = @comid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("comid", comment.ComId);
+                command.Parameters.AddWithValue("text", comment.Text);
+
+                connection.Open();
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    var stack = e.StackTrace;
+                    throw new Exception();
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Получение всех постов.
         /// </summary>
         /// <returns>Список постов</returns>
@@ -592,6 +695,32 @@ namespace DataAccessLayer
             }
 
             return true;
+        }
+
+    
+        public Guid GetIdByName(string login)
+        {
+            string queryString =
+               "SELECT [dbo].accounts.accountid " +
+               "FROM [dbo].accounts " +
+               "WHERE (login = @login);";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("login", login);
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader == null)
+                {
+                    return Guid.Empty;
+                }
+
+                return (Guid)reader[0];
+            }
         }
     }
 }

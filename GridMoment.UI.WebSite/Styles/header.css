@@ -43,6 +43,7 @@ html {
     background: rgb(2, 4, 33);
 }
 .headhesive {
+    margin-left:-15px;
     position: fixed;
     z-index: 3;
     top: 0;

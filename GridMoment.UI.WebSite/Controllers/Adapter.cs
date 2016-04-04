@@ -3,6 +3,7 @@ using Entities;
 using GridMoment.UI.WebSite.Models;
 using System;
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace GridMoment.UI.WebSite.Controllers
 {
@@ -12,7 +13,7 @@ namespace GridMoment.UI.WebSite.Controllers
     public class Adapter
     {
         /// <summary>
-        /// Экзземпляр логики приложения
+        /// Экземпляр логики приложения
         /// </summary>
         private static Logic _logic;
 
@@ -30,7 +31,25 @@ namespace GridMoment.UI.WebSite.Controllers
             if (_logic == null)
                 _logic = new Logic();
         }
-               
+
+        /// <summary>
+        /// Проверить, если действует админ или модератер
+        /// </summary>
+        /// <param name="name">Имя(использовать User.Identity.Name)</param>
+        /// <returns></returns>
+        public static bool CheckRules(string name)
+        {
+            var account = Adapter.GetAccount(name);
+            var hasRights = false;
+
+            foreach (var item in account.Role)
+            {
+                if (item.Equals("Moder") || item.Equals("Admin"))
+                    hasRights = true;
+            }
+            return hasRights;
+        }
+
         //cодержание биндера
         #region Предоставление логики контроллеру 
 
@@ -91,13 +110,19 @@ namespace GridMoment.UI.WebSite.Controllers
            => _logic.GetPostsSource(postId);
 
         public static Photo GetAvatar(string name)
-        {
-            var avatar = _logic.GetAvatar(name);
+            => _logic.GetAvatar(name);
 
-            return avatar;
+        public static List<CommentViewModel> GetComments(Guid postId)
+            => Mapper.Map<List<CommentViewModel>>(_logic.GetComments(postId));
+               
+        public static bool CreateComment(CommentViewModel comment)
+            => _logic.CreateComment(Mapper.Map<Comment>(comment));
 
-        }
-           
+        public static bool UpdateComment(CommentViewModel comment)
+             => _logic.UpdateComment(Mapper.Map<Comment>(comment));
+
+        public static Guid GetIdByName(string name)
+            => _logic.GetIdByName(name);
 
         #endregion
     }

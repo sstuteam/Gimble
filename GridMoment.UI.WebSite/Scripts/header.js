@@ -10,7 +10,7 @@
             else
                 $('.headhesive').css({ 'top': '0px', 'transition': 'all 0.5s ease-in-out' });
             if (outLimit > scr)                
-                $('.headhesive').css({ 'top': '-100px', 'transition': 'all 0.5s ease-in-out' });
+                $('.headhesive').css({ 'top': '-150px', 'transition': 'all 0.5s ease-in-out' });
             else
                 $('.headhesive').css({ 'top': '0px', 'transition': 'all 0.5s ease-in-out' });
             scr = $(document).scrollTop();
