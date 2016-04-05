@@ -22,13 +22,13 @@ namespace GridMoment.UI.WebSite.Controllers
         public ActionResult ViewProfile(string login)
         {
             var account = Adapter.GetAccount(login);
-           
+
             if (account == null)
             {
                 return HttpNotFound();
             }
 
-            var model = new ProfileShowNameViewModel { Name = account.Name, City = account.City, Role = account.Role };
+            var model = new ProfileShowNameViewModel { Login = account.Login, Name = account.Name, City = account.City, Role = account.Role };
 
             return View(model);
         }

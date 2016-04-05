@@ -54,13 +54,23 @@ namespace GridMoment.UI.WebSite.Controllers
         #region Предоставление логики контроллеру 
 
         public static Account GetAccount(string name)
-            => _logic.GetAccountByLogin(name, false);
+        {
+            if (name != null)
+               return _logic.GetAccountByLogin(name, false);
+
+            return null;           
+        }
 
         public static Account CheckAccount(string name)
             => _logic.GetAccountByLogin(name, true); 
 
-        public static Account GetAccount(Guid id)
-            => _logic.GetUserById(id);
+        public static Account GetAccount(Guid accountId)
+        {
+            if (accountId != null && accountId != Guid.Empty)
+                return _logic.GetAccountById(accountId);
+
+            return null;
+        }
 
         public static bool CreateUserAndAccount(Account account)
         {
@@ -124,6 +134,16 @@ namespace GridMoment.UI.WebSite.Controllers
         public static Guid GetIdByName(string name)
             => _logic.GetIdByName(name);
 
+        public static Dictionary<bool, int> GetLikes(Guid postId, Guid accountId)
+            => _logic.GetLikes(postId, accountId);
+
+        public static bool SetLike(Guid postId, Guid accountId)
+            => _logic.SetLike(postId, accountId);
+
+        public static List<PostViewModel> GetLikedPost(Guid accountId)
+            => Mapper.Map<List<PostViewModel>>(_logic.GetBookmarks(accountId));
+
         #endregion
     }
 }
+

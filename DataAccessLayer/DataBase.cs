@@ -153,7 +153,6 @@ namespace DataAccessLayer
                 connection.Open();
 
                 var reader = command.ExecuteReader();
-
                 var result = new List<string>();
 
                 while (reader.Read())
@@ -181,7 +180,6 @@ namespace DataAccessLayer
 
                 connection.Open();
                 var reader = command.ExecuteReader();
-
                 var result = new Dictionary<Guid, List<string>>();
 
                 while (reader.Read())
@@ -234,9 +232,9 @@ namespace DataAccessLayer
                 {
                     return null;
                 }
-
+                
                 while (reader.Read())
-                {
+                {                    
                     if (!checkExisting)
                     {
                         return new Account()
@@ -301,7 +299,6 @@ namespace DataAccessLayer
                 }
 
                 return true;
-
             }
         }
 
@@ -337,7 +334,6 @@ namespace DataAccessLayer
                 }
 
                 return true;
-
             }
         }
 
@@ -412,7 +408,6 @@ namespace DataAccessLayer
                 }
 
                 return true;
-
             }
         }
 
@@ -696,8 +691,12 @@ namespace DataAccessLayer
 
             return true;
         }
-
-    
+               
+        /// <summary>
+        /// Возвращает Идентификатор пользователя по его логину
+        /// </summary>
+        /// <param name="login">Лоинг пользователя</param>
+        /// <returns>Guid пользователя</returns>
         public Guid GetIdByName(string login)
         {
             string queryString =
@@ -722,5 +721,115 @@ namespace DataAccessLayer
                 return (Guid)reader[0];
             }
         }
+
+        #region LikeArea
+
+        /// <summary>
+        /// Функция установки лайка
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public bool SetLike(Guid postId, Guid accountId)
+        {
+           string queryString =
+               "INSERT INTO [dbo].Likes ([dbo].Likes.likeid, [dbo].Likes.postid, [dbo].Likes.accountid) " +
+               "VALUES (@likeid, @postid, @accountid); " +
+               "UPDATE [dbo].[posts] " +
+                     "SET [rating] = rating + 1 " +
+                 "WHERE [dbo].posts.postid = @postid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+           {
+               var command = new SqlCommand(queryString, connection);
+          
+               command.Parameters.AddWithValue("likeid", Guid.NewGuid());
+               command.Parameters.AddWithValue("postid", postId);
+               command.Parameters.AddWithValue("accountid", accountId);
+          
+               try
+               {
+                   connection.Open();
+                   command.ExecuteNonQuery();
+               }
+               catch (Exception) { return false; throw new Exception(); }
+           }
+           return true;                                 
+        }
+
+        /// <summary>
+        /// Получить список идентификаторов постов, лайнкутых пользователем
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public IEnumerable<Guid> GetLikedByUser(Guid accountId)
+        {
+            var queryString =
+                "SELECT (postid) " +
+                "FROM [dbo].Likes " +
+                "WHERE accountid = @acountid;";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                List<Guid> _list;
+                var command = new SqlCommand(queryString, connection);                
+                command.Parameters.AddWithValue("accountid", accountId);                
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+                _list = new List<Guid>();           
+               
+                while (reader.Read())
+                    _list.Add((Guid)reader[0]);
+
+                return _list;
+            }
+        }
+
+        /// <summary>
+        /// Получить лайки к данному посту, и лайкнут ли пост данным пользователем
+        /// </summary>
+        /// <param name="postId">Идентификатор поста</param>
+        /// <param name="accountId">Идентификатор пользователя</param>
+        /// <returns>Пару - лайнкул ли этот пользователь и число лайков</returns>
+        public Dictionary<bool, int> GetLikes(Guid postId, Guid accountId)
+        {
+            var queryString =
+                "SELECT [dbo].posts.rating, [dbo].Likes.likeid " +
+                "FROM [dbo].posts, [dbo].posts.Likes " +
+                "WHERE ([dbo].posts.postid = @postid) AND " +
+                "([dbo].Likes.accountid = @accountid) AND ([dbo].Likes.postid = @postid);";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("accountid", accountId);
+                command.Parameters.AddWithValue("postid", postId);
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+                Dictionary<bool, int> toReturn;
+                Guid guid = Guid.Empty;
+                int rating = 0;
+
+                while (reader.Read())
+                {
+                    rating = (int)reader[0];
+                    guid = (Guid)reader[1];
+                }
+
+                if ((guid != Guid.Empty) && (rating >= 0))
+                {
+                    toReturn = new Dictionary<bool, int>();
+                    toReturn.Add(true, rating);
+                    return toReturn;
+                }
+
+                return null;
+            }
+        }
+
+        #endregion
     }
 }
+

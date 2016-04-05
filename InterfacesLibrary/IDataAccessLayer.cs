@@ -41,5 +41,11 @@ namespace InterfacesLibrary
         bool UpdateComment(Comment comment);
 
         Guid GetIdByName(string login);
+
+        bool SetLike(Guid postId, Guid accountId); 
+
+        IEnumerable<Guid> GetLikedByUser(Guid accountId);
+
+        Dictionary<bool, int> GetLikes(Guid postId, Guid currentUser);
     }
 }

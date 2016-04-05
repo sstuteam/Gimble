@@ -15,11 +15,17 @@
             <div class="row">
                 <div class="col-xs-2">
                     <div class="ratio img-responsive img-circle photo">
-                        <img src="@Url.Action("ShowAvatar", "Account", new { name = Model.Name })" alt="Фотография участника" />
+                        <img src="@Url.Action("ShowAvatar", "Account", new { name = Model.Login })" alt="Фотография участника" />
                     </div>
                 </div>
                 <div class="col-xs-7 some-margin">@Model.Name</div>
                 <div class="col-xs-7"><small>@Model.City</small></div>
+                <div class="col-xs-7">Должность на сайте - 
+                @foreach (var item in Model.Role)
+                    {
+                       <small> @item _</small>
+                    }
+                </div>
             </div>
 
             <p></p>
@@ -35,7 +41,7 @@
                 <div id="panel1" class="tab-pane fade in active">
                     
                     <div id="panel1" class="tab-pane fade in active">
-                        @Html.Action("ShowUserNews", "Post", new { modelName = Model.Name })
+                        @Html.Action("ShowUserNews", "Post", new { modelName = Model.Login })
                     </div>
 
                 </div>
@@ -138,5 +144,6 @@
                 </div>
             </div>
         </section>
-    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

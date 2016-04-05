@@ -313,5 +313,57 @@ namespace BusinessLogicLayer
         /// <returns>Уникальный идентификатор пользоваетля</returns>
         public Guid GetIdByName(string login)
             => _data.GetIdByName(login);
+
+        /// <summary>
+        /// Получение данных пользователя по его уникальному идентификатору
+        /// </summary>
+        /// <param name="accountId">Guid пользователя</param>
+        /// <returns>Экзмпляр класса Account</returns>
+        public Account GetAccountById(Guid accountId)
+            => _data.GetAccountById(accountId);
+
+        /// <summary>
+        /// Возвращает число лайков и лайкнут ли 
+        /// этот пост пользвателем с указанным иднтификатором
+        /// </summary>
+        /// <param name="postId">Уникальный идентификатор поста</param>
+        /// <param name="accountId">Уникальный идентификатор пользователя</param>
+        /// <returns>Пару - рейтинг/статус лайка для данного пользователя</returns>
+        public Dictionary<bool, int> GetLikes(Guid postId, Guid accountId)
+            => _data.GetLikes(postId, accountId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public bool SetLike(Guid postId, Guid accountId)
+        {
+            var successful = false;
+            if (GetLikes(postId, accountId) == null)
+                successful = _data.SetLike(postId, accountId);
+
+            return successful;            
+        }
+
+        /// <summary>
+        /// Получить все посты, лайкнутые пользователем
+        /// </summary>
+        /// <param name="accountId">Уникальный идентификатор пользователя</param>
+        /// <returns>Список постов.</returns>
+        public List<Post> GetBookmarks(Guid accountId)
+        {
+            var listOfPosts = new List<Post>();
+            var collection = _data.GetLikedByUser(accountId);
+
+            foreach (var item in collection)
+            {
+                listOfPosts.Add(GetPost(item));
+            }
+
+            return listOfPosts;
+        }
     }
 }
+

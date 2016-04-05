@@ -9,16 +9,22 @@
     <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
     <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
 </head>
-<body>
+<body>  
             <p></p>
             <section class="container-fluid" style="margin-top:110px;">
                 <div class="row">
                     <div class="col-xs-2">
-                        <div class="ratio img-responsive img-circle photo"></div>
+                        <div class="ratio img-responsive img-circle photo">
+                            <img src="@Url.Action("ShowAvatar", "Account", new { name = User.Identity.Name })" alt="Ваша фотография" />
+                        </div>
                     </div>
                     <div class="col-xs-7 some-margin">@Model.Name</div>
                     <div class="col-xs-7"><small>@Model.City</small></div>
-                    <div class="col-xs-7"><small>Должность на сайте - @Model.Role.ToString()</small></div>
+                        <div class="col-xs-7">Должность на сайте - @foreach(var item in Model.Role)
+                        {
+                            <small> @item _</small>
+                        }
+                         </div>
                 </div>
 
                 <p></p>
@@ -134,7 +140,7 @@
                 </div>
             </section>
            
-
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
     <script src="/Scripts/bootstrap.min.js"></script>
      
        
