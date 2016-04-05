@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using Entities;
 using InterfacesLibrary;
+using System.Text;
 
 namespace DataAccessLayer
 {
@@ -483,7 +484,7 @@ namespace DataAccessLayer
                         Rating = (int)reader[5],
                         Text = (string)reader[6],
                         AuthorName = (string)reader[7],
-                        Tags = ((string)reader[8]).ToString().Split(','),
+                        Tags = ((string)reader[8]).Split(','),
                         MimeType = (string)reader[9]
                     };
                 }
@@ -636,7 +637,7 @@ namespace DataAccessLayer
                         Rating = (int)reader[5],
                         Text = (string)reader[6],
                         AuthorName = (string)reader[7],
-                        Tags = ((string)reader[8]).ToString().Split(','),
+                        Tags = ((string)reader[8]).Split(','),
                         MimeType = (string)reader[9],
                         Avatar = GetAccountByLogin((string)reader[7], false).Avatar,
                         MimeTypeAvatar = GetAccountByLogin((string)reader[7], false).MimeType
@@ -655,6 +656,17 @@ namespace DataAccessLayer
         public bool CreatePost(Post post)
         {
             var postid = Guid.NewGuid();
+            var atrAdd = "";
+            var tagsLength = post.Tags.Length;
+
+            //Конвертация меточек в строку для бд
+            for (int i = 0; i < tagsLength; i++)
+            {
+                if (i < tagsLength - 1)
+                    atrAdd += post.Tags[i] + ",";
+                else
+                    atrAdd += post.Tags[i];
+            }
 
             post.Rating = 0;
 
@@ -675,7 +687,7 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("accountid", post.AccountId);
                 command.Parameters.AddWithValue("text", post.Text);
                 command.Parameters.AddWithValue("rating", post.Rating);
-                command.Parameters.AddWithValue("tag", post.Tags.ToString());
+                command.Parameters.AddWithValue("tag", atrAdd);
 
                 try
                 {
