@@ -38,13 +38,13 @@ namespace InterfacesLibrary
 
         bool CreateComment(Comment comment);
 
-        bool UpdateComment(Comment comment);
+        void DeleteComment(Guid comid);
 
         Guid GetIdByName(string login);
 
         bool SetLike(Guid postId, Guid accountId); 
 
-        IEnumerable<Guid> GetLikedByUser(Guid accountId);
+        IEnumerable<Guid> GetLikedByUser(string modelName);
 
         Dictionary<bool, int> GetLikes(Guid postId, Guid currentUser);
     }

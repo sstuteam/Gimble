@@ -5,17 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace GridMoment.UI.WebSite.Models
 {
     public class PostViewModel
-    {
-        /// <summary>
-        /// Аватар автора
-        /// </summary>
-        public byte[] Avatar { get; set; }
-
-        /// <summary>
-        /// Тип файла фотографии пользователя
-        /// </summary>
-        public string MimeTypeAvatar { get; set; }
-
+    {      
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
@@ -67,5 +57,10 @@ namespace GridMoment.UI.WebSite.Models
         /// Имя автора поста
         /// </summary>
         public string AuthorName { get; set; }
+
+        /// <summary>
+        /// Свойство для просмотра рейтинга
+        /// </summary>
+        public int Rating { get; set; }
     }
 }

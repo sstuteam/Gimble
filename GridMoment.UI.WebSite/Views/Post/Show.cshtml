@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = Model.NamePost;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var rating = Html.Action("ShowRating", "Post", new { post = Model.PostId, account = Model.AccountId});  
+    
 }
 
 <!DOCTYPE html>
@@ -48,10 +50,15 @@
                         <div class="favorite col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="vcenter">
                                 <div class="btn-group">
-                                    <button id="favour_button" class="btn btn-default btn-sm">В избранное </button>
-                                    <button id="plus-rating-btn" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
-                                    <button id="minus-rating-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span></button>
-                                    <button id="rating" class="btn btn-default btn-sm disabled">143</button>
+                                    <!--Лайки !!!-->     
+                                   
+                                    @Html.ActionLink("SetLike", "SetLike", "Post",  new { post = Model.PostId, account = Model.AccountId }, new { @class = "btn btn-default btn-sm", id = "favour_button" })
+                                                                   
+                                <!--Счёт лайков-->
+                                <button id="rating" class="btn btn-default btn-sm disabled">
+                                    @rating
+                                </button>
+
                                 </div>
                             </div>
                             <div class="helper"> </div>
@@ -79,7 +86,17 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
                         @Html.Action("ShowComments", "Post", new { postId = Model.PostId })                    
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
-                        @Html.Action("AddComment", "Post", new { postId = Model.PostId })                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("AddComment", "Post", new { PostId = Model.PostId, AccountId = Model.PostId, AuthorName = Model.AuthorName }, FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <input type="email" name="Text" class="form-control" id="inputComment" placeholder="Оставьте свой отзыв или важное мнение, с">
+                                </div>
+                                <input type="submit" class="btn btn-default right" value="Отправить" />
+                            }
+                        }
+                                                
                     </div>
                  </div>
              </div>  <!--Строка-->

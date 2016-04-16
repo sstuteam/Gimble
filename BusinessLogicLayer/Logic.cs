@@ -150,6 +150,9 @@ namespace BusinessLogicLayer
             var result = from item in data
                          orderby item.CreatedTime
                          select item;
+
+            var list = result.ToList();
+
             return result.ToList();         
         }
 
@@ -298,14 +301,6 @@ namespace BusinessLogicLayer
             => _data.CreateComment(comment);
 
         /// <summary>
-        /// Обновление комментария
-        /// </summary>
-        /// <param name="comment">Экзмемпляр класса Comment</param>
-        /// <returns>Успешность операции</returns>
-        public bool UpdateComment(Comment comment)
-            => _data.UpdateComment(comment);
-
-        /// <summary>
         /// Получить Идентификатор пользователя по имени 
         /// аутентификационных данных
         /// </summary>
@@ -341,21 +336,34 @@ namespace BusinessLogicLayer
         public bool SetLike(Guid postId, Guid accountId)
         {
             var successful = false;
-            if (GetLikes(postId, accountId) == null)
-                successful = _data.SetLike(postId, accountId);
+            var dict = GetLikes(postId, accountId);
+            foreach (var item in dict)
+            {
+                if (item.Key == false)
+                {
+                    successful = _data.SetLike(postId, accountId);
+                }
+            }      
 
             return successful;            
         }
+
+        /// <summary>
+        /// Удаление комментария по guid комментария
+        /// </summary>
+        /// <param name="comid">Уник. идент. комментария</param>
+        public void DeleteComment(Guid comid)
+            => _data.DeleteComment(comid);
 
         /// <summary>
         /// Получить все посты, лайкнутые пользователем
         /// </summary>
         /// <param name="accountId">Уникальный идентификатор пользователя</param>
         /// <returns>Список постов.</returns>
-        public List<Post> GetBookmarks(Guid accountId)
+        public List<Post> GetBookmarks(string modelName)
         {
             var listOfPosts = new List<Post>();
-            var collection = _data.GetLikedByUser(accountId);
+            var collection = _data.GetLikedByUser(modelName);
 
             foreach (var item in collection)
             {

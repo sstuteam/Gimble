@@ -1,33 +1,40 @@
 ﻿@model List<GridMoment.UI.WebSite.Models.CommentViewModel>
 
-
-@foreach (var item in Model)
-{
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+        @foreach (var item in Model)
+        {
     <!--границы комментария-->
-    <div class="media-left media-top">
-        <a class="text-muted">
-            <img class="img-circle comment_autor_icon" src="@Url.Action("ShowAvatar", "Account", new { name = item.AuthorName})">
-        </a>
-    </div>
-    <div class="media-body">
-        <a class="media-heading text-muted">
-            <b>@item.AuthorName</b>
-            <span class="time text-muted">17:16</span><span class="date text-muted">@item.CreatedTime</span>
-        </a>
-        <ul class="list-unstyled pull-right">
-            <li class="dropdown">
-                <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
-                </a>
-                <ul class="dropdown-menu pull-right">
-                   <li><a><center>@Html.ActionLink("Изменить", "UpdateComment", "Post")</center></a></li>
-                   <li><a><center>@Html.ActionLink("Удалить", "DeleteComment", "Post")</center></a></li>
-                                      
-                </ul>
-            </li>
-        </ul>
-        <div>
-           @item.Text
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+                    <div class="media-left media-top">
+                        <a class="text-muted">
+                            <img class="img-circle comment_autor_icon" src="@Url.Action("ShowAvatar", "Account", new { name = item.AuthorName})">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a class="media-heading text-muted">
+                            <b>@item.AuthorName</b>
+                            <span class="time text-muted">17:16</span><span class="date text-muted">@item.CreatedTime</span>
+                        </a>
+                        <ul class="list-unstyled pull-right">
+                            <li class="dropdown">
+                                <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a><center>@Html.ActionLink("Удалить", "DeleteComment", "Post")</center></a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                        <div>
+                            @item.Text
+                        </div>
+                    </div>
+                 </div> <!--границы комментария-->
+                   
+              </div>
+        }
         </div>
-    </div> <!--границы комментария-->
-}
+    </div>

@@ -6,6 +6,7 @@ using System.Web;
 using System.IO;
 using System.Drawing;
 using AutoMapper;
+using System;
 
 namespace GridMoment.UI.WebSite.Controllers
 {
@@ -21,9 +22,13 @@ namespace GridMoment.UI.WebSite.Controllers
         public ActionResult Show(System.Guid postid)
         {
             var post = Adapter.GetPost(postid);
-                       
-            MemoryStream memoryStream = new MemoryStream(post.Image);
 
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            MemoryStream memoryStream = new MemoryStream(post.Image);
             var model = Mapper.Map<PostViewModel>(post);
 
             return View(model);
@@ -58,19 +63,8 @@ namespace GridMoment.UI.WebSite.Controllers
             }
 
             var modelToSend = Mapper.Map<Post>(model);
-
-            new Post
-            {
-                AccountId = postCreator.Id,
-                AuthorName = postCreator.Name,
-                Rating = 0,
-                Image = model.Image,
-                NamePost = model.NamePost,
-                Tags = tagsArray,
-                Text = model.Text,
-                MimeType = ext
-            };
-
+            modelToSend.MimeType = ext;
+                  
             Adapter.CreatePost(modelToSend);
 
             return View();
@@ -123,6 +117,7 @@ namespace GridMoment.UI.WebSite.Controllers
             return File(image.Image, image.MimeType);
         }
 
+        [HttpGet]
         public ActionResult ShowComments(System.Guid postId)
         {
             var comments = Adapter.GetComments(postId);
@@ -130,33 +125,18 @@ namespace GridMoment.UI.WebSite.Controllers
             return PartialView(comments);
         }
 
+        [HttpGet]
+        public ActionResult ShowUserBookmarks(string modelName)
+            => PartialView("~/Views/Shared/UsersPosts.cshtml", Adapter.GetLikedPost(modelName));
+
         public ActionResult UpdateComment()
             => View();
-
-        [HttpPost]
-        public ActionResult UpdateComment(CommentViewModel comment, string text)
-        {
-            if (Adapter.CheckRules(User.Identity.Name) || User.Identity.Name.Equals(comment.AuthorName))
-            {
-                comment.Text = text;
-                var successful = Adapter.UpdateComment(comment);
-
-                if (successful)
-                {
-                    RedirectToAction("Show", "Post", new { postId = comment.PostId });
-                }
-            }
-            return RedirectToAction("Index", "Home"); //издевательство
-        }
-                
+                                
         public ActionResult DeleteComment(System.Guid comId)
         {
             if (Adapter.CheckRules(User.Identity.Name))
             {
-
-
-                //ToDo - Дописать      !!!
-
+                Adapter.DeleteComment(comId);
             }
                   
             return RedirectToAction("Index", "Home"); //издевательство
@@ -176,6 +156,24 @@ namespace GridMoment.UI.WebSite.Controllers
             }
 
             return RedirectToAction("Index", "Home"); //издевательство
-        }        
+        }           
+        
+        [HttpGet]
+        public string ShowRating(Guid post, Guid account)
+        {
+            var result = "";
+            var temporary = Adapter.GetLikes(post, account);
+            foreach (var item in temporary)
+            {
+                result = item.Value.ToString();
+            }
+            return result;
+        }
+        
+        public ActionResult SetLike(Guid post, Guid account)
+        {
+            Adapter.SetLike(post, account);
+            return RedirectToAction("Show", new { postid = post });
+        }
     }
 }

@@ -114,28 +114,7 @@ namespace DataAccessLayer
         /// <returns>Перечисление аккаунтов</returns>
         public IEnumerable<Account> GetAllAccounts()
         {
-            string queryString =
-                "SELECT accountid, login, mail " +
-                "FROM [dbo].accounts";
-
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand(queryString, connection);
-
-                connection.Open();
-
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    yield return new Account()
-                    {
-                        Id = (Guid)reader[0],
-                        Login = (string)reader[1],
-                        Email = (string)reader[2]
-                    };
-                }
-            }
+            return null;
         }
 
         /// <summary>
@@ -233,9 +212,9 @@ namespace DataAccessLayer
                 {
                     return null;
                 }
-                
+
                 while (reader.Read())
-                {                    
+                {
                     if (!checkExisting)
                     {
                         return new Account()
@@ -248,7 +227,7 @@ namespace DataAccessLayer
                             Country = (string)reader[5],
                             Name = (string)reader[6],
                             Role = ((string)reader[7]).Split(','),
-                            Avatar = (byte [])reader[8],
+                            Avatar = (byte[])reader[8],
                             MimeType = (string)reader[9]
                         };
                     }
@@ -261,13 +240,13 @@ namespace DataAccessLayer
                             Role = ((string)reader[7]).Split(',')
                         };
                     }
-                    
+
                 }
 
                 return null;
             }
         }
-        
+
         /// <summary>
         /// Функция для смены пароля по имеющемуся id.
         /// Вызов подразумевается от аккаунта авторизованного пользователя.
@@ -278,7 +257,7 @@ namespace DataAccessLayer
         public bool UpdatePassword(Guid id, string password)
         {
             var queryString =
-                 "UPDATE [dbo].[accounts] " +                     
+                 "UPDATE [dbo].[accounts] " +
                  "SET password = @password " +
                  "WHERE [dbo].accounts.accountid = @accountid";
 
@@ -428,7 +407,7 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
-                
+
                 command.Parameters.AddWithValue("accountid", id);
 
                 try
@@ -452,11 +431,10 @@ namespace DataAccessLayer
         /// <returns>Экземпляр класса Post</returns>
         public Post GetPost(Guid postId)
         {
-            string queryString =
-                "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, [dbo].accounts.login, tag, [dbo].posts.mimetype " +
+            var queryString =
+                "SELECT posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, tag, posts.mimetype " +
                 "FROM [dbo].posts, [dbo].tags, [dbo].accounts " +
-                "WHERE ([dbo].posts.postid = @postid) AND ([dbo].tags.postid = [dbo].posts.postid) " +
-                "AND ([dbo].accounts.accountid = [dbo].posts.accountid)";
+                "WHERE (posts.postid = @postid) AND (tags.postid = posts.postid);";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -478,14 +456,14 @@ namespace DataAccessLayer
                     {
                         PostId = postId,
                         NamePost = (string)reader[1],
-                        Image = (byte [])reader[2],
+                        Image = (byte[])reader[2],
                         CreatedTime = (DateTime)reader[3],
                         AccountId = (Guid)reader[4],
                         Rating = (int)reader[5],
                         Text = (string)reader[6],
-                        AuthorName = (string)reader[7],
-                        Tags = ((string)reader[8]).Split(','),
-                        MimeType = (string)reader[9]
+                        AuthorName = NameById((Guid)reader[4]),
+                        Tags = ((string)reader[7]).Split(','),
+                        MimeType = (string)reader[8]
                     };
                 }
 
@@ -504,7 +482,7 @@ namespace DataAccessLayer
                 "SELECT [dbo].comments.text, [dbo].comments.createdtime, comments.accountid, comments.name " +
                 "FROM [dbo].comments " +
                 "WHERE [dbo].comments.postid = @postid;";
-                       
+
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
@@ -537,8 +515,8 @@ namespace DataAccessLayer
         public bool CreateComment(Comment comment)
         {
             var queryString =
-                "INSERT INTO [dbo].comments([dbo].comments.comid, [dbo].comments.createdtime, [dbo].comments.accountid, [dbo].comments.postid, [dbo].comments.name) " +
-                "VALUES(@comid, @createdtime), @accountid, @postid, @name);";
+                "INSERT INTO [dbo].comments ([dbo].comments.comid, [dbo].comments.createdtime, [dbo].comments.accountid, [dbo].comments.postid, [dbo].comments.name, [dbo].comments.text) " +
+                "VALUES (@comid, @createdtime, @accountid, @postid, @name, @text);";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -549,39 +527,8 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("accountid", comment.AccountId);
                 command.Parameters.AddWithValue("postid", comment.PostId);
                 command.Parameters.AddWithValue("name", comment.AuthorName);
-                connection.Open();
-
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                    var stack = e.StackTrace;
-                    throw new Exception();
-                }
-
-                return true;
-            }
-        }
-
-        public bool UpdateComment(Comment comment)
-        {
-            var queryString =
-                 "UPDATE [dbo].[comments] " +
-                     "SET [text] = @text " +
-                 "WHERE [dbo].comment.comid = @comid";
-
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand(queryString, connection);
-
-                command.Parameters.AddWithValue("comid", comment.ComId);
                 command.Parameters.AddWithValue("text", comment.Text);
 
-                connection.Open();
-
                 try
                 {
                     connection.Open();
@@ -596,6 +543,8 @@ namespace DataAccessLayer
                 return true;
             }
         }
+
+
 
         /// <summary>
         /// Получение всех постов.
@@ -604,17 +553,16 @@ namespace DataAccessLayer
         public List<Post> GetAllPosts()
         {
             string queryString =
-                "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.text, [dbo].accounts.login, tag, [dbo].posts.mimetype " +
+                "SELECT [dbo].posts.postid, posts.postname, posts.source, posts.createdtime, posts.accountid, posts.rating, posts.[text], [dbo].accounts.[login], tag, [dbo].posts.mimetype " +
                 "FROM [dbo].posts, [dbo].tags, [dbo].accounts " +
-                "WHERE ([dbo].tags.postid = [dbo].posts.postid) " +
-                "AND ([dbo].posts.accountid = [dbo].accounts.accountid)";
+                "WHERE (([dbo].tags.postid = [dbo].posts.postid) AND ([dbo].posts.accountid = [dbo].accounts.accountid))";
 
             List<Post> _list;
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
-                
+
                 connection.Open();
                 var reader = command.ExecuteReader();
 
@@ -622,11 +570,11 @@ namespace DataAccessLayer
                 {
                     return null;
                 }
-               
+
                 _list = new List<Post>();
 
                 while (reader.Read())
-                {                   
+                {
                     _list.Add(new Post()
                     {
                         PostId = (Guid)reader[0],
@@ -638,10 +586,9 @@ namespace DataAccessLayer
                         Text = (string)reader[6],
                         AuthorName = (string)reader[7],
                         Tags = ((string)reader[8]).Split(','),
-                        MimeType = (string)reader[9],
-                        Avatar = GetAccountByLogin((string)reader[7], false).Avatar,
-                        MimeTypeAvatar = GetAccountByLogin((string)reader[7], false).MimeType
+                        MimeType = (string)reader[9]
                     });
+                    var exec = _list;
                 }
 
                 return _list;
@@ -680,7 +627,7 @@ namespace DataAccessLayer
             {
                 var command = new SqlCommand(queryString, connection);
                 command.Parameters.AddWithValue("postid", postid);
-                command.Parameters.AddWithValue("postname",post.NamePost);
+                command.Parameters.AddWithValue("postname", post.NamePost);
                 command.Parameters.AddWithValue("source", post.Image);
                 command.Parameters.AddWithValue("createdtime", DateTime.Now);
                 command.Parameters.AddWithValue("mimetype", post.MimeType);
@@ -696,14 +643,14 @@ namespace DataAccessLayer
                 }
                 catch (Exception e)
                 {
-                    var stack = e.StackTrace;                    
-                    throw new Exception();                    
+                    var stack = e.StackTrace;
+                    throw new Exception();
                 }
             }
 
             return true;
         }
-               
+
         /// <summary>
         /// Возвращает Идентификатор пользователя по его логину
         /// </summary>
@@ -726,11 +673,35 @@ namespace DataAccessLayer
                 var reader = command.ExecuteReader();
 
                 if (reader == null)
-                {
                     return Guid.Empty;
-                }
+                Guid guid = Guid.Empty;
+                while (reader.Read())
+                    guid = (Guid)reader[0];
+                return guid;
+            }
+        }
 
-                return (Guid)reader[0];
+        public string NameById(Guid accountId)
+        {
+            var queryString =
+               "SELECT accounts.login " +
+               "FROM [dbo].accounts " +
+               "WHERE accounts.accountid = @accountid;";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("accountid", accountId);
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader == null)
+                    return null;
+                var str = "";
+                while (reader.Read())
+                    str = (string)reader[0];
+                return str;
             }
         }
 
@@ -744,29 +715,29 @@ namespace DataAccessLayer
         /// <returns></returns>
         public bool SetLike(Guid postId, Guid accountId)
         {
-           string queryString =
-               "INSERT INTO [dbo].Likes ([dbo].Likes.likeid, [dbo].Likes.postid, [dbo].Likes.accountid) " +
-               "VALUES (@likeid, @postid, @accountid); " +
-               "UPDATE [dbo].[posts] " +
-                     "SET [rating] = rating + 1 " +
-                 "WHERE [dbo].posts.postid = @postid";
+            string queryString =
+                "INSERT INTO [dbo].Likes ([dbo].Likes.likeid, [dbo].Likes.postid, [dbo].Likes.accountid) " +
+                "VALUES (@likeid, @postid, @accountid); " +
+                "UPDATE [dbo].[posts] " +
+                      "SET [rating] = rating + 1 " +
+                  "WHERE [dbo].posts.postid = @postid";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
-           {
-               var command = new SqlCommand(queryString, connection);
-          
-               command.Parameters.AddWithValue("likeid", Guid.NewGuid());
-               command.Parameters.AddWithValue("postid", postId);
-               command.Parameters.AddWithValue("accountid", accountId);
-          
-               try
-               {
-                   connection.Open();
-                   command.ExecuteNonQuery();
-               }
-               catch (Exception) { return false; throw new Exception(); }
-           }
-           return true;                                 
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("likeid", Guid.NewGuid());
+                command.Parameters.AddWithValue("postid", postId);
+                command.Parameters.AddWithValue("accountid", accountId);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception) { return false; throw new Exception(); }
+            }
+            return true;
         }
 
         /// <summary>
@@ -774,22 +745,24 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public IEnumerable<Guid> GetLikedByUser(Guid accountId)
+        public IEnumerable<Guid> GetLikedByUser(string modelName)
         {
+            var account = GetAccountByLogin(modelName, true);
+            var accountId = account.Id;
             var queryString =
                 "SELECT (postid) " +
                 "FROM [dbo].Likes " +
-                "WHERE accountid = @acountid;";
+                "WHERE accountid = @accountid;";
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 List<Guid> _list;
-                var command = new SqlCommand(queryString, connection);                
-                command.Parameters.AddWithValue("accountid", accountId);                
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("accountid", accountId);
                 connection.Open();
 
                 var reader = command.ExecuteReader();
-                _list = new List<Guid>();           
-               
+                _list = new List<Guid>();
+
                 while (reader.Read())
                     _list.Add((Guid)reader[0]);
 
@@ -807,7 +780,7 @@ namespace DataAccessLayer
         {
             var queryString =
                 "SELECT [dbo].posts.rating, [dbo].Likes.likeid " +
-                "FROM [dbo].posts, [dbo].posts.Likes " +
+                "FROM [dbo].posts, [dbo].Likes " +
                 "WHERE ([dbo].posts.postid = @postid) AND " +
                 "([dbo].Likes.accountid = @accountid) AND ([dbo].Likes.postid = @postid);";
 
@@ -836,12 +809,44 @@ namespace DataAccessLayer
                     toReturn.Add(true, rating);
                     return toReturn;
                 }
-
-                return null;
+                else
+                {
+                    toReturn = new Dictionary<bool, int>();
+                    toReturn.Add(false, rating);
+                    return toReturn;
+                }
             }
         }
 
-        #endregion
+        /// <summary>
+        /// Удаление комментария по guid комментария
+        /// </summary>
+        /// <param name="comid">Уник. идент. комментария</param>
+        public void DeleteComment(Guid comid)
+        {
+            var queryString = "DELETE FROM [dbo].[comments] " +
+                              "WHERE comments.comid = @comid;";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("comid", comid);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                return;
+            }
+
+            #endregion
+        }
     }
 }
+
 

@@ -8,16 +8,6 @@ namespace Entities
     public class Post
     {
         /// <summary>
-        /// Фотография Пользователя
-        /// </summary>
-        public byte[] Avatar { get; set; }
-
-        /// <summary>
-        /// Тип файла фотографии пользователя
-        /// </summary>
-        public string MimeTypeAvatar { get; set; }
-
-        /// <summary>
         /// Id аккаунта автора поста.
         /// </summary>
         public Guid AccountId { get; set; }
@@ -61,11 +51,7 @@ namespace Entities
         /// Дата создания. Нужна для выборок на главной.
         /// </summary>
         public DateTime CreatedTime { get; set; }
-
-       
-
-       
-
+        
         /// <summary>
         /// Колчиество лайков данного поста.
         /// </summary>

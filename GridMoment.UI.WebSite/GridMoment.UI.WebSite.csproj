@@ -223,7 +223,6 @@
     <Content Include="Views\Post\Show.cshtml" />
     <Content Include="Views\Shared\UsersPosts.cshtml" />
     <Content Include="Views\Post\ShowComments.cshtml" />
-    <Content Include="Views\Post\AddComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

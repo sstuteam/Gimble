@@ -128,9 +128,6 @@ namespace GridMoment.UI.WebSite.Controllers
         public static bool CreateComment(CommentViewModel comment)
             => _logic.CreateComment(Mapper.Map<Comment>(comment));
 
-        public static bool UpdateComment(CommentViewModel comment)
-             => _logic.UpdateComment(Mapper.Map<Comment>(comment));
-
         public static Guid GetIdByName(string name)
             => _logic.GetIdByName(name);
 
@@ -140,8 +137,11 @@ namespace GridMoment.UI.WebSite.Controllers
         public static bool SetLike(Guid postId, Guid accountId)
             => _logic.SetLike(postId, accountId);
 
-        public static List<PostViewModel> GetLikedPost(Guid accountId)
-            => Mapper.Map<List<PostViewModel>>(_logic.GetBookmarks(accountId));
+        public static void DeleteComment(Guid comid)
+            => _logic.DeleteComment(comid);
+
+        public static List<PostViewModel> GetLikedPost(string modelName)
+            => Mapper.Map<List<PostViewModel>>(_logic.GetBookmarks(modelName));
 
         #endregion
     }
