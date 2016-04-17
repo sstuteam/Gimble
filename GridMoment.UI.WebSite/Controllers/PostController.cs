@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Entities;
 using System.Web;
 using System.IO;
-using System.Drawing;
 using AutoMapper;
 using System;
 

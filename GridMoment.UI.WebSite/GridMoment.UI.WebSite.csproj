@@ -242,6 +242,10 @@
       <Project>{894058fd-f076-4b44-9a3b-2432b1e6f8fd}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InterfacesLibrary\InterfacesLibrary.csproj">
+      <Project>{213bdc56-6357-4d1c-b177-2aba17cd2eb7}</Project>
+      <Name>InterfacesLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

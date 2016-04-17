@@ -56,5 +56,7 @@ namespace Entities
         /// Колчиество лайков данного поста.
         /// </summary>
         public int Rating { get; set; }
+
+        public string tmp { get; set; }
     }
 }

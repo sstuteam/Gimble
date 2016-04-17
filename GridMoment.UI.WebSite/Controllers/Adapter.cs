@@ -4,6 +4,7 @@ using GridMoment.UI.WebSite.Models;
 using System;
 using System.Collections.Generic;
 using AutoMapper;
+using InterfacesLibrary;
 
 namespace GridMoment.UI.WebSite.Controllers
 {
@@ -15,7 +16,7 @@ namespace GridMoment.UI.WebSite.Controllers
         /// <summary>
         /// Экземпляр логики приложения
         /// </summary>
-        private static Logic _logic;
+        private static IBusinessLogicLayer _logic;
 
         /// <summary>
         /// закрытый конструктор X-DDDD

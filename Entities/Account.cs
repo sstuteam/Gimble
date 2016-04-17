@@ -53,6 +53,11 @@
         /// <summary>
         /// список ролей данного пользователя
         /// </summary>
-        public string[] Role { get; set; }       
+        public string[] Role { get; set; }
+
+        /// <summary>
+        /// Дата и время создания пользовательского аакаунта
+        /// </summary>
+        public System.DateTime CreatedTime { get; set; }
     }
 }
