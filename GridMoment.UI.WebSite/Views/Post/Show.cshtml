@@ -88,7 +88,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            using (Html.BeginForm("AddComment", "Post", new { PostId = Model.PostId, AccountId = Model.PostId, AuthorName = Model.AuthorName }, FormMethod.Post))
+                            using (Html.BeginForm("AddComment", "Post", new { PostId = Model.PostId, AuthorName = User.Identity.Name }, FormMethod.Post))
                             {
                                 <div class="form-group">
                                     <input type="email" name="Text" class="form-control" id="inputComment" placeholder="Оставьте свой отзыв или важное мнение, с">

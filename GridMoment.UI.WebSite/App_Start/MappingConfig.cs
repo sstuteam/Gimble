@@ -19,6 +19,10 @@ namespace GridMoment.UI.WebSite.App_Start
             Mapper.CreateMap<Comment, CommentViewModel>();  //Маппинг моделей комментариев
                                                             
             Mapper.CreateMap<CommentViewModel, Comment>();  //Маппинг моделей комментариев
+
+            Mapper.CreateMap<AccountsPrevievViewModel, Account>();
+
+            Mapper.CreateMap<Account, AccountsPrevievViewModel>();
         }
     }
 }

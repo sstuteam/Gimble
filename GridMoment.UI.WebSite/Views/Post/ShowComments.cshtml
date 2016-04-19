@@ -15,7 +15,7 @@
                     <div class="media-body">
                         <a class="media-heading text-muted">
                             <b>@item.AuthorName</b>
-                            <span class="time text-muted">17:16</span><span class="date text-muted">@item.CreatedTime</span>
+                            <span class="date text-muted">@item.CreatedTime</span>
                         </a>
                         <ul class="list-unstyled pull-right">
                             <li class="dropdown">
@@ -23,7 +23,7 @@
                                     <span class="glyphicon glyphicon-menu-hamburger pull-right text-muted"></span>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    <li><a><center>@Html.ActionLink("Удалить", "DeleteComment", "Post")</center></a></li>
+                                    <li><a><center>@Html.ActionLink("Удалить", "DeleteComment", new { comId = item.ComId, accountId = item.AccountId })</center></a></li>
 
                                 </ul>
                             </li>

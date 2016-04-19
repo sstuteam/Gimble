@@ -131,9 +131,11 @@ namespace GridMoment.UI.WebSite.Controllers
         public ActionResult UpdateComment()
             => View();
                                 
-        public ActionResult DeleteComment(System.Guid comId)
+        public ActionResult DeleteComment(System.Guid comId, System.Guid accountId)
         {
-            if (Adapter.CheckRules(User.Identity.Name))
+            var account = Adapter.GetAccount(User.Identity.Name);
+
+            if (Adapter.CheckRulesAdmin(User.Identity.Name) || Adapter.CheckRulesModer(User.Identity.Name) || account.Id == accountId)
             {
                 Adapter.DeleteComment(comId);
             }

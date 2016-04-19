@@ -91,7 +91,30 @@ namespace DataAccessLayer
                
         public IEnumerable<Account> GetAllAccounts()
         {
-            return null;
+            string queryString =
+               "SELECT [dbo].accounts.accountid, login, mail, [dbo].accounts.name " +
+               "FROM [dbo].accounts;";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                var list = new List<Account>();
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                   list.Add(new Account()
+                    {
+                        Id = (Guid)reader[0],
+                        Login = (string)reader[1],
+                        Email = (string)reader[2],
+                        Name = (string)reader[3]
+                    });
+                }
+                return list;
+            }
         }
 
         
@@ -159,7 +182,7 @@ namespace DataAccessLayer
             string queryString =
                 "SELECT [dbo].accounts.accountid, login, password, mail, city, country, [dbo].accounts.name, [dbo].Roles.Name, [dbo].accounts.photo, [dbo].accounts.mimetype " +
                 "FROM [dbo].accounts, [dbo].UsersRoles, [dbo].Roles " +
-                "WHERE (login = @login) AND ([dbo].Roles.RoleId = [dbo].UsersRoles.RoleId);";
+                "WHERE (login = 'admin') AND ([dbo].accounts.accountid = [dbo].UsersRoles.AccountId) AND ([dbo].UsersRoles.RoleId = [dbo].Roles.RoleId);";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -324,19 +347,19 @@ namespace DataAccessLayer
             }
         }
 
-        public bool DeleteAccount(Guid id)
+        public bool DeleteAccount(string name)
         {
             string queryString =
-            "DELETE FROM[dbo].[accounts] " +
-            "WHERE accounts.accountid = @accountid; " +
-            "DELETE FROM [dbo].[posts], [dbo].[tags] " +
-            "WHERE posts.accountid = @accountid; ";
+                "DELETE FROM[dbo].comments "     +
+                "WHERE name = @name; "           +
+                "DELETE FROM[dbo].[accounts] "   +
+                "WHERE accounts.[login] = @name;";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
 
-                command.Parameters.AddWithValue("accountid", id);
+                command.Parameters.AddWithValue("name", name);
 
                 try
                 {
@@ -397,7 +420,7 @@ namespace DataAccessLayer
         public List<Comment> GetComents(Guid postId)
         {
             string queryString =
-                "SELECT [dbo].comments.text, [dbo].comments.createdtime, comments.accountid, comments.name " +
+                "SELECT [dbo].comments.text, [dbo].comments.createdtime, comments.accountid, comments.name, comments.comid, comments.postid " +
                 "FROM [dbo].comments " +
                 "WHERE [dbo].comments.postid = @postid;";
 
@@ -418,11 +441,13 @@ namespace DataAccessLayer
                 while (reader.Read())
                 {
                     list.Add(new Comment()
-                    {
+                    { 
                         Text = (string)reader[0],
                         CreatedTime = (DateTime)reader[1],
                         AccountId = (Guid)reader[2],
-                        AuthorName = (string)reader[3]
+                        AuthorName = (string)reader[3],
+                        ComId = (Guid)reader[4],
+                        PostId = (Guid)reader[5]
                     });
                 }
 

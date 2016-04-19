@@ -66,7 +66,7 @@ namespace InterfacesLibrary
         /// </summary>
         /// <param name="id">Guid пользователя</param>
         /// <returns></returns>
-        bool DeleteAccount(Guid id);
+        bool DeleteAccount(string name);
 
         /// <summary>
         /// Возможность сменить адрес почты в своём аккаунте

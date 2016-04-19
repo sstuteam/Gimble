@@ -12,8 +12,7 @@ namespace GridMoment.UI.WebSite.Models
 
         /// <summary>
         /// Содержимое комментария
-        /// </summary>
-        [Required, MinLength(15, ErrorMessage = "Он слишком короткий")]
+        /// </summary>        
         public string Text { get; set; }
 
         /// <summary>

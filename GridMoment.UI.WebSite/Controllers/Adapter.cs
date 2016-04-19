@@ -24,6 +24,11 @@ namespace GridMoment.UI.WebSite.Controllers
         private Adapter()
         {  }
 
+        public static void DeleteAccount(string name)
+        {
+            _logic.DeleteAccount(name);
+        }
+
         /// <summary>
         /// Инициализация класса логики(Логика будет только одна)
         /// </summary>
@@ -34,20 +39,32 @@ namespace GridMoment.UI.WebSite.Controllers
         }
 
         /// <summary>
-        /// Проверить, если действует админ или модератер
+        /// Проверить, если действует админ
         /// </summary>
         /// <param name="name">Имя(использовать User.Identity.Name)</param>
         /// <returns></returns>
-        public static bool CheckRules(string name)
+        public static bool CheckRulesAdmin(string name)
         {
             var account = Adapter.GetAccount(name);
             var hasRights = false;
-
             foreach (var item in account.Role)
-            {
-                if (item.Equals("Moder") || item.Equals("Admin"))
+                if (item.Equals("Admin"))
                     hasRights = true;
-            }
+            return hasRights;
+        }
+
+        /// <summary>
+        /// Проверить, если действует модератер
+        /// </summary>
+        /// <param name="name">Имя(использовать User.Identity.Name)</param>
+        /// <returns></returns>
+        public static bool CheckRulesModer(string name)
+        {
+            var account = Adapter.GetAccount(name);
+            var hasRights = false;
+            foreach (var item in account.Role)
+                if (item.Equals("Moder"))
+                    hasRights = true;
             return hasRights;
         }
 
@@ -143,6 +160,11 @@ namespace GridMoment.UI.WebSite.Controllers
 
         public static List<PostViewModel> GetLikedPost(string modelName)
             => Mapper.Map<List<PostViewModel>>(_logic.GetBookmarks(modelName));
+
+        public static List<AccountsPrevievViewModel> GetAllAccounts()
+        {
+            return Mapper.Map<List<AccountsPrevievViewModel>>(_logic.GetAllAccounts());
+        }
 
         #endregion
     }

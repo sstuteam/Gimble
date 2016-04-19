@@ -81,7 +81,7 @@ namespace InterfacesLibrary
         /// </summary>
         /// <param name="id">Guid пользователя</param>
         /// <returns>Успешность операции</returns>
-        bool DeleteAccount(Guid id);
+        bool DeleteAccount(string name);
 
         /// <summary>
         /// Функция добавления поста.

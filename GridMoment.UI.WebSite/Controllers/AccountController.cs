@@ -27,7 +27,7 @@ namespace GridMoment.UI.WebSite.Controllers
 
             var checking = Adapter.CheckAccount(model.Login);
 
-            if ((checking != null) && (Adapter.GetSHA256(checking.Password) == model.Password))
+            if ((checking != null) && (Adapter.GetSHA256(model.Password) == checking.Password))
             {
                 FormsAuthentication.SetAuthCookie(model.Login, true);
 
@@ -40,8 +40,6 @@ namespace GridMoment.UI.WebSite.Controllers
                     RedirectToAction("Index", "Home");
                 }                    
             }
-            //IndexShowNameViewModel viewModel = new IndexShowNameViewModel { Name = model.Login };
-
             return RedirectToAction("Index", "Home");
         }
 
@@ -59,8 +57,8 @@ namespace GridMoment.UI.WebSite.Controllers
             {
                 return View(model);
             }
-
-            if (Adapter.CheckAccount(model.Login) != null)
+            var acc = Adapter.CheckAccount(model.Login);
+            if (Adapter.CheckAccount(model.Login).Login != null)
             {
                 ModelState.AddModelError("Login", "Пользователь с таким логином уже существует!");
             }

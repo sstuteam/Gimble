@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GridMoment.UI.WebSite.Models.AccountsPrevievViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PHP myAdmin</h2>
+<head>
+    <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid" style="margin-top:200px">
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Login)
+                    </td>
+                    <td>
+                        | @Html.ActionLink("Delete", "Delete", new { name = item.Login })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>

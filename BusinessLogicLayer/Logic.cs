@@ -57,8 +57,8 @@ namespace BusinessLogicLayer
         public bool UpdateCityAndCountry(Guid id, string newCity, string newCountry)
             => _data.UpdateCityAndCountry(id, newCity, newCountry);
 
-        public bool DeleteAccount(Guid id)
-            => _data.DeleteAccount(id);
+        public bool DeleteAccount(string name)
+            => _data.DeleteAccount(name);
 
         public bool UpdateMail(Guid id, string newMail)
             => _data.UpdateMail(id, newMail);
