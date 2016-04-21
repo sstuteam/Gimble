@@ -58,7 +58,7 @@ namespace GridMoment.UI.WebSite.Controllers
                 return View(model);
             }
             var acc = Adapter.CheckAccount(model.Login);
-            if (Adapter.CheckAccount(model.Login).Login != null)
+            if (acc.Login != null)
             {
                 ModelState.AddModelError("Login", "Пользователь с таким логином уже существует!");
             }
@@ -76,9 +76,11 @@ namespace GridMoment.UI.WebSite.Controllers
                 Email = model.Email
             };
 
-            Adapter.CreateUserAndAccount(account);
-
-            FormsAuthentication.SetAuthCookie(account.Login, true);
+            bool success = Adapter.CreateUserAndAccount(account);
+            if (success)
+            {
+                FormsAuthentication.SetAuthCookie(account.Login, true);
+            }           
 
             return RedirectToAction("Index", "Home");
         }

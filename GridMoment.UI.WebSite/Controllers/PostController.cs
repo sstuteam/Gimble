@@ -63,7 +63,8 @@ namespace GridMoment.UI.WebSite.Controllers
 
             var modelToSend = Mapper.Map<Post>(model);
             modelToSend.MimeType = ext;
-                  
+            modelToSend.AccountId = postCreator.Id;
+            modelToSend.AuthorName = postCreator.Login;
             Adapter.CreatePost(modelToSend);
 
             return View();

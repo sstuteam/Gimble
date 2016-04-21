@@ -21,7 +21,7 @@ namespace BusinessLogicLayer
 
         public bool CreateAccount(Account account)
         {
-            if (GetAccountByLogin(account.Login, true) != null)
+            if (GetAccountByLogin(account.Login, true).Login != null)
                 return false;
 
             account.Id = Guid.NewGuid();
@@ -71,6 +71,7 @@ namespace BusinessLogicLayer
             post.Rating = 0;
             post.PostId = Guid.NewGuid();
             var atrAdd = "";
+            post.CreatedTime = DateTime.Now;
             var tagsLength = post.Tags.Length;
 
             //Конвертация меточек в строку для бд

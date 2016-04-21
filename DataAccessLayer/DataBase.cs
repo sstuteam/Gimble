@@ -182,7 +182,7 @@ namespace DataAccessLayer
             string queryString =
                 "SELECT [dbo].accounts.accountid, login, password, mail, city, country, [dbo].accounts.name, [dbo].Roles.Name, [dbo].accounts.photo, [dbo].accounts.mimetype " +
                 "FROM [dbo].accounts, [dbo].UsersRoles, [dbo].Roles " +
-                "WHERE (login = 'admin') AND ([dbo].accounts.accountid = [dbo].UsersRoles.AccountId) AND ([dbo].UsersRoles.RoleId = [dbo].Roles.RoleId);";
+                "WHERE (login = @login) AND ([dbo].accounts.accountid = [dbo].UsersRoles.AccountId) AND ([dbo].UsersRoles.RoleId = [dbo].Roles.RoleId);";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
