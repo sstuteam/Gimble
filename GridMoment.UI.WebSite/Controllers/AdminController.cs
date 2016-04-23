@@ -13,8 +13,12 @@ namespace GridMoment.UI.WebSite.Controllers
         {
             if (Adapter.CheckRulesAdmin(User.Identity.Name))
             {
-                var accounts = Adapter.GetAllAccounts();
-                return View(accounts);
+                var model = Adapter.GetAllAccounts();
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView(model);
+                }
+                return View(model);
             }
             return RedirectToAction("Home", "Index");            
         }

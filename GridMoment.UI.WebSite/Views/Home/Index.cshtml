@@ -34,10 +34,10 @@
                         <span class="glyphicon glyphicon-triangle-bottom"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li> @Html.ActionLink("Мой профиль", "Index", "Profile") </li>
-                        <li> @Html.ActionLink("Настройки", "Index", "Settings")</li>
+                        <li> <a class="ajax-loading" href="~/Profile/Index">Мой профиль</a></li>
+                        <li> <a class="ajax-loading" href="~/Settings/Index">Настройки</a></li>
                         <li class="divider"></li>
-                        <li> @Html.ActionLink("Выйти из себя", "Logout", "Account") </li>
+                        <li> <a class="ajax-loading" href="~/Profile/Index">Выход из себя</a></li>
                     </ul>
                 </li>
             </ul>
@@ -154,5 +154,6 @@
     <script src="/Scripts/scrolling-nav.js"></script>
     <script src="/Scripts/jquery.easing.min.js"></script>
     <script src="/Scripts/header.js"></script><!-- header вставляется в первый попавшийся класс container-fluid -->
+    <script src="~/Scripts/PartialLoading.js"></script>
 </body>
 </html>

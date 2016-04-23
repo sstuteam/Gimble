@@ -11,6 +11,10 @@ namespace GridMoment.UI.WebSite.Controllers
         // GET: информация о странице
         public ActionResult Index(int id)
         {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
             return View();
         }
           
@@ -66,6 +70,10 @@ namespace GridMoment.UI.WebSite.Controllers
             //Чтобы показать новые ошибки
             if (!ModelState.IsValid)
             {
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView(model);
+                }
                 return View(model);
             }
 

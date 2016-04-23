@@ -47,6 +47,10 @@ namespace GridMoment.UI.WebSite.Controllers
         {
             var account = Adapter.GetAccount(name);
             var hasRights = false;
+            if (account == null)
+            {
+                return hasRights;
+            }
             foreach (var item in account.Role)
                 if (item.Equals("Admin"))
                     hasRights = true;
@@ -62,6 +66,10 @@ namespace GridMoment.UI.WebSite.Controllers
         {
             var account = Adapter.GetAccount(name);
             var hasRights = false;
+            if (account == null)
+            {
+                return hasRights;
+            }
             foreach (var item in account.Role)
                 if (item.Equals("Moder"))
                     hasRights = true;

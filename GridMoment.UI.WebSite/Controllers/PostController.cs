@@ -14,6 +14,10 @@ namespace GridMoment.UI.WebSite.Controllers
         // GET: Post
         public ActionResult Index()
         {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
             return View();
         }
 
@@ -30,11 +34,19 @@ namespace GridMoment.UI.WebSite.Controllers
             MemoryStream memoryStream = new MemoryStream(post.Image);
             var model = Mapper.Map<PostViewModel>(post);
 
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(model);
+            }
             return View(model);
         }
         
         public ActionResult Add()
-        {            
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
             return View();
         }
 
@@ -67,7 +79,7 @@ namespace GridMoment.UI.WebSite.Controllers
             modelToSend.AuthorName = postCreator.Login;
             Adapter.CreatePost(modelToSend);
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -128,10 +140,7 @@ namespace GridMoment.UI.WebSite.Controllers
         [HttpGet]
         public ActionResult ShowUserBookmarks(string modelName)
             => PartialView("~/Views/Shared/UsersPosts.cshtml", Adapter.GetLikedPost(modelName));
-
-        public ActionResult UpdateComment()
-            => View();
-                                
+                               
         public ActionResult DeleteComment(System.Guid comId, System.Guid accountId)
         {
             var account = Adapter.GetAccount(User.Identity.Name);

@@ -11,6 +11,10 @@ namespace GridMoment.UI.WebSite.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
             return View();
         }
     }

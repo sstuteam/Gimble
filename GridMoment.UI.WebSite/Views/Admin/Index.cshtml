@@ -23,7 +23,7 @@
                         @Html.DisplayFor(modelItem => item.Login)
                     </td>
                     <td>
-                        | @Html.ActionLink("Delete", "Delete", new { name = item.Login })
+                        | @Html.ActionLink("Delete", "Delete", new { name = item.Login }, new { @class = "ajax-loading" })
                     </td>
                 </tr>
             }
