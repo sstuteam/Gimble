@@ -9,7 +9,7 @@ namespace GridMoment.UI.WebSite.Controllers
     public class AccountController : Controller
     {
         // GET: информация о странице
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
             if (Request.IsAjaxRequest())
             {
