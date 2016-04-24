@@ -14,6 +14,7 @@
     <link href="~/Styles/index.css" rel="stylesheet" />
     <link href="~/Styles/header.css" rel="stylesheet" />
     <link href="~/Styles/footer.css" rel="stylesheet" />
+    <link href="~/Styles/Loading.css" rel="stylesheet" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -124,7 +125,7 @@
 
         <div class="tab-content">
             <div id="last-story-panel" class="tab-pane fade in active">
-                <!--Доска последних историй-->
+                <!--Доска последних историй-->                
                 @{Html.RenderAction("ShowLatestNews", "Post");}
              </div>
 
@@ -137,6 +138,13 @@
                 @{Html.RenderAction("Show30DaysNews", "Post"); }
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <div class="block center-block" id="loading"><img src="~/Content/Images/Nofotogif.gif"></div>
+            </div>
+            <div class="col-xs-4"></div>            
+        </div>
 
     </div>
         <footer class="footer center-block">
@@ -148,7 +156,8 @@
 
     <br>   
 
-    <script src="/Scripts/jquery-1.11.3.min.js"></script>
+
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     <script src="/Scripts/bootstrap.min.js"></script>    
     <script src="/Scripts/modalwindow.js"></script><!-- Управление модальными окнами -->
     <script src="/Scripts/scrolling-nav.js"></script>

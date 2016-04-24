@@ -108,6 +108,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\log.png" />
+    <Content Include="Content\Images\Nofotogif.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\addprofile.js" />
@@ -117,6 +118,7 @@
     <Content Include="Scripts\libs\prettify.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PartialLoading.js" />
+    <Content Include="Scripts\UserPartialLoading.js" />
     <Content Include="Styles\addpost.css" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
@@ -133,6 +135,7 @@
     <Content Include="Styles\libs\bootstrap.min.css" />
     <Content Include="Styles\libs\font-awesome.css" />
     <Content Include="Styles\libs\prettify.css" />
+    <Content Include="Styles\Loading.css" />
     <Content Include="Styles\post.css" />
     <Content Include="Styles\profile.css" />
     <Content Include="Styles\settings.css" />

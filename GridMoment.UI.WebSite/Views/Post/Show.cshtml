@@ -91,7 +91,7 @@
                             using (Html.BeginForm("AddComment", "Post", new { PostId = Model.PostId, AuthorName = User.Identity.Name }, FormMethod.Post))
                             {
                                 <div class="form-group">
-                                    <input type="email" name="Text" class="form-control" id="inputComment" placeholder="Оставьте свой отзыв или важное мнение, с">
+                                    <input type="text" name="Text" class="form-control" id="inputComment" placeholder="Оставьте свой отзыв или важное мнение, с">
                                 </div>
                                 <input type="submit" class="btn btn-default right" value="Отправить" />
                             }

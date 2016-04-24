@@ -8,15 +8,14 @@
     <link href="~/Styles/profile.css" rel="stylesheet" />
     <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
     <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Styles/Loading.css" rel="stylesheet" />
 </head>
 <body>   
         <p></p>
         <section class="container-fluid" style="margin-top:110px;">
             <div class="row">
                 <div class="col-xs-2">
-                    <div class="ratio img-responsive img-circle photo">
-                        <img src="@Url.Action("ShowAvatar", "Account", new { name = Model.Login })" alt="Фотография участника" />
-                    </div>
+                    <img class="ratio img-responsive img-circle" src="@Url.Action("ShowAvatar", "Account", new { name = Model.Login })" alt="Фотография" />
                 </div>
                 <div class="col-xs-7 some-margin">@Model.Name</div>
                 <div class="col-xs-7"><small>@Model.City</small></div>
@@ -46,8 +45,16 @@
                 <div id="panel2" class="tab-pane fade">
                     @Html.Action("ShowUserBookmarks", "Post", new { modelName = Model.Login })
                 </div>
+                <div class="row">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <div class="block center-block" id="loading"><img src="~/Content/Images/Nofotogif.gif"></div>
+                    </div>
+                    <div class="col-xs-4"></div>
+                </div>
             </div>
         </section>
     <script src="~/Scripts/jquery-2.2.0.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/UserPartialLoading.js"></script>
 </body>
