@@ -48,7 +48,7 @@ namespace InterfacesLibrary
         /// Возвращает словарь всех аккаунтов со списком их ролей
         /// </summary>
         /// <returns>словарь всех аккаунтов со списком их ролей</returns>
-        Dictionary<Guid, List<string>> GetRolesOfAccounts();
+        Dictionary<Guid, string[]> GetRolesOfAccounts();
 
         /// <summary>
         /// Возвможность в настройках поменять свои географические 
@@ -223,5 +223,14 @@ namespace InterfacesLibrary
         /// <param name="accountId">Уникальный идентификатор пользователя</param>
         /// <returns>Список постов.</returns>
         List<Post> GetBookmarks(string modelName);
+
+        /// <summary>
+        /// Функция для мены типа учётной записи
+        /// Предполагается для использования в панели администрации ресурса
+        /// </summary>
+        /// <param name="accountId">Идентификатор пользователя</param>
+        /// <param name="roleCode">Тип роли - 1-пользователь, 2-модертаор, 3-админ</param>
+        /// <returns></returns>
+        bool UpdateRole(Guid accountId, int roleCode);
     }
 }

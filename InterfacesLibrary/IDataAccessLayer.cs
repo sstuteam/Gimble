@@ -36,7 +36,7 @@ namespace InterfacesLibrary
         /// Функция для получения всех ролей аккаунтов.
         /// </summary>
         /// <returns></returns>
-        Dictionary<Guid, List<string>> GetRolesOfAccounts();
+        Dictionary<Guid, string[]> GetRolesOfAccounts();
 
         /// <summary>
         /// Функция для получения данных аккаунта по логину
@@ -161,5 +161,14 @@ namespace InterfacesLibrary
         /// <param name="accountId">Идентификатор пользователя</param>
         /// <returns>Пару - лайнкул ли этот пользователь и число лайков</returns>
         Dictionary<bool, int> GetLikes(Guid postId, Guid currentUser);
+
+        /// <summary>
+        /// Функция для мены типа учётной записи
+        /// Предполагается для использования в панели администрации ресурса
+        /// </summary>
+        /// <param name="accountId">Идентификатор пользователя</param>
+        /// <param name="roleCode">Тип роли - 1-пользователь, 2-модертаор, 3-админ</param>
+        /// <returns></returns>
+        bool UpdateRole(Guid accountId, int roleCode);
     }
 }

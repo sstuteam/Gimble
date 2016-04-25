@@ -11,7 +11,6 @@ namespace BusinessLogicLayer
     public class Logic : IBusinessLogicLayer
     {
         #region Fields
-        private readonly string _connectionString;
         private readonly string _basixCity = "Не указан город";
         private readonly string _basixCountry = "Не указана страна";
         private readonly byte[] _basixAvatar = { 0, 0, 0, 25, 1, 0, 4 };
@@ -51,7 +50,7 @@ namespace BusinessLogicLayer
         public string[] GetAllRoles()
             => _data.GetAllRoles();
                 
-        public Dictionary<Guid, List<string>> GetRolesOfAccounts()
+        public Dictionary<Guid, string[]> GetRolesOfAccounts()
             => _data.GetRolesOfAccounts();
 
         public bool UpdateCityAndCountry(Guid id, string newCity, string newCountry)
@@ -250,5 +249,13 @@ namespace BusinessLogicLayer
 
             return listOfPosts;
         }
+
+        public bool UpdateRole(Guid accountId, int roleCode)
+        {
+            if (roleCode == 2)
+                return _data.UpdateRole(accountId, 2); //делаем и3 пользователя модератора
+            return false;
+        }
     }
 }
+

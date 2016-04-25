@@ -170,11 +170,16 @@ namespace GridMoment.UI.WebSite.Controllers
             => Mapper.Map<List<PostViewModel>>(_logic.GetBookmarks(modelName));
 
         public static List<AccountsPrevievViewModel> GetAllAccounts()
-        {
-            return Mapper.Map<List<AccountsPrevievViewModel>>(_logic.GetAllAccounts());
-        }
+            => Mapper.Map<List<AccountsPrevievViewModel>>(_logic.GetAllAccounts());
+
+        public static bool UpdateRole(Guid accountId, int roleCode)
+            => _logic.UpdateRole(accountId, roleCode);
+
+        public static Dictionary<Guid, string[]> GetAllRolesOfAccounts()
+            => _logic.GetRolesOfAccounts();
 
         #endregion
     }
 }
+
 

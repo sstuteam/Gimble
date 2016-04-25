@@ -6,6 +6,7 @@
 }
 
 <h2>PHP myAdmin</h2>
+
 <head>
     <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
     <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
@@ -23,7 +24,18 @@
                         @Html.DisplayFor(modelItem => item.Login)
                     </td>
                     <td>
-                        | @Html.ActionLink("Delete", "Delete", new { name = item.Login }, new { @class = "ajax-loading" })
+                        <span class="row">
+                            @foreach (var role in item.Role)
+                            {
+                                <span>
+                                    @role
+                                </span>
+                            }
+                        </span>
+                    </td>
+                    <td>
+                           @Html.ActionLink("Сделать модератором", "UpdateRole", new { accountId = item.Id }, new { @class = "ajax-loading" })
+                         | @Html.ActionLink("Удалить", "Delete", new { name = item.Login }, new { @class = "ajax-loading" })
                     </td>
                 </tr>
             }

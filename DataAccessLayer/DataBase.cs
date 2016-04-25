@@ -92,8 +92,9 @@ namespace DataAccessLayer
         public IEnumerable<Account> GetAllAccounts()
         {
             string queryString =
-               "SELECT [dbo].accounts.accountid, login, mail, [dbo].accounts.name " +
-               "FROM [dbo].accounts;";
+               "SELECT [dbo].accounts.accountid, login, mail, [dbo].accounts.name, [dbo].UsersRoles.RoleId " +
+               "FROM [dbo].accounts, [dbo].UsersRoles " +
+               "WHERE [dbo].UsersRoles.AccountId = [dbo].accounts.accountid;";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -111,7 +112,7 @@ namespace DataAccessLayer
                         Login = (string)reader[1],
                         Email = (string)reader[2],
                         Name = (string)reader[3]
-                    });
+                   });
                 }
                 return list;
             }
@@ -141,37 +142,22 @@ namespace DataAccessLayer
             }
         }
 
-        public Dictionary<Guid, List<string>> GetRolesOfAccounts()
+        public Dictionary<Guid, string[]> GetRolesOfAccounts()
         {
-            string queryString = "SELECT accountid, Roles.name " +
-                                 "FROM  Roles, UsersRoles " +
-                                 "INNER JOIN Roles ON UsersRoles.RoleId = Roles.RoleId";
-
+            string queryString = "SELECT [dbo].[UsersRoles].AccountId, [dbo].[Roles].Name " +
+                                 "FROM[dbo].[Roles], [dbo].[UsersRoles] " +
+                                 "WHERE[dbo].[Roles].RoleId = [dbo].[UsersRoles].RoleId;";
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(queryString, connection);
 
                 connection.Open();
                 var reader = command.ExecuteReader();
-                var result = new Dictionary<Guid, List<string>>();
+                var result = new Dictionary<Guid, string[]>();
 
                 while (reader.Read())
                 {
-                    List<string> roles;
-
-                    if (result.TryGetValue((Guid)reader[0], out roles))
-                    {
-                        roles.Add((string)reader[1]);
-                        result[(Guid)reader[0]].Add((string)reader[1]);
-                    }
-                    else
-                    {
-                        roles = new List<string>
-                        {
-                            (string) reader[1]
-                        };
-                        result.Add((Guid)reader[0], roles);
-                    }
+                    result.Add((Guid)reader[0], ((string)reader[1]).Split(','));
                 }
                 return result;
             }
@@ -259,7 +245,33 @@ namespace DataAccessLayer
                 return true;
             }
         }
-              
+
+        public bool UpdateRole(Guid accountId, int roleCode)
+        {
+            var queryString =
+                 "UPDATE [dbo].[UsersRoles] " +
+                 "SET RoleId = @roleid " +
+                 "WHERE [dbo].UsersRoles.AccountId = @AccountId";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("roleid", roleCode);
+                command.Parameters.AddWithValue("AccountId", accountId);
+
+                try
+                {
+                    connection.Open();
+                    return command.ExecuteNonQuery() > 0;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
         public bool UpdateMail(Guid id, string newMail)
         {
             var queryString =
