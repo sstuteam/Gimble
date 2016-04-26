@@ -16,7 +16,11 @@ namespace GridMoment.UI.WebSite.Controllers
             var account = Adapter.GetAccount(User.Identity.Name);
 
             var model = new SettingsViewModel() { Id = account.Id, Email = account.Email, Password = account.Password };
-           
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
             return View(model);         
         }
 
