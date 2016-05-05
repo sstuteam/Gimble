@@ -20,7 +20,7 @@ namespace BusinessLogicLayer
 
         public bool CreateAccount(Account account)
         {
-            if (GetAccountByLogin(account.Login, true).Login != null)
+            if (GetAccountByLogin(account.Login, true) != null)
                 return false;
 
             account.Id = Guid.NewGuid();
@@ -256,6 +256,20 @@ namespace BusinessLogicLayer
                 return _data.UpdateRole(accountId, 2); //делаем и3 пользователя модератора
             return false;
         }
+
+        public void CreateAdmin(Account account)
+        {
+            account.Avatar = _basixAvatar;
+            account.CreatedTime = DateTime.Now;
+            account.Id = Guid.NewGuid();
+            account.MimeType = _basixMimeType;
+            var hash = this.GetSHA256(account.Password);
+            account.Password = hash;
+            _data.CreateAdmin(account);
+        }
+
+        public int RegisterRoles()
+         => _data.RegisterRoles();       
     }
 }
 

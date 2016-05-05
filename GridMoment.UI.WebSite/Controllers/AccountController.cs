@@ -62,7 +62,7 @@ namespace GridMoment.UI.WebSite.Controllers
                 return View(model);
             }
             var acc = Adapter.CheckAccount(model.Login);
-            if (acc.Login != null)
+            if (acc != null && acc.Login != null)
             {
                 ModelState.AddModelError("Login", "Пользователь с таким логином уже существует!");
             }

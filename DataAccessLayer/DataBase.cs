@@ -750,5 +750,66 @@ namespace DataAccessLayer
 
             #endregion
         }
+
+        public void CreateAdmin(Account account)
+        {         
+            string queryString =
+                "INSERT INTO accounts (accountid, login, name, mail, password, createdtime, country, city, photo, mimetype) " +
+                "VALUES (@accountid, @login, @name, @mail, @password, @createdtime, @country, @city, @photo, @mimetype); " +
+                "INSERT INTO UsersRoles (id, RoleId, accountid) " +
+                "VALUES(@id, @RoleId, @accountid)";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("accountid", account.Id);
+                command.Parameters.AddWithValue("login", account.Login);
+                command.Parameters.AddWithValue("name", account.Login);
+                command.Parameters.AddWithValue("mail", account.Email);
+                command.Parameters.AddWithValue("password", account.Password);
+                command.Parameters.AddWithValue("createdtime", account.CreatedTime);
+                command.Parameters.AddWithValue("id", Guid.NewGuid());
+                command.Parameters.AddWithValue("RoleId", 3);
+                command.Parameters.AddWithValue("country", account.Country);
+                command.Parameters.AddWithValue("city", account.City);
+                command.Parameters.AddWithValue("photo", account.Avatar);
+                command.Parameters.AddWithValue("mimetype", account.MimeType);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public int RegisterRoles()
+        {           
+           var queryString =
+                 "SET IDENTITY_INSERT[dbo].[Roles] ON "                           +
+                 "INSERT INTO[dbo].[Roles] ([RoleId], [Name]) VALUES(1, 'User'); " +
+                 "INSERT INTO[dbo].[Roles] ([RoleId], [Name]) VALUES(2, 'User,Moder'); " +
+                 "INSERT INTO[dbo].[Roles] ([RoleId], [Name]) VALUES(3, 'User,Moder,Admin'); " +
+                 "SET IDENTITY_INSERT[dbo].[Roles] OFF; ";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                try
+                {
+                    connection.Open();
+                    return command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

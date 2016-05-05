@@ -20,6 +20,17 @@ namespace InterfacesLibrary
         IEnumerable<Account> GetAllAccounts();
 
         /// <summary>
+        /// Инициализация ролей пользователей
+        /// </summary>
+        int RegisterRoles();
+
+        /// <summary>
+        /// Создание административного аккаунта системы
+        /// </summary>
+        /// <param name="account">Данные администраици</param>
+        void CreateAdmin(Account account);
+
+        /// <summary>
         /// Получение аакаунта по логину и возможность получения частичного аккаунта 
         /// по флагу. Например, параметр true возвращает только данные, необходимые для 
         /// аутентифифкации.
