@@ -170,5 +170,16 @@ namespace InterfacesLibrary
         /// <param name="roleCode">Тип роли - 1-пользователь, 2-модертаор, 3-админ</param>
         /// <returns></returns>
         bool UpdateRole(Guid accountId, int roleCode);
+
+        /// <summary>
+        /// Создание аакаунта админа
+        /// </summary>
+        /// <param name="account">Данные аккаунта админа</param>
+        void CreateAdmin(Account account);
+
+        /// <summary>
+        /// Регистрация 3-х основных ролей участников системы
+        /// </summary>
+        int RegisterRoles();
     }
 }

@@ -18,6 +18,11 @@ namespace GridMoment.UI.WebSite.Controllers
         /// </summary>
         private static IBusinessLogicLayer _logic;
 
+        public static bool RegisterRoles()
+        {
+            return _logic.RegisterRoles() == 3;
+        }
+
         /// <summary>
         /// закрытый конструктор X-DDDD
         /// </summary>
@@ -27,6 +32,11 @@ namespace GridMoment.UI.WebSite.Controllers
         public static void DeleteAccount(string name)
         {
             _logic.DeleteAccount(name);
+        }
+
+        public static void CreateAdmin(Account account)
+        {            
+            _logic.CreateAdmin(account);
         }
 
         /// <summary>
@@ -114,8 +124,16 @@ namespace GridMoment.UI.WebSite.Controllers
         public static bool CreatePost(Post post)
             => _logic.CreatePost(post);
 
-        public static Post GetPost(Guid posid)
-            => _logic.GetPost(posid);
+        public static Post GetPost(Guid? postid)
+        {
+            if (postid != null)
+            {
+                var str = postid.Value.ToString();
+                Guid guid = Guid.Parse(str);
+                return _logic.GetPost(guid);
+            }
+            return null;            
+        }
         
         public static bool ChangeAvatar(Guid accountId, byte[] avatar, string mimetype)
             => _logic.UpdateAvatar(accountId, avatar, mimetype);
@@ -177,6 +195,9 @@ namespace GridMoment.UI.WebSite.Controllers
 
         public static Dictionary<Guid, string[]> GetAllRolesOfAccounts()
             => _logic.GetRolesOfAccounts();
+
+        public static string[] GetAllRoles()
+            => _logic.GetAllRoles();
 
         #endregion
     }

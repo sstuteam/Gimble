@@ -22,11 +22,11 @@ namespace GridMoment.UI.WebSite.Controllers
         }
 
         [HttpGet]
-        public ActionResult Show(System.Guid postid)
+        public ActionResult Show(System.Guid? postid)
         {
             var post = Adapter.GetPost(postid);
 
-            if (post == null)
+            if (post == null || postid == null)
             {
                 return HttpNotFound();
             }
@@ -145,7 +145,7 @@ namespace GridMoment.UI.WebSite.Controllers
         {
             var account = Adapter.GetAccount(User.Identity.Name);
 
-            if (Adapter.CheckRulesAdmin(User.Identity.Name) || Adapter.CheckRulesModer(User.Identity.Name) || account.Id == accountId)
+            if (Adapter.CheckRulesAdmin(User.Identity.Name) || Adapter.CheckRulesModer(User.Identity.Name) || account != null && account.Id == accountId)
             {
                 Adapter.DeleteComment(comId);
             }
