@@ -38,7 +38,7 @@
                         <li> <a class="ajax-loading" href="~/Profile/Index">Мой профиль</a></li>
                         <li> <a class="ajax-loading" href="~/Settings/Index">Настройки</a></li>
                         <li class="divider"></li>
-                        <li> <a class="ajax-loading" href="~/Account/Logout">Выход из себя</a></li>
+                        <li> <a class="ajax-loading" href="~/Account/Logout">Выход</a></li>
                     </ul>
                 </li>
             </ul>
@@ -46,12 +46,11 @@
     </header>
             
         <!--Логотип + Панель регистрации-->
-        <div class=" col-xs-12 full-height top-background-image">
-            <div>
-                <!--Логотип-->
-                <img class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 gimble-logo" src="/Content/Images/logo.png" />
+        <div class="full-height top-background-image">
+            <!--Логотип-->
+            <div class="row center-block">
+                <img class="center-block gimble-logo" src="/Content/Images/logo.png" />
             </div>
-
             <!-- Модальное окно регистрации-->
             <div id="registerModal" class="modal fade">
                 <div class="modal-dialog modal-sm">
@@ -73,7 +72,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Вход</h4>
+                            <h3 class="modal-title">Вход</h3>
                         </div>
                         <div class="modal-body">
                             @Html.Partial("~/Views/Account/Login.cshtml")
@@ -94,16 +93,16 @@
             else
             {
               <p><h1 class="col-xs-12 text-center">Добро пожаловать, @User.Identity.Name</h1></p>
-              <p><h2 class="col-xs-12 text-center">@User.Identity.Name, асуществи свои мечты, например, 
-                  @Html.ActionLink("Создай пост", "Add", "Post")</h2></p>
+              <p><h2 class="col-xs-12 text-center">@User.Identity.Name, осуществи свои мечты, 
+                  @Html.ActionLink("cоздай пост", "Add", "Post")</h2></p>
             }
 
                 <!-- Стрелка -->
-                <div class="col-xs-10 col-xs-offset-1 hidden-xs arrow-scroll">
-                    <a class="page-scroll" href="#main-content">
-                        <img class="center-block" src="/Content/Images/arrow.png" />
-                    </a>
-                </div>
+            <div class="col-xs-10 col-xs-offset-1 hidden-xs arrow-scroll">
+                <a class="page-scroll" href="#main-content">
+                    <img class="center-block" src="/Content/Images/arrow.png" />
+                </a>
+            </div>
 </div>
 
         <br />

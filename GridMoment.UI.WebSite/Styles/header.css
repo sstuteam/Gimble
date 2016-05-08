@@ -10,19 +10,21 @@
 }
 
 .gimble-logo {
-    margin: 150px auto 10px auto;
-    width: 52%;
+    width: 40%;
     height: auto;
+    margin-top: 120px;
 }
 
 .profile-button, .profile-button a, .profile-button a:hover {
     margin-top: -45px;
     color: white;
     text-decoration: none;
+    background-size: 13px;
 }
 
 .dropdown-menu a, .dropdown-menu a:hover {
     margin-top: 0;
+    margin-right: 30px;
 }
 
 .drop-btn {

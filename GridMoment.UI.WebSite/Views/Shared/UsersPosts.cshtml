@@ -15,9 +15,9 @@
             if (i < length)
             {
                 <div class="col-lg-4 col-md-4 col-sm-4 margin-border">
-                    @Html.ActionLink(Model[i].NamePost, "Show", "Post", new { postId = Model[i].PostId }, null)"
+                    @Html.ActionLink(Model[i].NamePost, "Show", "Post", new { postId = Model[i].PostId }, null)
                         <!--Begin post-->
-                        <img class=" img-thumbnail" src="@Url.Action("ShowSourceOfPost", "Post", new { postId = Model[i].PostId })" />
+                        <img class="img-thumbnail" src="@Url.Action("ShowSourceOfPost", "Post", new { postId = Model[i].PostId })" />
                         <div class="text-left foo">@Model[i].Text</div>
                         <footer>
                             <span class="glyphicon glyphicon-calendar pull-right">@Model[i].CreatedTime</span>

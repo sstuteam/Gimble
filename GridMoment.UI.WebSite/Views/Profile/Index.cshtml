@@ -18,12 +18,13 @@
                          <img class="ratio img-responsive img-circle" src="@Url.Action("ShowAvatar", "Account", new { name = User.Identity.Name })" alt="Ваша фотография" />
                     </div>
                     <div class="col-xs-7 some-margin">@Model.Name</div>
+                    
                     <div class="col-xs-7"><small>@Model.City</small></div>
-                        <div class="col-xs-7">Должность на сайте - @foreach(var item in Model.Role)
-                        {
-                            <small> @item _</small>
-                        }
-                         </div>
+                    <div class="col-xs-7">Должность на сайте - @foreach(var item in Model.Role)
+                    {
+                        <small> @item _</small>
+                    }
+                        </div>
                 </div>
 
                 <p></p>
