@@ -137,7 +137,10 @@ namespace GridMoment.UI.WebSite.Controllers
 
         public static bool ChangeName(Guid id, string newName)
             => _logic.UpdateName(id, newName);
-        
+
+        public static bool ChangeCityAndCountry(Guid id, string city, string country)
+            => _logic.UpdateCityAndCountry(id, city, country);
+
         public static bool ChangeAvatar(Guid accountId, byte[] avatar, string mimetype)
             => _logic.UpdateAvatar(accountId, avatar, mimetype);
 

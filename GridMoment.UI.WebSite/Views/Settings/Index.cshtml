@@ -45,6 +45,36 @@
                             }
                         </div>
 
+                        <!--Страна и город-->
+                        <div class="row">
+                            @using (Html.BeginForm("ChangeCityAndCountry", "Settings", FormMethod.Post))
+                            {
+                                <label class="col-xs-12 name">Страна и город</label>
+                                
+                                <div class="row mail">
+                                    <div class="col-xs-5">
+                                        <label class="pull-right">Город:</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="text" name="City" />
+                                    </div>
+                                </div>
+                                <div class="row mail">
+                                    <div class="col-xs-5">
+                                        <label class="pull-right">Страна:</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="text" name="Country" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-xs-offset-5">
+                                        <input type="submit" class="btn btn-default mail" value="Подтверждение" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
                         <!--Фотография-->
                         <div class="row">
                             @using (Html.BeginForm("ChangeAvatar", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))

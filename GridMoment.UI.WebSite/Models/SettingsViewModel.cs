@@ -12,7 +12,13 @@ namespace GridMoment.UI.WebSite.Models
 
         [Required, Display(Name = "Адрес электронной почты"), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        
+
+        [Required, Display(Name = "Город"), StringLength(500, MinimumLength = 3)]
+        public string City { get; set; }
+
+        [Required, Display(Name = "Страна"), StringLength(500, MinimumLength = 3)]
+        public string Country { get; set; }
+
         [Required, StringLength(100, MinimumLength = 3), Display(Name = "Пароль"), DataType(DataType.Password)]
         public string Password { get; set; }
 

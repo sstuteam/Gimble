@@ -78,5 +78,14 @@ namespace GridMoment.UI.WebSite.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult ChangeCityAndCountry(SettingsViewModel model)
+        {
+            var account = Adapter.GetAccount(User.Identity.Name);
+
+            Adapter.ChangeCityAndCountry(account.Id, model.City, model.Country);
+
+            return RedirectToAction("Index");
+        }
     }
 }

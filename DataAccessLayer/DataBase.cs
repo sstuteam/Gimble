@@ -333,7 +333,7 @@ namespace DataAccessLayer
             var queryString =
                  "UPDATE [dbo].[accounts] " +
                      "SET [country] = @country" +
-                     ",[city] = @city" +
+                     ", [city] = @city " +
                  "WHERE [dbo].accounts.accountid = @accountid";
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
