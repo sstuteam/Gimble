@@ -65,6 +65,10 @@ namespace BusinessLogicLayer
         public bool UpdatePassword(Guid id, string password)
             => _data.UpdatePassword(id, password);
 
+        public bool UpdateName(Guid id, string newName)
+            => _data.UpdateName(id, newName);
+            
+
         public bool CreatePost(Post post)
         {
             post.Rating = 0;

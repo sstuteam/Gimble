@@ -7,6 +7,9 @@ namespace GridMoment.UI.WebSite.Models
     {
         public Guid Id { get; set; }
 
+        [Required, Display(Name = "Имя"), StringLength(500, MinimumLength = 3)]
+        public string Name { get; set; }
+
         [Required, Display(Name = "Адрес электронной почты"), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         

@@ -58,6 +58,15 @@ namespace InterfacesLibrary
         bool UpdatePassword(Guid id, string password);
 
         /// <summary>
+        /// Функция для смены пароля по имеющемуся id.
+        /// Вызов подразумевается от аккаунта авторизованного пользователя.
+        /// </summary>
+        /// <param name="id">Guid пользователя</param>
+        /// <param name="newName">Новое имя</param>
+        /// <returns>Успешность операции</returns>
+        bool UpdateName(Guid id, string newName);
+
+        /// <summary>
         /// Функция для смены почтового ящика по имеющемуся id.
         /// Вызов подразумевается от аккаунта авторизованного пользователя.
         /// </summary>

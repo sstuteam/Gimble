@@ -300,6 +300,34 @@ namespace DataAccessLayer
             }
         }
 
+        public bool UpdateName(Guid id, string newName)
+        {
+            var queryString =
+                 "UPDATE [dbo].[accounts] " +
+                 "SET name = @name " +
+                 "WHERE [dbo].accounts.accountid = @accountid";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(queryString, connection);
+
+                command.Parameters.AddWithValue("name", newName);
+                command.Parameters.AddWithValue("accountid", id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                return true;
+            }
+        }
+
         public bool UpdateCityAndCountry(Guid id, string newCity, string newCountry)
         {
             var queryString =

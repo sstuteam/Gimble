@@ -134,9 +134,13 @@ namespace GridMoment.UI.WebSite.Controllers
             }
             return null;            
         }
+
+        public static bool ChangeName(Guid id, string newName)
+            => _logic.UpdateName(id, newName);
         
         public static bool ChangeAvatar(Guid accountId, byte[] avatar, string mimetype)
             => _logic.UpdateAvatar(accountId, avatar, mimetype);
+
 
         public static IEnumerable<Post> List7Times()
             => _logic.Get7DaysPopular();

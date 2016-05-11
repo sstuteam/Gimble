@@ -15,7 +15,7 @@ namespace GridMoment.UI.WebSite.Controllers
         {
             var account = Adapter.GetAccount(User.Identity.Name);
 
-            var model = new SettingsViewModel() { Id = account.Id, Email = account.Email, Password = account.Password };
+            var model = new SettingsViewModel() { Id = account.Id, Name = account.Name, Email = account.Email, Password = account.Password };
 
             if (Request.IsAjaxRequest())
             {
@@ -68,6 +68,15 @@ namespace GridMoment.UI.WebSite.Controllers
 
             return RedirectToAction("Index");
             
+        }
+
+        public ActionResult ChangeName(SettingsViewModel model)
+        {
+            var account = Adapter.GetAccount(User.Identity.Name);
+
+            Adapter.ChangeName(account.Id, model.Name);
+
+            return RedirectToAction("Index");
         }
     }
 }

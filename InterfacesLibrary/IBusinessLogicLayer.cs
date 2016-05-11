@@ -88,6 +88,14 @@ namespace InterfacesLibrary
         bool UpdateMail(Guid id, string newMail);
 
         /// <summary>
+        /// Возможность сменить имя в своём аккаунте
+        /// </summary>
+        /// <param name="id">Guid пользователя</param>
+        /// <param name="newMail">Новое имя</param>
+        /// <returns></returns>
+        bool UpdateName(Guid id, string newName);
+
+        /// <summary>
         /// Функция смены пароля. Использовать, если пользователь авторизован в системе.
         /// </summary>
         /// <param name="id">Guid пользователя</param>
