@@ -46,6 +46,7 @@ namespace GridMoment.UI.WebSite.Models
         /// <summary>
         /// Меточки для добавления
         /// </summary>
+        [Display(Name = "Меточки")]
         public string TagsAddiction { get; set; }
 
         /// <summary>

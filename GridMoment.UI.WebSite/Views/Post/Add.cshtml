@@ -14,42 +14,62 @@
         @using (Html.BeginForm("Add", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="form-horizontal">
-            <h4>Создай новый пост :)</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                             
-            <div id="temp3" class="form-group focused">
-                <h2>Дайте полёт фантазии, опишите Ваши эмоции</h2>
-                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                <h4>Создай новый пост :)</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div id="temp3" class="form-group">
-                <h2>Дайте эмоциям название</h2>
-                @Html.LabelFor(model => model.NamePost, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NamePost, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NamePost, "", new { @class = "text-danger" })
+                <div id="temp3" class="form-group focused">
+                    <h2>Дайте полёт фантазии, опишите Ваши эмоции</h2>
+                    <div class="row">
+                        @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!--Основная картинка поста-->
-            <input type="file" name="uploadImage" />
-            
-            <div id="temp4" class="form-group">
-                <h2>И добавьте много меточек</h2>
-                @Html.LabelFor(model => model.TagsAddiction, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TagsAddiction, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TagsAddiction, "", new { @class = "text-danger" })
+                <div id="temp3" class="form-group">
+                    <h2>Дайте эмоциям название</h2>
+                    <div class="row">
+                        @Html.LabelFor(model => model.NamePost, htmlAttributes: new { @class = "col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NamePost, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NamePost, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
+                <!--Основная картинка поста-->
+                <div class="row">
+                    <div class="col-xs-3" style="margin-left: -15px">
+                        <input class="filestyle right" type="file" name="uploadImage" data-buttonText="Выбрать" />
+                    </div>
+                </div>
+                <div id="temp4" class="form-group">
+                    <h2>И добавьте много меточек</h2>
+                    <div class="row">
+                        @Html.LabelFor(model => model.TagsAddiction, htmlAttributes: new { @class = "col-md-2" })
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TagsAddiction, new { htmlAttributes = new { @class = "form-control" } })
+
+                            @Html.ValidationMessageFor(model => model.TagsAddiction, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <input class="btn btn-default"style="margin-left: -15px" type="submit" value="Создать" />
+
             </div>
-            <input class="btn btn-default" type="submit" value="Создать" />
-        </div>
         }
-        <script src="~/Scripts/addprofile.js"></script>      
+        <script src="~/Scripts/addprofile.js"></script>
+        <script src="~/Scripts/jquery-2.2.0.js"></script>
+        <script src="~/Scripts/libs/bootstrap-filestyle.min.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>      
 </div>
 } 
     
