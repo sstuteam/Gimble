@@ -120,6 +120,7 @@
     <Content Include="Scripts\PartialLoading.js" />
     <Content Include="Scripts\UserPartialLoading.js" />
     <Content Include="Styles\addpost.css" />
+    <Content Include="Styles\admin.css" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap.css" />

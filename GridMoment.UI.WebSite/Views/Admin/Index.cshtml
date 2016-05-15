@@ -10,34 +10,34 @@
 <head>
     <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
     <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Styles/admin.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid" style="margin-top:200px">
-        <table class="table">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Login)
-                    </td>
-                    <td>
-                        <span class="row">
-                            @foreach (var role in item.Role)
-                            {
-                                <span>
-                                    @role
-                                </span>
-                            }
-                        </span>
-                    </td>
-                    <td>
-                           @Html.ActionLink("Сделать модератором", "UpdateRole", new { accountId = item.Id }, new { @class = "ajax-loading" })
-                         | @Html.ActionLink("Удалить", "Delete", new { name = item.Login }, new { @class = "ajax-loading" })
-                    </td>
-                </tr>
-            }
+    <div class="container-fluid admin-panel">
+        <div class="row admin-panel">
+            <div class="col-xs-8 col-xs-offset-1">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-xs-4 columns">
+                            @Html.DisplayFor(modelItem => item.Login)
+                        </div>
+                        <div class="col-xs-4 columns">
+                            @Html.DisplayFor(modelItem => item.Role)
+                        </div>
+                        <div class="col-xs-4 columns">
+                            <button class="btn btn-default">
+                                @Html.ActionLink("Сделать модератором", "UpdateRole", new { accountId = item.Id }, new { @class = "ajax-loading" })
+                            </button>
+                            <button class="btn btn-default">
+                                @Html.ActionLink("Удалить", "Delete", new { name = item.Login }, new { @class = "ajax-loading" })
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
 
-        </table>
+        </div>
     </div>
     <script src="~/Scripts/jquery-2.2.0.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
