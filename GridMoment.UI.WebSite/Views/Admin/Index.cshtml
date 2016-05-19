@@ -8,13 +8,29 @@
 <h2>PHP myAdmin</h2>
 
 <head>
-    <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" />
     <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Styles/admin.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container-fluid admin-panel">
         <div class="row admin-panel">
+            <div class="col-xs-8 col-xs-offset-1">
+                <form class="form-search">
+                    <input type="text" class="input-medium search-query">
+                    <button type="submit" class="btn btn-default">Поиск</button>
+                </form>
+            </div>
+            <div class="col-xs-8 col-xs-offset-1">
+                <div class="row">
+                    <div class="col-xs-4 columns">
+                        <label>Логин пользователя</label>
+                    </div>
+                    <div class="col-xs-4 columns">
+                        <label>Роль пользователя</label>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-8 col-xs-offset-1">
                 @foreach (var item in Model)
                 {

@@ -14,10 +14,11 @@
         <a href="~/Home/Index" class="logo_pull-left ajax-loading">
             <div id="head-logo" href=#></div>
         </a>
+        
         @if (User.Identity.IsAuthenticated)
         {
             <ul class="profile-button list-unstyled pull-right">
-                <li class="dropdown">
+                <li class="dropdown pull-right">
                     <a class="drop-btn dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span>
                         @User.Identity.Name
