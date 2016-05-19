@@ -9,6 +9,15 @@
     background-repeat: no-repeat;
 }
 
+.search{
+    margin-top: 18px;
+    height: 30px;
+}
+
+.button{
+    height: 30px;
+}
+
 .gimble-logo {
     width: 40%;
     height: auto;
