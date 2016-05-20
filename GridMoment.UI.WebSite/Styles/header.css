@@ -36,6 +36,12 @@
     /*margin-right: 30px;*/
 }
 
+.dropdown-menu{
+    min-width: 100px;
+    font-size: 14px;
+    z-index: 1;
+}
+
 .drop-btn {
     margin-top: 15px;
     margin-right: 18px;

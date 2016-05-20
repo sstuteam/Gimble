@@ -7,19 +7,19 @@
     <link href="~/Styles/libs/bootstrap.css" rel="stylesheet" />
     <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Styles/settings.css" rel="stylesheet" />
+    <link href="~/Styles/header.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="full-height container-fluid delete-bonding">
-        @if (User.Identity.IsAuthenticated)
-        {
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 topper">
-                        <!--Имя-->
-                        <div class="row">
-                            @using (Html.BeginForm("ChangeName", "Settings", FormMethod.Post))
-                            {
-                                <label class="col-xs-12 name">Имя</label>
+<div class="full-height container-fluid delete-bonding">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 topper">
+                    <!--Имя-->
+                    <div class="row">
+                        @using (Html.BeginForm("ChangeName", "Settings", FormMethod.Post))
+                        {
+                            <label class="col-xs-12 name">Имя</label>
 
                                 <div class="row">
                                     <div class="col-xs-5">
@@ -42,15 +42,15 @@
                                         <input type="submit" class="btn btn-default mail" value="Подтверждение" />
                                     </div>
                                 </div>
-                            }
-                        </div>
+                        }
+                    </div>
 
-                        <!--Страна и город-->
-                        <div class="row">
-                            @using (Html.BeginForm("ChangeCityAndCountry", "Settings", FormMethod.Post))
-                            {
-                                <label class="col-xs-12 name">Страна и город</label>
-                                
+                    <!--Страна и город-->
+                    <div class="row">
+                        @using (Html.BeginForm("ChangeCityAndCountry", "Settings", FormMethod.Post))
+                        {
+                            <label class="col-xs-12 name">Страна и город</label>
+
                                 <div class="row mail">
                                     <div class="col-xs-5">
                                         <label class="pull-right">Город:</label>
@@ -72,14 +72,14 @@
                                         <input type="submit" class="btn btn-default mail" value="Подтверждение" />
                                     </div>
                                 </div>
-                            }
-                        </div>
+                        }
+                    </div>
 
-                        <!--Фотография-->
-                        <div class="row">
-                            @using (Html.BeginForm("ChangeAvatar", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                <label class="col-xs-12 name">Фотография</label>
+                    <!--Фотография-->
+                    <div class="row">
+                        @using (Html.BeginForm("ChangeAvatar", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <label class="col-xs-12 name">Фотография</label>
 
                                 <div class="col-xs-4 col-xs-offset-1">
                                     <input class="filestyle right" type="file" name="uploadImage" data-buttonText="Выбрать" />
@@ -87,23 +87,23 @@
                                 <div class="col-xs-3 col-xs-offset-0">
                                     <input type="submit" value="Сменить" class="btn btn-default" />
                                 </div>
-                            }
-                        </div>
-                        <!--Адрес электронной  почты-->
-                        <div class="row">
-                            <label class="col-xs-12 name">Адрес электронной почты</label>
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    @using (Html.BeginForm("ChangeMail", "Settings", FormMethod.Post))
-                                    {
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <label class="pull-right">Текущий адрес:</label>
-                                            </div>
-                                            <div class="col-xs-7">
-                                                @Model.Email
-                                            </div>
+                        }
+                    </div>
+                    <!--Адрес электронной  почты-->
+                    <div class="row">
+                        <label class="col-xs-12 name">Адрес электронной почты</label>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                @using (Html.BeginForm("ChangeMail", "Settings", FormMethod.Post))
+                                {
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <label class="pull-right">Текущий адрес:</label>
                                         </div>
+                                        <div class="col-xs-7">
+                                            @Model.Email
+                                        </div>
+                                    </div>
                                         <div class="row mail">
                                             <div class="col-xs-5">
                                                 <label class="pull-right">Новый адрес:</label>
@@ -118,26 +118,26 @@
                                             </div>
                                         </div>
 
-                                    }
-                                </div>
+                                }
                             </div>
                         </div>
+                    </div>
 
-                        <!--Изменение пароля-->
-                        <div class="row">
-                            <label class="col-xs-12 name">Изменение пароля</label>
-                            <div class="col-lg-12">
-                                <!--Форма для смены пароля-->
-                                @using (Html.BeginForm("ChangePassword", "Settings", FormMethod.Post))
-                                {
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <label class="pull-right">Старый пароль:</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input type="text" value="******" name="Password" />
-                                        </div>
+                    <!--Изменение пароля-->
+                    <div class="row">
+                        <label class="col-xs-12 name">Изменение пароля</label>
+                        <div class="col-lg-12">
+                            <!--Форма для смены пароля-->
+                            @using (Html.BeginForm("ChangePassword", "Settings", FormMethod.Post))
+                            {
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <label class="pull-right">Старый пароль:</label>
                                     </div>
+                                    <div class="col-xs-4">
+                                        <input type="text" value="******" name="Password" />
+                                    </div>
+                                </div>
                                     <div class="row mail">
                                         <div class="col-xs-5">
                                             <label class="pull-right">Новый пароль:</label>
@@ -159,19 +159,18 @@
                                             <input type="submit" class="btn btn-default" value="Подтверждение" />
                                         </div>
                                     </div>
-                                }
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        }
-        <script>
-            $(":file").filestyle({ buttonText: "Выбрать файл", input: false });
-        </script>
+        </div>
+    }
+    <script>
+        $(":file").filestyle({ buttonText: "Выбрать файл", input: false });
+    </script>
 
-        <script src="~/Scripts/jquery-2.2.0.js"></script>
-        <script src="~/Scripts/libs/bootstrap-filestyle.min.js"></script>
-        <script src="/Scripts/bootstrap.min.js"></script>
-    </div>
-</body>                   
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <script src="~/Scripts/libs/bootstrap-filestyle.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+</div>               
