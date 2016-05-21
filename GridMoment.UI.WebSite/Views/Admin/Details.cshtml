@@ -1,0 +1,67 @@
+﻿@model GridMoment.UI.WebSite.Models.DetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<head>
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Styles/header.css" rel="stylesheet" />
+    <link href="~/Styles/admin.css" rel="stylesheet" />
+</head>
+<div>
+    <h4>DetailsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+    </dl>
+</div>
+<button class="btn btn-default">
+    @Html.ActionLink("Удалить", "Delete", new { name = Model.Login }, new { @class = "ajax-loading" })
+</button>
+<button class="btn btn-default">
+    @Html.ActionLink("Назад", "Index")
+</button>
+
+<script src="~/Scripts/jquery-2.2.0.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

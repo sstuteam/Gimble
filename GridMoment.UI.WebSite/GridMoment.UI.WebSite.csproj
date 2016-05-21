@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GridMoment.UI.WebSite</RootNamespace>
     <AssemblyName>GridMoment.UI.WebSite</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,22 +57,21 @@
       <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
       <Private>True</Private>
@@ -139,6 +139,7 @@
     <Content Include="Styles\Loading.css" />
     <Content Include="Styles\post.css" />
     <Content Include="Styles\profile.css" />
+    <Content Include="Styles\Search.css" />
     <Content Include="Styles\settings.css" />
     <Content Include="Styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\arrow.png" />
@@ -202,6 +203,7 @@
     </Compile>
     <Compile Include="Models\AccountsPrevievViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\DetailsViewModel.cs" />
     <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\SettingsViewModel.cs" />
@@ -232,6 +234,8 @@
     <Content Include="Views\Shared\UsersPosts.cshtml" />
     <Content Include="Views\Post\ShowComments.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Post\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -251,9 +255,9 @@
       <Project>{894058fd-f076-4b44-9a3b-2432b1e6f8fd}</Project>
       <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InterfacesLibrary\InterfacesLibrary.csproj">
+    <ProjectReference Include="..\InterfacesLibrary\IBLL.csproj">
       <Project>{213bdc56-6357-4d1c-b177-2aba17cd2eb7}</Project>
-      <Name>InterfacesLibrary</Name>
+      <Name>IBLL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

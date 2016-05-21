@@ -23,6 +23,10 @@ namespace GridMoment.UI.WebSite.App_Start
             Mapper.CreateMap<AccountsPrevievViewModel, Account>();
 
             Mapper.CreateMap<Account, AccountsPrevievViewModel>();
+
+            Mapper.CreateMap<DetailsViewModel, Account>();
+
+            Mapper.CreateMap<Account, DetailsViewModel>();
         }
     }
 }

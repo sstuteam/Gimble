@@ -239,7 +239,7 @@ namespace InterfacesLibrary
         /// <summary>
         /// Получить все посты, лайкнутые пользователем
         /// </summary>
-        /// <param name="accountId">Уникальный идентификатор пользователя</param>
+        /// <param name="modelName">Уникальный идентификатор пользователя</param>
         /// <returns>Список постов.</returns>
         List<Post> GetBookmarks(string modelName);
 
@@ -251,5 +251,19 @@ namespace InterfacesLibrary
         /// <param name="roleCode">Тип роли - 1-пользователь, 2-модертаор, 3-админ</param>
         /// <returns></returns>
         bool UpdateRole(Guid accountId, int roleCode);
+
+        /// <summary>
+        /// Поиск по тегу для всех постов
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        List<Post> SearchPosts(string tag);
+
+        /// <summary>
+        /// Поиск пользователей
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        Account SearchUsers(string name);
     }
 }

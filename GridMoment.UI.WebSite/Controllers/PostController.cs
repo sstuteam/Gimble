@@ -186,5 +186,21 @@ namespace GridMoment.UI.WebSite.Controllers
             Adapter.SetLike(post, account);
             return RedirectToAction("Show", new { postid = post });
         }
+
+        public ActionResult Search(string tag)
+        {
+            if (tag == null)
+               return RedirectToAction("Index", "Home");
+
+            var result = Adapter.SearchPosts(tag);
+            if (result.Count != 0)
+            {
+                if (Request.IsAjaxRequest())
+                    return PartialView(result);
+
+                return View(result);
+            }
+            return HttpNotFound();
+        }
     }
 }

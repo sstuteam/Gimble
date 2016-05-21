@@ -39,6 +39,15 @@ namespace GridMoment.UI.WebSite.Controllers
             _logic.CreateAdmin(account);
         }
 
+        public static DetailsViewModel ViewDetails(string name)
+        {
+            var account = _logic.GetAccountByLogin(name, false);
+            return Mapper.Map<DetailsViewModel>(account);
+        }
+
+        public static List<PostViewModel> SearchPosts(string name)
+            => Mapper.Map<List<PostViewModel>>(_logic.SearchPosts(name));
+
         /// <summary>
         /// Инициализация класса логики(Логика будет только одна)
         /// </summary>

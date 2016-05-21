@@ -53,9 +53,13 @@
       <Project>{894058fd-f076-4b44-9a3b-2432b1e6f8fd}</Project>
       <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InterfacesLibrary\InterfacesLibrary.csproj">
+    <ProjectReference Include="..\IDAL\IDAL.csproj">
+      <Project>{98c43e01-84d4-43a7-a0db-c9c1b3e43502}</Project>
+      <Name>IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InterfacesLibrary\IBLL.csproj">
       <Project>{213bdc56-6357-4d1c-b177-2aba17cd2eb7}</Project>
-      <Name>InterfacesLibrary</Name>
+      <Name>IBLL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

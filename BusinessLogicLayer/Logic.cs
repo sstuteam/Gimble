@@ -273,7 +273,24 @@ namespace BusinessLogicLayer
         }
 
         public int RegisterRoles()
-         => _data.RegisterRoles();       
+         => _data.RegisterRoles();
+
+        public List<Post> SearchPosts(string tag)
+        {
+            var data = _data.GetAllPosts();
+            var result = from item in data
+                         where item.Tags.Contains(tag) || item.NamePost == tag
+                         select item;
+            return result.ToList();
+        }
+
+        public Account SearchUsers(string name)
+        {
+            var result = from i in _data.GetAllAccounts()
+                         where i.Name.Equals(name)
+                         select i;
+            return result.FirstOrDefault();
+        }
     }
 }
 

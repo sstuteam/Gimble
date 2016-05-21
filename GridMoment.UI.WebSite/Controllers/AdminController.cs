@@ -1,8 +1,6 @@
 ﻿using GridMoment.UI.WebSite.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GridMoment.UI.WebSite.Controllers
@@ -16,6 +14,7 @@ namespace GridMoment.UI.WebSite.Controllers
             {
                 var model = Adapter.GetAllAccounts();
                 var roles = Adapter.GetAllRolesOfAccounts();
+
                 var joinModelAndRoles = from item in model
                                         join role in roles on item.Id equals role.Key
                                         select new AccountsPrevievViewModel()
@@ -27,7 +26,7 @@ namespace GridMoment.UI.WebSite.Controllers
                                         };
                 if (Request.IsAjaxRequest())
                 {
-                    return PartialView(joinModelAndRoles);
+                    return PartialView(joinModelAndRoles.ToList());
                 }
                 return View(joinModelAndRoles);
             }
@@ -51,6 +50,32 @@ namespace GridMoment.UI.WebSite.Controllers
                 return RedirectToAction("Index");                
             }
             return RedirectToAction("Index", "Home");                 
+        }
+
+        [Authorize]
+        public ActionResult Details(string name)
+        {
+            if (Adapter.CheckRulesAdmin(User.Identity.Name))
+            {
+                var account = Adapter.ViewDetails(name);
+                return View(account);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Search(string nameOfUser)
+        {
+            if (Adapter.CheckRulesAdmin(User.Identity.Name) && nameOfUser != null)
+            {
+                var result = from esffesfes in Adapter.GetAllAccounts()
+                             where esffesfes.Name.Equals(nameOfUser)
+                             select esffesfes;
+                return RedirectToAction("Details", new { name = result.FirstOrDefault().Login  });
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<GridMoment.UI.WebSite.Models.PostViewModel>
+
+<head>
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/libs/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Styles/header.css" rel="stylesheet" />
+    <link href="~/Styles/Search.css" rel="stylesheet" />
+</head>
+
+<div class="container-fluid beauty-margin">
+    <p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <button class="btn btn-default">
+                @Html.ActionLink("Новый пост", "Add", "Post")
+            </button>
+        }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NamePost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedTime)
+            </th>
+            <th>
+                <p>Доступные действия</p>
+            </th>
+</tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamePost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(createdTime => item.CreatedTime)
+                </td>
+                <td>
+                    <button class="btn btn-default">
+                        @Html.ActionLink("Просмотреть", "Show", new { postid = item.PostId })
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/jquery-2.2.0.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
