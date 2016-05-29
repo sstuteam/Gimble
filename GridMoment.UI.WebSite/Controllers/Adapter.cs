@@ -17,8 +17,8 @@ namespace GridMoment.UI.WebSite.Controllers
     /// </summary>
     public class Adapter
     {
-        private static string defaultA = ConfigurationManager.AppSettings.GetValues("DefaultA").FirstOrDefault();
         private static string defaultMT = ConfigurationManager.AppSettings.GetValues("DefaultMT").FirstOrDefault();
+        private static string defaultA = AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings.GetValues("DefaultA").FirstOrDefault();
         /// <summary>
         /// Экземпляр логики приложения
         /// </summary>
