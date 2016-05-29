@@ -5,14 +5,20 @@ using System;
 using System.Collections.Generic;
 using AutoMapper;
 using InterfacesLibrary;
+using System.Configuration;
+using System.Linq;
+using System.IO;
 
 namespace GridMoment.UI.WebSite.Controllers
 {
+    
     /// <summary>
     /// Класс для связывания контроллеров и логики приложения.
     /// </summary>
     public class Adapter
     {
+        private static string defaultA = ConfigurationManager.AppSettings.GetValues("DefaultA").FirstOrDefault();
+        private static string defaultMT = ConfigurationManager.AppSettings.GetValues("DefaultMT").FirstOrDefault();
         /// <summary>
         /// Экземпляр логики приложения
         /// </summary>
@@ -36,6 +42,8 @@ namespace GridMoment.UI.WebSite.Controllers
 
         public static void CreateAdmin(Account account)
         {            
+            account.Avatar = File.ReadAllBytes(defaultA);
+            account.MimeType = defaultMT;
             _logic.CreateAdmin(account);
         }
 
@@ -119,6 +127,9 @@ namespace GridMoment.UI.WebSite.Controllers
 
         public static bool CreateUserAndAccount(Account account)
         {
+            account.Avatar = File.ReadAllBytes(defaultA);
+            account.MimeType = defaultMT;
+
             if (_logic.CreateAccount(account))
                 return true;
             return false;
