@@ -62,10 +62,12 @@
     </footer>  
         
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modalwindow.js"></script><!-- Управление модальными окнами -->
     <script src="~/Scripts/scrolling-nav.js"></script>
     <script src="~/Scripts/jquery.easing.min.js"></script>
     <script src="~/Scripts/header.js"></script><!-- header вставляется в первый попавшийся класс container-fluid -->
     <script src="~/Scripts/PartialLoading.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
