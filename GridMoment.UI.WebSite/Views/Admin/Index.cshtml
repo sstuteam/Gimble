@@ -15,13 +15,13 @@
 </head>
 <body>
     <div class="container-fluid admin-panel">
-        <div class="row admin-panel">
+        <div class="row">
             
             <div class="col-xs-8 col-xs-offset-1 row">
             @using (Html.BeginForm("Search", "Admin", FormMethod.Post))
             {
                 <div class="col-xs-4">
-                    <input name="nameOfUser" type="text" class="form-control">
+                    <input name="nameOfUser" type="text" class="form-control" placeholder="Введите имя пользователя">
                 </div>
 
                 <div class="col-xs-1">

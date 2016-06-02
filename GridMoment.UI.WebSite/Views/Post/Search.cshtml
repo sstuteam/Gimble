@@ -7,11 +7,11 @@
     <link href="~/Styles/Search.css" rel="stylesheet" />
 </head>
 
-<div class="container-fluid beauty-margin">
+<div class="container-fluid">
     <p>
         @if (User.Identity.IsAuthenticated)
         {
-            <button class="beauty-margin btn btn-default">
+            <button class="btn btn-default beauty-margin">
                 @Html.ActionLink("Новый пост", "Add", "Post")
             </button>
         }
@@ -19,19 +19,19 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Text)
+                <label>Текст поста</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NamePost)
+                <label>Название поста</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
+                <label>Имя автора</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rating)
+                <label>Рейтинг</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedTime)
+                <label>Дата создания</label>
             </th>
             <th>
                 <p>Доступные действия</p>

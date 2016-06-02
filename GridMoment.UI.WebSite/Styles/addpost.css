@@ -4,6 +4,7 @@
 }
 .main-content{
     margin-bottom:40px;
+    margin-top: 120px;
 }
 .name{
     padding-left:15px;
@@ -49,7 +50,7 @@
     text-align: center;
 }
 label{
-    font-size: 19px;
+    font-size: 14px;
 }
 .padding-input{
     width: 300px;
